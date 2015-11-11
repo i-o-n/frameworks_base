@@ -5261,6 +5261,15 @@ public final class Settings {
         private static final Validator SHOW_QS_CLOCK_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /**
+         * Whether to allow one finger quick settings expansion on the right side of the statusbar.
+         * @hide
+         */
+        public static final String STATUS_BAR_QUICK_QS_PULLDOWN = "status_bar_quick_qs_pulldown";
+
+        /** @hide */
+        private static final Validator STATUS_BAR_QUICK_QS_PULLDOWN_VALIDATOR = ANY_INTEGER_VALIDATOR;
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -5398,6 +5407,7 @@ public final class Settings {
             STATUS_BAR_CLOCK_SIZE,
             STATUS_BAR_CLOCK_FONT_STYLE,
             SHOW_QS_CLOCK,
+            STATUS_BAR_QUICK_QS_PULLDOWN,
         };
 
         /**
@@ -5595,6 +5605,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(STATUS_BAR_CLOCK_SIZE);
             PRIVATE_SETTINGS.add(STATUS_BAR_CLOCK_FONT_STYLE);
             PRIVATE_SETTINGS.add(SHOW_QS_CLOCK);
+            PRIVATE_SETTINGS.add(STATUS_BAR_QUICK_QS_PULLDOWN);
         }
 
         /**
@@ -5766,6 +5777,7 @@ public final class Settings {
             VALIDATORS.put(STATUS_BAR_CLOCK_SIZE, STATUS_BAR_CLOCK_SIZE_VALIDATOR);
             VALIDATORS.put(STATUS_BAR_CLOCK_FONT_STYLE, STATUS_BAR_CLOCK_FONT_STYLE_VALIDATOR);
             VALIDATORS.put(SHOW_QS_CLOCK, SHOW_QS_CLOCK_VALIDATOR);
+            VALIDATORS.put(STATUS_BAR_QUICK_QS_PULLDOWN, STATUS_BAR_QUICK_QS_PULLDOWN_VALIDATOR);
         }
 
         /**
