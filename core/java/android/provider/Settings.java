@@ -4640,6 +4640,16 @@ public final class Settings {
         private static final Validator FINGERPRINT_SUCCESS_VIB_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /**
+         * whether to enable or disable vibration on succesful fingerprint auth
+         *
+         * @hide
+         */
+        public static final String FINGERPRINT_ERROR_VIB = "fingerprint_success_vib";
+
+        /** @hide */
+        private static final Validator FINGERPRINT_ERROR_VIB_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
          * Whether to display sound panel in the power menu
          *
          * @hide
@@ -4868,6 +4878,7 @@ public final class Settings {
             VIBRATE_ON_CALLWAITING,
             VIBRATE_ON_DISCONNECT,
             FINGERPRINT_SUCCESS_VIB,
+            FINGERPRINT_ERROR_VIB,
             POWERMENU_SOUNDPANEL,
             POWERMENU_SCREENSHOT,
             POWERMENU_SETTINGS,
@@ -5018,6 +5029,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(VIBRATE_ON_CALLWAITING);
             PRIVATE_SETTINGS.add(VIBRATE_ON_DISCONNECT);
             PRIVATE_SETTINGS.add(FINGERPRINT_SUCCESS_VIB);
+            PRIVATE_SETTINGS.add(FINGERPRINT_ERROR_VIB);
             PRIVATE_SETTINGS.add(POWERMENU_SOUNDPANEL);
             PRIVATE_SETTINGS.add(POWERMENU_SCREENSHOT);
             PRIVATE_SETTINGS.add(POWERMENU_SETTINGS);
@@ -5142,6 +5154,7 @@ public final class Settings {
             VALIDATORS.put(VIBRATE_ON_CALLWAITING, VIBRATE_ON_CALLWAITING_VALIDATOR);
             VALIDATORS.put(VIBRATE_ON_DISCONNECT, VIBRATE_ON_DISCONNECT_VALIDATOR);
             VALIDATORS.put(FINGERPRINT_SUCCESS_VIB, FINGERPRINT_SUCCESS_VIB_VALIDATOR);
+            VALIDATORS.put(FINGERPRINT_ERROR_VIB, FINGERPRINT_ERROR_VIB_VALIDATOR);
             VALIDATORS.put(POWERMENU_SOUNDPANEL, POWERMENU_SOUNDPANEL_VALIDATOR);
             VALIDATORS.put(POWERMENU_SCREENSHOT, POWERMENU_SCREENSHOT_VALIDATOR);
             VALIDATORS.put(POWERMENU_SETTINGS, POWERMENU_SETTINGS_VALIDATOR);
