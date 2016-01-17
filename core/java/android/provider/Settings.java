@@ -5395,6 +5395,15 @@ public final class Settings {
          private static final Validator VOLUME_DIALOG_TIMEOUT_VALIDATOR = new SettingsValidators.InclusiveIntegerRangeValidator(500, 10000);
 
         /**
+         * Power Button Torch Timeout
+         * @hide
+         */
+        public static final String TORCH_LONG_PRESS_POWER_TIMEOUT = "torch_long_press_power_timeout";
+
+        /** @hide */
+        private static final Validator TORCH_LONG_PRESS_POWER_TIMEOUT_VALIDATOR = ANY_INTEGER_VALIDATOR;
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -5537,6 +5546,7 @@ public final class Settings {
             NOTIFICATION_GUTS_KILL_APP_BUTTON,
             HEADS_UP_NOTIFICATION_SNOOZE,
             VOLUME_DIALOG_TIMEOUT,
+            TORCH_LONG_PRESS_POWER_TIMEOUT,
         };
 
         /**
@@ -5741,6 +5751,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(NOTIFICATION_GUTS_KILL_APP_BUTTON);
             PRIVATE_SETTINGS.add(HEADS_UP_NOTIFICATION_SNOOZE);
             PRIVATE_SETTINGS.add(VOLUME_DIALOG_TIMEOUT);
+            PRIVATE_SETTINGS.add(TORCH_LONG_PRESS_POWER_TIMEOUT);
         }
 
         /**
@@ -5920,6 +5931,7 @@ public final class Settings {
             VALIDATORS.put(NOTIFICATION_GUTS_KILL_APP_BUTTON, NOTIFICATION_GUTS_KILL_APP_BUTTON_VALIDATOR);
             VALIDATORS.put(HEADS_UP_NOTIFICATION_SNOOZE,HEADS_UP_NOTIFICATION_SNOOZE_VALIDATOR);
             VALIDATORS.put(VOLUME_DIALOG_TIMEOUT,VOLUME_DIALOG_TIMEOUT_VALIDATOR);
+            VALIDATORS.put(TORCH_LONG_PRESS_POWER_TIMEOUT, TORCH_LONG_PRESS_POWER_TIMEOUT_VALIDATOR);
         }
 
         /**

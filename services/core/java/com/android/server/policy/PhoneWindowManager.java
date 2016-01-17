@@ -106,9 +106,11 @@ import android.annotation.Nullable;
 import android.app.ActivityManager;
 import android.app.ActivityManagerInternal;
 import android.app.ActivityTaskManager;
+import android.app.AlarmManager;
 import android.app.AppOpsManager;
 import android.app.IUiModeManager;
 import android.app.KeyguardManager;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.app.UiModeManager;
@@ -340,6 +342,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             .setUsage(AudioAttributes.USAGE_ASSISTANCE_SONIFICATION)
             .build();
 
+    private static final String ACTION_TORCH_OFF =
+            "com.android.server.policy.PhoneWindowManager.ACTION_TORCH_OFF";
+
     /**
      * Keyguard stuff
      */
@@ -410,6 +415,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     private boolean mHasFeatureWatch;
     private boolean mHasFeatureLeanback;
     private boolean mHasFeatureHdmiCec;
+
+    AlarmManager mAlarmManager;
 
     boolean mVolumeRockerWake;
     private boolean mVolumeMusicControlActive;
@@ -720,6 +727,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     private static final int MSG_TOGGLE_TORCH = 30;
     private static final int MSG_CLEAR_PROXIMITY = 31;
 
+    private int mTorchTimeout;
+    private PendingIntent mTorchOffPendingIntent;
     private SwipeToScreenshotListener mSwipeToScreenshot;
     private DeviceKeyHandler mDeviceKeyHandler;
     private boolean mProxyIsNear;
@@ -911,9 +920,25 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     }
 
     private void toggleFlashLight() {
+        cancelTorchOff();
         performHapticFeedback(HapticFeedbackConstants.LONG_PRESS, true,
                 "Power - Long Press - Torch");
         IonUtils.toggleCameraFlash();
+        if (mTorchTimeout > 0) {
+            Intent torchOff = new Intent(ACTION_TORCH_OFF);
+            torchOff.addFlags(Intent.FLAG_RECEIVER_REGISTERED_ONLY
+                    | Intent.FLAG_RECEIVER_FOREGROUND);
+            mTorchOffPendingIntent = PendingIntent.getBroadcast(mContext, 0, torchOff, 0);
+            mAlarmManager.setExactAndAllowWhileIdle(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                        SystemClock.elapsedRealtime() + mTorchTimeout * 60 * 1000, mTorchOffPendingIntent);
+        }
+    }
+
+    private void cancelTorchOff() {
+        if (mTorchOffPendingIntent != null) {
+            mAlarmManager.cancel(mTorchOffPendingIntent);
+            mTorchOffPendingIntent = null;
+        }
     }
 
     private UEventObserver mHDMIObserver = new UEventObserver() {
@@ -979,11 +1004,14 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.DEVICE_PROXI_CHECK_ENABLED), false, this,
                     UserHandle.USER_ALL);
-	    resolver.registerContentObserver(Settings.System.getUriFor(
+            resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.HAPTIC_ON_ACTION_KEY), false, this,
                     UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.ANBI_ENABLED_OPTION), false, this,
+                    UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.TORCH_LONG_PRESS_POWER_TIMEOUT), false, this,
                     UserHandle.USER_ALL);
             updateSettings();
         }
@@ -2024,6 +2052,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         mDreamManagerInternal = LocalServices.getService(DreamManagerInternal.class);
         mPowerManagerInternal = LocalServices.getService(PowerManagerInternal.class);
         mAppOpsManager = mContext.getSystemService(AppOpsManager.class);
+        mAlarmManager = (AlarmManager) mContext.getSystemService(Context.ALARM_SERVICE);
         mDisplayManager = mContext.getSystemService(DisplayManager.class);
         mHasFeatureWatch = mContext.getPackageManager().hasSystemFeature(FEATURE_WATCH);
         mHasFeatureLeanback = mContext.getPackageManager().hasSystemFeature(FEATURE_LEANBACK);
@@ -2303,6 +2332,21 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         mProximitySensor = mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
         mProximityWakeLock = mContext.getSystemService(PowerManager.class)
                 .newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "ProximityWakeLock");
+
+        // Register for torch off events
+        BroadcastReceiver torchReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                mTorchOffPendingIntent = null;
+                mHandler.removeMessages(MSG_TOGGLE_TORCH);
+                Message msg = mHandler.obtainMessage(MSG_TOGGLE_TORCH);
+                msg.setAsynchronous(true);
+                msg.sendToTarget();
+            }
+        };
+        filter = new IntentFilter();
+        filter.addAction(ACTION_TORCH_OFF);
+        context.registerReceiver(torchReceiver, filter);
     }
 
      private void enableSwipeThreeFingerGesture(boolean enable){
@@ -2391,6 +2435,10 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             mTorchActionMode = Settings.Secure.getIntForUser(resolver,
                     Settings.Secure.TORCH_POWER_BUTTON_GESTURE,
                             0, UserHandle.USER_CURRENT);
+
+            mTorchTimeout = Settings.System.getIntForUser(
+                    resolver, Settings.System.TORCH_LONG_PRESS_POWER_TIMEOUT, 10,
+                    UserHandle.USER_CURRENT);
 
             //Three Finger Gesture
             boolean threeFingerGesture = Settings.System.getIntForUser(resolver,
