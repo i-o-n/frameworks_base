@@ -93,4 +93,7 @@
   <!-- Screenrecord -->
   <java-symbol type="bool" name="config_enableScreenrecordChord" />
 
+  <!-- IMESwitcher -->
+  <java-symbol type="bool" name="config_show_cmIMESwitcher"/>
+
 </resources>
