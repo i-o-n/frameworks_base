@@ -5068,6 +5068,15 @@ public final class Settings {
         private static final Validator ION_FOOTER_TEXT_SHOW_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /**
+         * media artwork wallpaper blur level on lockscreen
+         * @hide
+         */
+        public static final String LOCKSCREEN_MEDIA_BLUR = "lockscreen_media_blur";
+
+        /** @hide */
+        private static final Validator LOCKSCREEN_MEDIA_BLUR_VALIDATOR = ANY_INTEGER_VALIDATOR;
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -5189,6 +5198,7 @@ public final class Settings {
             BATTERY_PCT_WITH_ESTIMATE,
             SCREENSHOT_TYPE,
             SWAP_VOLUME_BUTTONS,
+            LOCKSCREEN_MEDIA_BLUR,
         };
 
         /**
@@ -5369,6 +5379,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(BATTERY_PCT_WITH_ESTIMATE);
             PRIVATE_SETTINGS.add(SCREENSHOT_TYPE);
             PRIVATE_SETTINGS.add(SWAP_VOLUME_BUTTONS);
+            PRIVATE_SETTINGS.add(LOCKSCREEN_MEDIA_BLUR);
         }
 
         /**
@@ -5523,6 +5534,7 @@ public final class Settings {
             VALIDATORS.put(SCREENSHOT_TYPE, SCREENSHOT_TYPE_VALIDATOR);
             VALIDATORS.put(SWAP_VOLUME_BUTTONS, SWAP_VOLUME_BUTTONS_VALIDATOR);
             VALIDATORS.put(OMNI_QS_LAYOUT_ROWS_LANDSCAPE, OMNI_QS_LAYOUT_ROWS_LANDSCAPE_VALIDATOR);
+            VALIDATORS.put(LOCKSCREEN_MEDIA_BLUR, LOCKSCREEN_MEDIA_BLUR_VALIDATOR);
         }
 
         /**
