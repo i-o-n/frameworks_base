@@ -38,4 +38,6 @@
   <!-- HW keys binding -->
   <java-symbol type="anim" name="custom_app_in" />
   <java-symbol type="anim" name="custom_app_out" />
+  <java-symbol type="string" name="config_comboNetworkLocationProvider" />
+
 </resources>
