@@ -609,6 +609,11 @@
     <!-- Ambient Indication -->
     <protected-broadcast android:name="com.android.internal.util.custom.ambient.play.AMBIENT_PLAY_SONG_MATCH" />
 
+    <!-- Substratum -->
+    <protected-broadcast android:name="projekt.substratum.APP_CRASHED" />
+    <protected-broadcast android:name="com.android.systemui.action.RESTART_THEME" />
+    <protected-broadcast android:name="com.android.systemui.action.REFRESH_SOUND" />
+
     <!-- Used to get active package name. -->
     <protected-broadcast android:name="android.intent.action.ACTIVE_PACKAGE_CHANGED" />
 
