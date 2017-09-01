@@ -5041,6 +5041,15 @@ public final class Settings {
         private static final Validator SCREENSHOT_TYPE_VALIDATOR = ANY_INTEGER_VALIDATOR;
 
         /**
+         * Change volume up and down handlign based on rotation
+         * @hide
+         */
+        public static final String SWAP_VOLUME_BUTTONS = "swap_volume_buttons";
+
+        /** @hide */
+        private static final Validator SWAP_VOLUME_BUTTONS_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -5160,6 +5169,7 @@ public final class Settings {
             OMNI_QS_QUICKBAR_COLUMNS,
             BATTERY_PCT_WITH_ESTIMATE,
             SCREENSHOT_TYPE,
+            SWAP_VOLUME_BUTTONS,
         };
 
         /**
@@ -5338,6 +5348,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(OMNI_QS_QUICKBAR_COLUMNS);
             PRIVATE_SETTINGS.add(BATTERY_PCT_WITH_ESTIMATE);
             PRIVATE_SETTINGS.add(SCREENSHOT_TYPE);
+            PRIVATE_SETTINGS.add(SWAP_VOLUME_BUTTONS);
         }
 
         /**
@@ -5490,6 +5501,7 @@ public final class Settings {
             VALIDATORS.put(OMNI_QS_QUICKBAR_COLUMNS, OMNI_QS_QUICKBAR_COLUMNS_VALIDATOR);
             VALIDATORS.put(BATTERY_PCT_WITH_ESTIMATE, BATTERY_PCT_WITH_ESTIMATE_VALIDATOR);
             VALIDATORS.put(SCREENSHOT_TYPE, SCREENSHOT_TYPE_VALIDATOR);
+            VALIDATORS.put(SWAP_VOLUME_BUTTONS, SWAP_VOLUME_BUTTONS_VALIDATOR);
         }
 
         /**
