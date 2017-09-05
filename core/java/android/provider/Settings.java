@@ -6563,6 +6563,16 @@ public final class Settings {
         private static final Validator BACK_GESTURE_HAPTIC_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /**
+         * Whether to vibrate on call state change
+         * @hide
+         */
+        public static final String INCALL_FEEDBACK_VIBRATE = "incall_feeedback_vibrate";
+
+        /** @hide */
+        public static final Validator INCALL_FEEDBACK_VIBRATE_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -7044,6 +7054,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(TEXT_CLOCK_PADDING);
             PRIVATE_SETTINGS.add(BACK_GESTURE_BLOCK_IME);
             PRIVATE_SETTINGS.add(BACK_GESTURE_HAPTIC);
+            PRIVATE_SETTINGS.add(INCALL_FEEDBACK_VIBRATE);
         }
 
         /**
@@ -7298,6 +7309,7 @@ public final class Settings {
             VALIDATORS.put(TEXT_CLOCK_PADDING, TEXT_CLOCK_PADDING_VALIDATOR);
             VALIDATORS.put(BACK_GESTURE_BLOCK_IME, BACK_GESTURE_BLOCK_IME_VALIDATOR);
             VALIDATORS.put(BACK_GESTURE_HAPTIC, BACK_GESTURE_HAPTIC_VALIDATOR);
+            VALIDATORS.put(INCALL_FEEDBACK_VIBRATE, INCALL_FEEDBACK_VIBRATE_VALIDATOR);
         }
 
         /**
