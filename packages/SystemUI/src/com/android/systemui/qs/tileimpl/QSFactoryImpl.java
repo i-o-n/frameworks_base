@@ -40,6 +40,7 @@ import com.android.systemui.qs.tiles.HeadsUpTile;
 import com.android.systemui.qs.tiles.HotspotTile;
 import com.android.systemui.qs.tiles.IntentTile;
 import com.android.systemui.qs.tiles.LocationTile;
+import com.android.systemui.qs.tiles.LteTile;
 import com.android.systemui.qs.tiles.NfcTile;
 import com.android.systemui.qs.tiles.NightDisplayTile;
 import com.android.systemui.qs.tiles.ReadingModeTile;
@@ -138,6 +139,8 @@ public class QSFactoryImpl implements QSFactory {
                 return new ScreenStabilizationTile(mHost);
             case "reading_mode":
                 return new ReadingModeTile(mHost);
+            case "lte":
+                return new LteTile(mHost);
         }
 
         // Intent tiles.
