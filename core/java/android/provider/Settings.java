@@ -4810,12 +4810,6 @@ public final class Settings {
         public static final String SWAP_VOLUME_BUTTONS = "swap_volume_buttons";
 
         /**
-         * Toast icon
-         * @hide
-         */
-        public static final String TOAST_ICON = "toast_icon";
-
-        /**
          * Whether to disable ripple on lockscreen pin entry
          * @hide
          */
@@ -5424,7 +5418,6 @@ public final class Settings {
             PRIVATE_SETTINGS.add(AMBIENT_RECOGNITION_SAVING_OPTIONS_QUIET_PERIOD_END_TIME);
             PRIVATE_SETTINGS.add(FACE_AUTO_UNLOCK);
             PRIVATE_SETTINGS.add(SWAP_VOLUME_BUTTONS);
-            PRIVATE_SETTINGS.add(TOAST_ICON);
             PRIVATE_SETTINGS.add(STATUS_BAR_CLOCK);
             PRIVATE_SETTINGS.add(STATUSBAR_CLOCK_STYLE);
             PRIVATE_SETTINGS.add(STATUS_BAR_CLOCK_SECONDS);
