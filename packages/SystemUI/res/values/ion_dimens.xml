@@ -21,4 +21,7 @@
     <dimen name="net_traffic_single_text_size">11dp</dimen>
     <dimen name="net_traffic_multi_text_size">8dp</dimen>
     <dimen name="net_traffic_txt_img_padding">4dp</dimen>
+
+    <!-- QS Label -->
+    <dimen name="qs_tile_height_wo_label">48dp</dimen>
 </resources>
