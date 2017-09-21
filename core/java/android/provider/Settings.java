@@ -5380,6 +5380,15 @@ public final class Settings {
         /** @hide */
         private static final Validator HEADS_UP_NOTIFICATION_SNOOZE_VALIDATOR = new SettingsValidators.InclusiveIntegerRangeValidator(0, 1200000);
 
+         /**
+          * Volume dialog timeout
+          * @hide
+          */
+         public static final String VOLUME_DIALOG_TIMEOUT = "volume_dialog_timeout";
+
+         /** @hide */
+         private static final Validator VOLUME_DIALOG_TIMEOUT_VALIDATOR = new SettingsValidators.InclusiveIntegerRangeValidator(500, 10000);
+
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
@@ -5522,6 +5531,7 @@ public final class Settings {
             STATUS_BAR_BRIGHTNESS_CONTROL,
             NOTIFICATION_GUTS_KILL_APP_BUTTON,
             HEADS_UP_NOTIFICATION_SNOOZE,
+            VOLUME_DIALOG_TIMEOUT,
         };
 
         /**
@@ -5725,6 +5735,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(SEEK_BAR_BATTERY_CHARGE_LEVEL_SOUND);
             PRIVATE_SETTINGS.add(NOTIFICATION_GUTS_KILL_APP_BUTTON);
             PRIVATE_SETTINGS.add(HEADS_UP_NOTIFICATION_SNOOZE);
+            PRIVATE_SETTINGS.add(VOLUME_DIALOG_TIMEOUT);
         }
 
         /**
@@ -5903,6 +5914,7 @@ public final class Settings {
             VALIDATORS.put(SEEK_BAR_BATTERY_CHARGE_LEVEL_SOUND, SEEK_BAR_BATTERY_CHARGE_LEVEL_SOUND_VALIDATOR);
             VALIDATORS.put(NOTIFICATION_GUTS_KILL_APP_BUTTON, NOTIFICATION_GUTS_KILL_APP_BUTTON_VALIDATOR);
             VALIDATORS.put(HEADS_UP_NOTIFICATION_SNOOZE,HEADS_UP_NOTIFICATION_SNOOZE_VALIDATOR);
+            VALIDATORS.put(VOLUME_DIALOG_TIMEOUT,VOLUME_DIALOG_TIMEOUT_VALIDATOR);
         }
 
         /**
