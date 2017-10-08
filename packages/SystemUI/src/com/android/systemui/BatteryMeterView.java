@@ -288,8 +288,14 @@ public class BatteryMeterView extends LinearLayout implements
                                 LayoutParams.WRAP_CONTENT,
                                 LayoutParams.MATCH_PARENT));
             }
+            if (showingInside && !mForceShowPercent) {
+                mDrawable.setShowPercent(true);
+                removeView(mBatteryPercentView);
+                mBatteryPercentView = null;
+            }
         } else {
-            if (showing) {
+            if (showingOutside || !showingInside) {
+                mDrawable.setShowPercent(false);
                 removeView(mBatteryPercentView);
                 mBatteryPercentView = null;
             }
