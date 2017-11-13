@@ -134,4 +134,6 @@
     <!-- QuickSettings: ScreenStabilization (on) [CHAR LIMIT=NONE] -->
     <string name="quick_settings_stabilization_on">Screen Stabilization</string>
 
+    <string name="lockscreen_tuner_activity">Lockscreen shortcuts</string>
+
 </resources>
