@@ -5433,6 +5433,16 @@ public final class Settings {
                 BOOLEAN_VALIDATOR;
 
         /**
+         * Whether or not volume button music controls should be enabled to seek media tracks
+         * 0 = 0ff, 1 = on
+         */
+        public static final String VOLBTN_MUSIC_CONTROLS = "volbtn_music_controls";
+
+        /** @hide */
+        public static final Validator VOLBTN_MUSIC_CONTROLS_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -5691,6 +5701,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(FORCE_FULLSCREEN_CUTOUT_APPS);
             PRIVATE_SETTINGS.add(BATTERY_LIGHT_LOW_BLINKING);
             PRIVATE_SETTINGS.add(VOLUME_WAKE_SCREEN);
+            PRIVATE_SETTINGS.add(VOLBTN_MUSIC_CONTROLS);
         }
 
         /**
@@ -5844,6 +5855,7 @@ public final class Settings {
             VALIDATORS.put(FORCE_FULLSCREEN_CUTOUT_APPS, FORCE_FULLSCREEN_CUTOUT_APPS_VALIDATOR);
             VALIDATORS.put(BATTERY_LIGHT_LOW_BLINKING, BATTERY_LIGHT_LOW_BLINKING_VALIDATOR);
             VALIDATORS.put(VOLUME_WAKE_SCREEN, VOLUME_WAKE_SCREEN_VALIDATOR);
+            VALIDATORS.put(VOLBTN_MUSIC_CONTROLS, VOLBTN_MUSIC_CONTROLS_VALIDATOR);
         }
 
         /**
