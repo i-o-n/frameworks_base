@@ -59,4 +59,7 @@
 
   <!-- Pocket bridge -->
   <java-symbol type="string" name="config_pocketBridgeSysfsInpocket" />
+
+  <!-- Power button proximity sensor check -->
+  <java-symbol type="integer" name="config_flashlightProximityTimeout" />
 </resources>
