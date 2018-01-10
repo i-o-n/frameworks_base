@@ -123,4 +123,6 @@
   <java-symbol type="layout" name="permission_confirmation_dialog" />
   <java-symbol type="array" name="app_ops_labels" />
 
+  <java-symbol type="integer" name="config_flashlightProximityTimeout" />
+
 </resources>
