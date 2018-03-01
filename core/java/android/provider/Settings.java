@@ -5276,6 +5276,11 @@ public final class Settings {
         public static final String LOCKCLOCK_FONT_SIZE = "lockclock_font_size";
 
         /**
+         * @hide
+         */
+        public static final String NOTIFICATION_GUTS_KILL_APP_BUTTON = "notification_guts_kill_app_button";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
