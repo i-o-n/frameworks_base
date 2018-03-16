@@ -44,6 +44,7 @@ import com.android.systemui.qs.tiles.NightDisplayTile;
 import com.android.systemui.qs.tiles.RotationLockTile;
 import com.android.systemui.qs.tiles.ScreenrecordTile;
 import com.android.systemui.qs.tiles.ScreenshotTile;
+import com.android.systemui.qs.tiles.ScreenStabilizationTile;
 import com.android.systemui.qs.tiles.SoundTile;
 import com.android.systemui.qs.tiles.SleepScreenTile;
 import com.android.systemui.qs.tiles.SyncTile;
@@ -128,6 +129,8 @@ public class QSFactoryImpl implements QSFactory {
                 return new HeadsUpTile(mHost);
             case "screenrecord":
                 return new ScreenrecordTile(mHost);
+	    case "screenstabilization":
+		return new ScreenStabilizationTile(mHost);
         }
 
         // Intent tiles.

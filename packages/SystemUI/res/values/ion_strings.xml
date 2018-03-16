@@ -127,4 +127,11 @@
     <string name="screenrecord_hide_hint">Hide hint</string>
     <string name="screenrecord_show_hint">Show hint</string>
 
+    <!-- QuickSettings: ScreenStabilization tile [CHAR LIMIT=NONE] -->
+    <string name="quick_settings_stabilization_label">Screen Stabilization</string>
+    <!-- QuickSettings: ScreenStabilization (off) [CHAR LIMIT=NONE] -->
+    <string name="quick_settings_stabilization_off">Screen Stabilization</string>
+    <!-- QuickSettings: ScreenStabilization (on) [CHAR LIMIT=NONE] -->
+    <string name="quick_settings_stabilization_on">Screen Stabilization</string>
+
 </resources>
