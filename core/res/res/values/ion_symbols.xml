@@ -107,4 +107,7 @@
   <java-symbol type="string" name="notify_battery_fully_charged_text" />
 
   <java-symbol type="bool" name="config_multiColorNotificationLed" />
+
+  <!-- Settings icon tint color -->
+  <java-symbol type="color" name="settings_icon_tint_color" />
 </resources>
