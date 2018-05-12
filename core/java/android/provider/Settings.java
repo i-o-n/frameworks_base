@@ -5638,6 +5638,22 @@ public final class Settings {
         private static final Validator FORCE_EXPANDED_SETTINGS_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /**
+         * @hide
+         */
+        public static final String ASPECT_RATIO_APPS_LIST = "aspect_ratio_apps_list";
+
+        /** @hide */
+        private static final Validator ASPECT_RATIO_APPS_LIST_VALIDATOR = ANY_STRING_VALIDATOR;
+
+        /**
+         * @hide
+         */
+        public static final String ASPECT_RATIO_APPS_ENABLED = "aspect_ratio_apps_enabled";
+
+        /** @hide */
+        private static final Validator ASPECT_RATIO_APPS_ENABLED_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -5783,6 +5799,8 @@ public final class Settings {
             TORCH_LONG_PRESS_POWER_TIMEOUT,
             LESS_BORING_HEADS_UP,
             LOCK_SHOW_STATUS_BAR,
+            ASPECT_RATIO_APPS_ENABLED,
+            ASPECT_RATIO_APPS_LIST,
         };
 
         /**
@@ -5991,6 +6009,8 @@ public final class Settings {
             PRIVATE_SETTINGS.add(LESS_BORING_HEADS_UP);
             PRIVATE_SETTINGS.add(LOCK_SHOW_STATUS_BAR);
             PRIVATE_SETTINGS.add(FORCE_EXPANDED_SETTINGS);
+            PRIVATE_SETTINGS.add(ASPECT_RATIO_APPS_ENABLED);
+            PRIVATE_SETTINGS.add(ASPECT_RATIO_APPS_LIST);
         }
 
         /**
@@ -6174,6 +6194,8 @@ public final class Settings {
             VALIDATORS.put(LESS_BORING_HEADS_UP, LESS_BORING_HEADS_UP_VALIDATOR);
             VALIDATORS.put(LOCK_SHOW_STATUS_BAR,LOCK_SHOW_STATUS_BAR_VALIDATOR);
             VALIDATORS.put(FORCE_EXPANDED_SETTINGS, FORCE_EXPANDED_SETTINGS_VALIDATOR);
+            VALIDATORS.put(ASPECT_RATIO_APPS_ENABLED, ASPECT_RATIO_APPS_ENABLED_VALIDATOR);
+            VALIDATORS.put(ASPECT_RATIO_APPS_LIST, ASPECT_RATIO_APPS_LIST_VALIDATOR);
         }
 
         /**
