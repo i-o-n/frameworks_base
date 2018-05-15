@@ -90,4 +90,7 @@
     <string name="animation_random">Random</string>
     <string name="action_null">Blank</string>
     <string name="animation_ethans">Ethans</string>
+
+    <!-- Whether device has physical tri state switch -->
+    <bool name="config_hasAlertSlider">false</bool>
 </resources>
