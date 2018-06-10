@@ -21,4 +21,7 @@
     <!-- Settings icon tint color -->
     <color name="settings_icon_tint_color">#737373</color>
 
+    <!-- Fastscroller -->
+    <color name="fastscroller_text_color">#FFFFFFFF</color>
+
 </resources>
