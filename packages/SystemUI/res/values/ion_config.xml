@@ -34,4 +34,7 @@
 
     <!-- The number of rows in the QuickSettings -->
     <integer name="quick_settings_num_rows">3</integer>
+
+    <!-- The default tiles to display in QuickSettings -->
+    <string name="quick_settings_tiles_extra" translatable="false"></string>
 </resources>
