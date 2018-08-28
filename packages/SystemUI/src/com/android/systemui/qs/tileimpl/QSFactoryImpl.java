@@ -118,6 +118,10 @@ public class QSFactoryImpl implements QSFactory {
                 return new CompassTile(mHost);
             case "sleepscreen":
                 return new SleepScreenTile(mHost);
+            case "sound":
+                return new SoundTile(mHost);
+            case "caffeine":
+                return new CaffeineTile(mHost);
         }
 
         // Intent tiles.
