@@ -232,6 +232,10 @@
     <!-- DayNight mode -->
     <uses-permission android:name="android.permission.MODIFY_DAY_NIGHT_MODE" />
 
+    <!-- Reboot -->
+    <uses-permission android:name="android.permission.SET_ACTIVITY_WATCHER" />
+    <uses-permission android:name="android.permission.SHUTDOWN" />
+
     <application
         android:name=".SystemUIApplication"
         android:persistent="true"
