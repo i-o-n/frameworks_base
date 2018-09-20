@@ -5234,6 +5234,24 @@ public final class Settings {
                 new SettingsValidators.InclusiveIntegerRangeValidator(0, 1);
 
         /**
+         * Clock font size
+         * @hide
+         */
+        public static final String STATUS_BAR_CLOCK_SIZE = "status_bar_clock_size";
+
+        /** @hide */
+        public static final Validator STATUS_BAR_CLOCK_SIZE_VALIDATOR = ANY_INTEGER_VALIDATOR;
+
+        /**
+         * Clock font style
+         * @hide
+         */
+        public static final String STATUS_BAR_CLOCK_FONT_STYLE = "status_bar_clock_font_style";
+
+        /** @hide */
+        public static final Validator STATUS_BAR_CLOCK_FONT_STYLE_VALIDATOR = ANY_INTEGER_VALIDATOR;
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -5368,6 +5386,8 @@ public final class Settings {
             STATUSBAR_CLOCK_DATE_STYLE,
             STATUSBAR_CLOCK_DATE_FORMAT,
             STATUSBAR_CLOCK_DATE_POSITION,
+            STATUS_BAR_CLOCK_SIZE,
+            STATUS_BAR_CLOCK_FONT_STYLE,
         };
 
         /**
@@ -5562,6 +5582,8 @@ public final class Settings {
             PRIVATE_SETTINGS.add(STATUSBAR_CLOCK_DATE_STYLE);
             PRIVATE_SETTINGS.add(STATUSBAR_CLOCK_DATE_FORMAT);
             PRIVATE_SETTINGS.add(STATUSBAR_CLOCK_DATE_POSITION);
+            PRIVATE_SETTINGS.add(STATUS_BAR_CLOCK_SIZE);
+            PRIVATE_SETTINGS.add(STATUS_BAR_CLOCK_FONT_STYLE);
         }
 
         /**
@@ -5730,6 +5752,8 @@ public final class Settings {
             VALIDATORS.put(STATUSBAR_CLOCK_DATE_STYLE, STATUSBAR_CLOCK_DATE_STYLE_VALIDATOR);
             VALIDATORS.put(STATUSBAR_CLOCK_DATE_FORMAT, STATUSBAR_CLOCK_DATE_FORMAT_VALIDATOR);
             VALIDATORS.put(STATUSBAR_CLOCK_DATE_POSITION, STATUSBAR_CLOCK_DATE_POSITION_VALIDATOR);
+            VALIDATORS.put(STATUS_BAR_CLOCK_SIZE, STATUS_BAR_CLOCK_SIZE_VALIDATOR);
+            VALIDATORS.put(STATUS_BAR_CLOCK_FONT_STYLE, STATUS_BAR_CLOCK_FONT_STYLE_VALIDATOR);
         }
 
         /**
