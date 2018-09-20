@@ -115,6 +115,7 @@ public class Clock extends TextView implements DemoMode, CommandQueue.Callbacks,
     public static final int STYLE_CLOCK_CENTER = 1;
     public static final int STYLE_CLOCK_RIGHT = 2;
 
+    public int DEFAULT_CLOCK_COLOR = 0xFFFFFFFF;
     public int DEFAULT_CLOCK_SIZE = 14;
     private int mClockFontStyle = FONT_MEDIUM;
 
@@ -144,6 +145,7 @@ public class Clock extends TextView implements DemoMode, CommandQueue.Callbacks,
     protected int mClockDatePosition;
     protected boolean mShowClock = true;
     private int mClockSize = 14;
+    private int mClockColor = 0xFFFFFFFF;
     private int mAmPmStyle;
     private final boolean mShowDark;
     protected boolean mQsHeader;
@@ -213,6 +215,9 @@ public class Clock extends TextView implements DemoMode, CommandQueue.Callbacks,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_CLOCK_AUTO_HIDE_SDURATION),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_CLOCK_COLOR),
+                    false, this, UserHandle.USER_ALL);
             updateSettings();
         }
 
@@ -221,6 +226,7 @@ public class Clock extends TextView implements DemoMode, CommandQueue.Callbacks,
             updateSettings();
             updateClockSize();
             updateClockFontStyle();
+            updateClockColor();
         }
     }
 
@@ -454,8 +460,10 @@ public class Clock extends TextView implements DemoMode, CommandQueue.Callbacks,
     @Override
     public void onDarkChanged(Rect area, float darkIntensity, int tint) {
         mNonAdaptedColor = DarkIconDispatcher.getTint(area, this, tint);
-        if (!mUseWallpaperTextColor) {
+        if (mClockColor == 0xFFFFFFFF) {
             setTextColor(mNonAdaptedColor);
+        } else {
+            setTextColor(mClockColor);
         }
     }
 
@@ -478,16 +486,7 @@ public class Clock extends TextView implements DemoMode, CommandQueue.Callbacks,
      * @param shouldUseWallpaperTextColor whether we should use wallpaperTextColor for text color
      */
     public void useWallpaperTextColor(boolean shouldUseWallpaperTextColor) {
-        if (shouldUseWallpaperTextColor == mUseWallpaperTextColor) {
-            return;
-        }
-        mUseWallpaperTextColor = shouldUseWallpaperTextColor;
-
-        if (mUseWallpaperTextColor) {
-            setTextColor(Utils.getColorAttr(mContext, R.attr.wallpaperTextColor));
-        } else {
-            setTextColor(mNonAdaptedColor);
-        }
+        setTextColor(mClockColor);
     }
 
     private void updateShowSeconds() {
@@ -639,6 +638,7 @@ public class Clock extends TextView implements DemoMode, CommandQueue.Callbacks,
             updateShowSeconds();
             updateClockSize();
             updateClockFontStyle();
+            updateClockColor();
         }
     }
 
@@ -779,6 +779,18 @@ public class Clock extends TextView implements DemoMode, CommandQueue.Callbacks,
                 Settings.System.STATUS_BAR_CLOCK_SIZE, DEFAULT_CLOCK_SIZE,
                 UserHandle.USER_CURRENT);
         setTextSize(mClockSize);
+        updateClock();
+    }
+
+    private void updateClockColor() {
+        mClockColor = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.STATUS_BAR_CLOCK_COLOR, DEFAULT_CLOCK_COLOR,
+                UserHandle.USER_CURRENT);
+        if (mClockColor == 0xFFFFFFFF) {
+            setTextColor(mNonAdaptedColor);
+        } else {
+            setTextColor(mClockColor);
+        }
         updateClock();
     }
 
