@@ -16,7 +16,6 @@
 
 package android.hardware.camera2.legacy;
 
-import android.app.ActivityThread;
 import android.graphics.ImageFormat;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
@@ -166,16 +165,6 @@ public class LegacyMetadataMapper {
 
         m.setCameraId(cameraId);
         m.setDisplaySize(displaySize);
-
-	String packageName = ActivityThread.currentOpPackageName();
-	if (packageName != null) {
-	    String focusMode = params.getFocusMode();
-	    if ((focusMode != null) && (focusMode.equals("fixed")) && (packageName.equals("com.oneplus.camera"))) {
-		return new CameraCharacteristics(m);
-	    }
-	}
-        Log.v("LegacyMetadataMapper", "front camera flash not available for non-opcamera");
-        m.set(CameraCharacteristics.FLASH_INFO_AVAILABLE, Boolean.valueOf(false));
 
         return new CameraCharacteristics(m);
     }
