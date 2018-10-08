@@ -101,4 +101,7 @@
          Set to -1 to disable the proximity sensor check at all-->
     <integer name="config_flashlightProximityTimeout">300</integer>
 
+    <!-- Component name for the activity that will be presenting the Oreo's Recents UI -->
+    <string name="config_recentsComponentNameOreo" translatable="false">com.android.systemui/.recents.RecentsActivity</string>
+
 </resources>

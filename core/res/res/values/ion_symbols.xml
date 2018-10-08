@@ -139,4 +139,7 @@
   <java-symbol type="string" name="notification_channel_gaming" />
   <java-symbol type="drawable" name="ic_gaming_notif" />
 
+  <!-- Oreo's recents component activity -->
+  <java-symbol type="string" name="config_recentsComponentNameOreo" />
+
 </resources>
