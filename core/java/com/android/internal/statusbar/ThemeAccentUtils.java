@@ -70,8 +70,11 @@ public class ThemeAccentUtils {
     private static final String[] QS_TILE_THEMES = {
         "com.android.systemui.qstile.default", // 0
         "com.android.systemui.qstile.circletrim", // 1
-        "com.android.systemui.qstile.twotonecircletrim", // 2
-        "com.android.systemui.qstile.squircletrim", // 3
+        "com.android.systemui.qstile.dualtonecircletrim", // 2
+        "com.android.systemui.qstile.oreo", // 3
+        "com.android.systemui.qstile.oreocircletrim", // 4
+        "com.android.systemui.qstile.oreosquircletrim", // 5
+        "com.android.systemui.qstile.squircletrim", // 6
     };
 
     // Unloads the stock dark theme
