@@ -173,4 +173,7 @@
     <string name="qs_menu_item_qs_columns">Columns (Quickbar)</string>
     <string name="qs_menu_item_columns_auto">Automatic</string>
 
+    <!-- Screenshot Delete Toast -->
+    <string name="delete_screenshot_toast">Screenshot deleted</string>
+
 </resources>
