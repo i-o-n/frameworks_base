@@ -5362,6 +5362,16 @@ public final class Settings {
         private static final Validator SEEK_BAR_BATTERY_CHARGE_LEVEL_SOUND_VALIDATOR = ANY_INTEGER_VALIDATOR;
 
         /**
+         * Whether to show the kill app button in notification guts
+         *
+         * @hide
+         */
+        public static final String NOTIFICATION_GUTS_KILL_APP_BUTTON = "notification_guts_kill_app_button";
+
+        /** @hide */
+        private static final Validator NOTIFICATION_GUTS_KILL_APP_BUTTON_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -5501,6 +5511,7 @@ public final class Settings {
             SHOW_QS_CLOCK,
             STATUS_BAR_QUICK_QS_PULLDOWN,
             STATUS_BAR_BRIGHTNESS_CONTROL,
+            NOTIFICATION_GUTS_KILL_APP_BUTTON,
         };
 
         /**
@@ -5702,6 +5713,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(POCKET_JUDGE);
             PRIVATE_SETTINGS.add(BATTERY_LEVEL_CHARGE_ALARM_ENABLED);
             PRIVATE_SETTINGS.add(SEEK_BAR_BATTERY_CHARGE_LEVEL_SOUND);
+            PRIVATE_SETTINGS.add(NOTIFICATION_GUTS_KILL_APP_BUTTON);
         }
 
         /**
@@ -5878,6 +5890,7 @@ public final class Settings {
             VALIDATORS.put(POCKET_JUDGE, POCKET_JUDGE_VALIDATOR);
             VALIDATORS.put(BATTERY_LEVEL_CHARGE_ALARM_ENABLED, BATTERY_LEVEL_CHARGE_ALARM_ENABLED_VALIDATOR);
             VALIDATORS.put(SEEK_BAR_BATTERY_CHARGE_LEVEL_SOUND, SEEK_BAR_BATTERY_CHARGE_LEVEL_SOUND_VALIDATOR);
+            VALIDATORS.put(NOTIFICATION_GUTS_KILL_APP_BUTTON, NOTIFICATION_GUTS_KILL_APP_BUTTON_VALIDATOR);
         }
 
         /**
