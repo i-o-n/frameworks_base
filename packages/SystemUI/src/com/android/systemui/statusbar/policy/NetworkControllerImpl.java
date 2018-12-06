@@ -1111,7 +1111,7 @@ public class NetworkControllerImpl extends BroadcastReceiver
 
         boolean showAtLeast3G = false;
         boolean alwaysShowCdmaRssi = false;
-        boolean show4gForLte = false;
+        //boolean show4gForLte = false;
         boolean hideLtePlus = false;
         boolean hspaDataDistinguishable;
         boolean inflateSignalStrengths = false;
@@ -1152,8 +1152,8 @@ public class NetworkControllerImpl extends BroadcastReceiver
             if (b != null) {
                 config.alwaysShowDataRatIcon = b.getBoolean(
                         CarrierConfigManager.KEY_ALWAYS_SHOW_DATA_RAT_ICON_BOOL);
-                config.show4gForLte = b.getBoolean(
-                        CarrierConfigManager.KEY_SHOW_4G_FOR_LTE_DATA_ICON_BOOL);
+             // config.show4gForLte = b.getBoolean(
+             //         CarrierConfigManager.KEY_SHOW_4G_FOR_LTE_DATA_ICON_BOOL);
                 config.hideLtePlus = b.getBoolean(
                         CarrierConfigManager.KEY_HIDE_LTE_PLUS_DATA_ICON_BOOL);
                 config.patternOfCarrierSpecificDataIcon = b.getString(
