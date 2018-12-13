@@ -744,6 +744,11 @@ public final class DefaultPermissionGrantPolicy {
                     MICROPHONE_PERMISSIONS);
         }
 
+        // Mediascanner
+        grantSystemFixedPermissionsToSystemPackage(
+                getDefaultProviderAuthorityPackage("com.android.providers.media.MediaProvider", userId), userId,
+                STORAGE_PERMISSIONS);
+
         // ThemePicker
         String themePickerPackage = "com.android.wallpaper";
         PackageInfo pkg = getPackageInfo(themePickerPackage);
