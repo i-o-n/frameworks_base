@@ -5261,6 +5261,12 @@ public final class Settings {
         private static final Validator QS_QUICKBAR_COLUMNS_VALIDATOR = ANY_INTEGER_VALIDATOR;
 
         /**
+         * Network traffic location
+         * @hide
+         */
+        public static final String NETWORK_TRAFFIC_LOCATION = "network_traffic_location";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
