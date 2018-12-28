@@ -3763,7 +3763,7 @@ public class StatusBar extends SystemUI implements DemoMode,
         NosSettingsObserver(Handler handler) {
             super(handler);
         }
-         void observe() {
+        void observe() {
             ContentResolver resolver = mContext.getContentResolver();
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.HEADS_UP_STOPLIST_VALUES), false, this);
@@ -3775,17 +3775,46 @@ public class StatusBar extends SystemUI implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.DOUBLE_TAP_SLEEP_LOCKSCREEN),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.OMNI_QS_LAYOUT_COLUMNS),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.OMNI_QS_LAYOUT_COLUMNS_LANDSCAPE),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.OMNI_QS_QUICKBAR_COLUMNS),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.OMNI_QS_TILE_TITLE_VISIBILITY),
+                    false, this, UserHandle.USER_ALL);
         }
-         @Override
+
+        @Override
         public void onChange(boolean selfChange, Uri uri) {
-            update();
+            super.onChange(selfChange, uri);
+            if (uri.equals(Settings.System.getUriFor(Settings.System.OMNI_QS_LAYOUT_COLUMNS)) ||
+                uri.equals(Settings.System.getUriFor(Settings.System.OMNI_QS_LAYOUT_COLUMNS_LANDSCAPE)) ||
+                uri.equals(Settings.System.getUriFor(Settings.System.OMNI_QS_QUICKBAR_COLUMNS)) ||
+                uri.equals(Settings.System.getUriFor(Settings.System.OMNI_QS_TILE_TITLE_VISIBILITY))) {
+                setQsRowsColumns();
+            }
         }
-         public void update() {
+
+        public void update() {
             setHeadsUpStoplist();
             setHeadsUpBlacklist();
             if (mStatusBarWindow != null) {
                 mStatusBarWindow.updateSettings();
             }
+            setQsRowsColumns();
+        }
+    }
+
+    private void setQsRowsColumns() {
+        if (mQSPanel != null) {
+            mQSPanel.updateResources();
+            mQSPanel.updateSettings();
+            mQuickQSPanel.updateSettings();
         }
     }
 
