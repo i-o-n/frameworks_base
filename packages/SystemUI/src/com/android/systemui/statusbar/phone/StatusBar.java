@@ -5149,6 +5149,12 @@ public class StatusBar extends SystemUI implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.USE_OLD_MOBILETYPE),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.LOCKSCREEN_CLOCK),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.LOCKSCREEN_INFO),
+                    false, this, UserHandle.USER_ALL);
         }
 
         @Override
@@ -5171,6 +5177,9 @@ public class StatusBar extends SystemUI implements DemoMode,
             } else if (uri.equals(Settings.System.getUriFor(
                     Settings.System.USE_OLD_MOBILETYPE))) {
                 updateTelephonyIcons();
+            } else if (uri.equals(Settings.System.getUriFor(Settings.System.LOCKSCREEN_CLOCK)) ||
+                   uri.equals(Settings.System.getUriFor(Settings.System.LOCKSCREEN_INFO))) {
+                updateKeyguardStatusSettings();
             }
         }
 
@@ -5182,6 +5191,7 @@ public class StatusBar extends SystemUI implements DemoMode,
             setBrightnessSlider();
             updateLockscreenFilter();
             updateTelephonyIcons();
+            updateKeyguardStatusSettings();
         }
     }
 
@@ -5221,6 +5231,10 @@ public class StatusBar extends SystemUI implements DemoMode,
             Settings.System.USE_OLD_MOBILETYPE, 0,
             UserHandle.USER_CURRENT) != 0;
         TelephonyIcons.updateIcons(USE_OLD_MOBILETYPE);
+    }
+
+    private void updateKeyguardStatusSettings() {
+        mNotificationPanel.updateKeyguardStatusSettings();
     }
 
     public int getWakefulnessState() {
