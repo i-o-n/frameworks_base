@@ -1048,8 +1048,14 @@ public abstract class WindowOrientationListener {
         @Override
         public void onSensorChanged(SensorEvent event) {
             int newRotation;
+
+            int reportedRotation = (int) event.values[0];
+            if (reportedRotation < 0 || reportedRotation > 3) {
+                return;
+            }
+
             synchronized (mLock) {
-                mDesiredRotation = (int) event.values[0];
+                mDesiredRotation = reportedRotation;
                 newRotation = evaluateRotationChangeLocked();
             }
             if (newRotation >=0) {
@@ -1084,7 +1090,7 @@ public abstract class WindowOrientationListener {
 
         public int evaluateRotationChangeLocked() {
             unscheduleRotationEvaluationLocked();
-            if (mDesiredRotation == mProposedRotation || mDesiredRotation > 3) {
+            if (mDesiredRotation == mProposedRotation) {
                 return -1;
             }
             final long now = SystemClock.elapsedRealtimeNanos();
