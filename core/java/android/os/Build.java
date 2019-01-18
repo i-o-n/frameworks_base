@@ -965,10 +965,10 @@ public class Build {
     public static final String FINGERPRINT = deriveFingerprint();
 
     /**
-     * Custom fingerprint
+     * ionized fingerprint
      * @hide
      */
-    public static final String CUSTOM_FINGERPRINT = SystemProperties.get("org.pixelexperience.fingerprint",
+    public static final String ION_FINGERPRINT = SystemProperties.get("ro.ion.fingerprint",
             deriveFingerprint());
 
     /**
