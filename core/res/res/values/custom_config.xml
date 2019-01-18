@@ -47,7 +47,7 @@
     <bool name="config_hasSuperCharger">false</bool>
 
     <!-- Is the battery LED intrusive? Used to decide if there should be a disable option -->
-    <bool name="config_intrusiveBatteryLed">false</bool>
+    <bool name="config_intrusiveBatteryLed">@bool/config_intrusiveNotificationLed</bool>
 
     <!-- Button backlight -->
     <integer name="config_buttonBrightnessSettingDefault">255</integer>
@@ -177,5 +177,15 @@
 
     <!-- Whether to allow process with media UID to access CameraServiceProxy -->
     <bool name="config_allowMediaUidForCameraServiceProxy">false</bool>
+
+    <!-- Whether to show battery percentage inside icon -->
+    <bool name="config_battery_percentage_show_inside_icon">false</bool>
+
+    <!-- Defines the actions shown in advanced reboot submenu -->
+    <string-array name="config_restartActionsList">
+        <item>restart</item>
+        <item>restart_recovery</item>
+        <item>restart_bootloader</item>
+     </string-array>
 
 </resources>
