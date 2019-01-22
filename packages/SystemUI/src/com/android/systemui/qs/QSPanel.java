@@ -25,12 +25,17 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.annotation.Nullable;
 import android.content.ComponentName;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.database.ContentObserver;
 import android.metrics.LogMaker;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
+import android.os.UserHandle;
+import android.provider.Settings;
 import android.service.quicksettings.Tile;
 import android.util.AttributeSet;
 import android.view.animation.AccelerateInterpolator;
@@ -734,19 +739,6 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
                     t.click();
                     setAnimationTile(v);
             });
-            if (t.isDualTarget()) {
-                if (!mTileLayout.isShowTitles()) {
-                    v.setOnLongClickListener(view -> {
-                        t.secondaryClick();
-                        return true;
-                    });
-                } else {
-                    v.setOnLongClickListener(view -> {
-                        t.longClick();
-                        return true;
-                    });
-                }
-            }
         }
     }
 
