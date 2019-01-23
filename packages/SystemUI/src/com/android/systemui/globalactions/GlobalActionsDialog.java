@@ -24,8 +24,10 @@ import static com.android.internal.widget.LockPatternUtils.StrongAuthTracker.STR
 import static com.android.internal.widget.LockPatternUtils.StrongAuthTracker.STRONG_AUTH_REQUIRED_AFTER_USER_LOCKDOWN;
 
 import android.app.ActivityManager;
+import android.app.ActivityManagerNative;
 import android.app.Dialog;
 import android.app.KeyguardManager;
+import android.app.IActivityManager;
 import android.app.WallpaperManager;
 import android.app.admin.DevicePolicyManager;
 import android.app.trust.TrustManager;
@@ -51,6 +53,7 @@ import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
 import android.os.PowerManager;
+import android.os.Process;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.os.SystemProperties;
@@ -143,7 +146,7 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener,
     /**
      * Advanced restart menu actions
      */
-//    private static final String GLOBAL_ACTION_KEY_RESTART_RECOVERY = "restart_recovery";
+    private static final String GLOBAL_ACTION_KEY_RESTART_RECOVERY = "restart_recovery";
     private static final String GLOBAL_ACTION_KEY_RESTART_BOOTLOADER = "restart_bootloader";
     private static final String GLOBAL_ACTION_KEY_RESTART_DOWNLOAD = "restart_download";
 
@@ -364,41 +367,41 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener,
     }
 
     private List<Action> getCurrentRestartMenuItems() {
-        List<Action> items = new ArrayList<Action>();
+       List<Action> items = new ArrayList<Action>();
 
         String[] restartMenuActions = mContext.getResources().getStringArray(
                     com.android.internal.R.array.config_restartActionsList);
         for (int i = 0; i < restartMenuActions.length; i++) {
             String actionKey = restartMenuActions[i];
             if (GLOBAL_ACTION_KEY_RESTART_RECOVERY.equals(actionKey)) {
-                items.add(new RestartRecoveryAction());
+//                items.add(new RestartRecoveryAction());
             } else if (GLOBAL_ACTION_KEY_RESTART_BOOTLOADER.equals(actionKey)) {
-                items.add(new RestartBootloaderAction());
+//                items.add(new RestartBootloaderAction());
             } else if (GLOBAL_ACTION_KEY_RESTART_DOWNLOAD.equals(actionKey)) {
-                items.add(new RestartDownloadAction());
+//                items.add(new RestartDownloadAction());
             }
         }
         return items;
     }
 
-    private boolean isAdvancedRestartPossible() {
-        KeyguardManager km = (KeyguardManager) mContext.getSystemService(Context.KEYGUARD_SERVICE);
-        boolean keyguardLocked = km.inKeyguardRestrictedInputMode() && km.isKeyguardSecure();
-        boolean advancedRestartEnabled = Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.ADVANCED_REBOOT, 0) == 1;
-        boolean isPrimaryUser = UserHandle.getCallingUserId() == UserHandle.USER_OWNER;
+//    private boolean isAdvancedRestartPossible() {
+//        KeyguardManager km = (KeyguardManager) mContext.getSystemService(Context.KEYGUARD_SERVICE);
+//        boolean keyguardLocked = km.inKeyguardRestrictedInputMode() && km.isKeyguardSecure();
+//        boolean advancedRestartEnabled = Settings.System.getInt(mContext.getContentResolver(),
+//                Settings.System.ADVANCED_REBOOT, 0) == 1;
+//        boolean isPrimaryUser = UserHandle.getCallingUserId() == UserHandle.USER_OWNER;
+//
+//        return advancedRestartEnabled && !keyguardLocked && isPrimaryUser;
+//    }
 
-        return advancedRestartEnabled && !keyguardLocked && isPrimaryUser;
-    }
-
-    private boolean shouldShowRestartSubmenu() {
-        if (!isAdvancedRestartPossible()) {
-            return false;
-        } else {
-            List<Action> restartMenuItems = getCurrentRestartMenuItems();
-            return restartMenuItems.size() > 0;
-        }
-    }
+//    private boolean shouldShowRestartSubmenu() {
+//        if (!isAdvancedRestartPossible()) {
+//            return false;
+//        } else {
+//            List<Action> restartMenuItems = getCurrentRestartMenuItems();
+//            return restartMenuItems.size() > 0;
+//        }
+//    }
 
     /**
      * Create the global actions dialog.
@@ -723,23 +726,7 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener,
 
         @Override
         public void onPress() {
-            if (!mIsRestartMenu && shouldShowRestartSubmenu()) {
-                mIsRestartMenu = true;
-                mCurrentMenuActions = mRestartMenuActions;
-                if (mDialog != null) {
-                    mDialog.dismiss();
-                    mDialog = null;
-                    // Show delayed, so that the dismiss of the previous dialog completes
-                    mHandler.sendEmptyMessageDelayed(MESSAGE_SHOW, DIALOG_SHOW_DELAY);
-                } else {
-                    handleShow();
-                }
-            } else {
-                mHandler.sendEmptyMessage(MESSAGE_DISMISS);
-                if (mIsRestartMenu || !isAdvancedRestartPossible()) {
-                    mWindowManagerFuncs.reboot(false, null);
-                }
-            }
+        mWindowManagerFuncs.reboot(false, null);
         }
     }
 
