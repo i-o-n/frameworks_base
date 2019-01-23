@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.internal.util.havoc;
+package com.android.internal.util.ion;
 
 import android.app.ActivityManager;
 import android.content.Context;
@@ -46,7 +46,7 @@ import com.android.internal.statusbar.IStatusBarService;
 /**
  * Some custom utilities
  */
-public class HavocUtils {
+public class IonUtils {
 
     public static final String INTENT_SCREENSHOT = "action_take_screenshot";
     public static final String INTENT_REGION_SCREENSHOT = "action_take_region_screenshot";
