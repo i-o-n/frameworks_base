@@ -75,7 +75,7 @@ public class GlobalActionsImpl implements GlobalActions, CommandQueue.Callbacks 
     }
 
     @Override
-    public void showShutdownUi(boolean isReboot, String reason, boolean rebootCustom) {
+    public void showShutdownUi(boolean isReboot, String reason) {
         GradientDrawable background = new GradientDrawable(mContext);
         background.setAlpha((int) (SHUTDOWN_SCRIM_ALPHA * 255));
 
