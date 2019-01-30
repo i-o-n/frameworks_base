@@ -137,6 +137,9 @@ public class NavigationBarView extends FrameLayout implements PluginListener<Nav
     private final NavigationBarTransitions mBarTransitions;
     private final OverviewProxyService mOverviewProxyService;
 
+    // Swap navigaton keys
+    private boolean mSwapKeys;
+
     // workaround for LayoutTransitions leaving the nav buttons in a weird state (bug 5549288)
     final static boolean WORKAROUND_INVALID_LAYOUT = true;
     final static int MSG_CHECK_INVALID_LAYOUT = 8686;
@@ -332,6 +335,12 @@ public class NavigationBarView extends FrameLayout implements PluginListener<Nav
     public void setOnVerticalChangedListener(OnVerticalChangedListener onVerticalChangedListener) {
         mOnVerticalChangedListener = onVerticalChangedListener;
         notifyVerticalChangedListener(mVertical);
+    }
+
+    public void setSwapKeys(boolean swapKeys) {
+        if (swapKeys != mSwapKeys) {
+            mSwapKeys = swapKeys;
+        }
     }
 
     @Override
@@ -1000,6 +1009,7 @@ public class NavigationBarView extends FrameLayout implements PluginListener<Nav
         }
         mCurrentView = mRotatedViews[rot];
         mCurrentView.setVisibility(View.VISIBLE);
+//        mNavigationInflaterView.setSwappedOrder(mSwapKeys);
         mNavigationInflaterView.setAlternativeOrder(rot == Surface.ROTATION_90);
         mNavigationInflaterView.updateButtonDispatchersCurrentView();
         updateLayoutTransitionsEnabled();
