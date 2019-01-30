@@ -5126,13 +5126,6 @@ public final class Settings {
         public static final String QS_COLUMNS_LANDSCAPE = "qs_columns_landscape";
 
         /**
-         * Select various accents to go along with system themes
-         *
-         * @hide
-         */
-        public static final String ACCENT_PICKER = "accent_picker";
-
-        /**
          * Whether to display qs tile titles in the qs panel
          * @hide
          */
