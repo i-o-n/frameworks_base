@@ -5182,12 +5182,6 @@ public final class Settings {
         public static final String QSFOOTER_SHOW_SERVICES = "qs_footer_show_services";
 
         /**
-         * Whether to swap the back and recent keys
-         * @hide
-         */
-        public static final String SWAP_NAVIGATION_KEYS = "swap_navigation_keys";
-
-        /**
          * Enable statusbar double tap gesture on to put device to sleep
          * @hide
          */
@@ -5432,7 +5426,6 @@ public final class Settings {
             PRIVATE_SETTINGS.add(QS_COLUMNS_LANDSCAPE);
             PRIVATE_SETTINGS.add(BURN_IN_PROTECTION);
             PRIVATE_SETTINGS.add(BURN_IN_PROTECTION_INTERVAL);
-            PRIVATE_SETTINGS.add(SWAP_NAVIGATION_KEYS);
         }
 
         /**
