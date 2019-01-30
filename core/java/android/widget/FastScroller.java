@@ -359,7 +359,7 @@ class FastScroller {
                     mTextAppearance = ta.getResourceId(index, 0);
                     break;
                 case R.styleable.FastScroll_textColor:
-                    mTextColor = ColorStateList.valueOf(context.getResources().getColor(R.color.fastscroller_text_color));
+                    mTextColor = ta.getColorStateList(index);
                     break;
                 case R.styleable.FastScroll_textSize:
                     mTextSize = ta.getDimensionPixelSize(index, 0);
