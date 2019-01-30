@@ -178,6 +178,7 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
         super.onAttachedToWindow();
         mSettingObserver.observe();
         mSettingObserver.update();
+        final TunerService tunerService = Dependency.get(TunerService.class);
         tunerService.addTunable(this, QS_BRIGHTNESS_POSITION_BOTTOM);
 
         if (mHost != null) {
