@@ -10,6 +10,7 @@ import android.provider.Settings;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.android.internal.util.ion.IonUtils;
 import com.android.systemui.Dependency;
 import com.android.systemui.statusbar.StatusIconDisplayable;
 import com.android.systemui.statusbar.policy.DarkIconDispatcher.DarkReceiver;
@@ -112,7 +113,7 @@ public class StatusBarNetworkTraffic extends NetworkTraffic implements StatusIco
 
     @Override
     protected void updateVisibility() {
-        if (mIsEnabled && mTrafficVisible && mSystemIconVisible) {
+        if (!IonUtils.hasNotch(mContext) && mIsEnabled && mTrafficVisible && mSystemIconVisible) {
             setVisibility(View.VISIBLE);
         } else {
             setVisibility(View.GONE);
