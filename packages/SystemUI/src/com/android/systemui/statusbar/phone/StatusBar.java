@@ -255,7 +255,6 @@ import com.android.systemui.statusbar.policy.UserInfoControllerImpl;
 import com.android.systemui.statusbar.policy.UserSwitcherController;
 import com.android.systemui.statusbar.policy.ZenModeController;
 import com.android.systemui.statusbar.stack.NotificationStackScrollLayout;
-import com.android.systemui.tuner.TunerService;
 import com.android.systemui.volume.VolumeComponent;
 
 import java.io.FileDescriptor;
@@ -267,7 +266,7 @@ import java.util.Map;
 
 import com.android.internal.util.custom.NavbarUtils;
 
-public class StatusBar extends SystemUI implements DemoMode, TunerService.Tunable,
+public class StatusBar extends SystemUI implements DemoMode,
         DragDownHelper.DragDownCallback, ActivityStarter, OnUnlockMethodChangedListener,
         OnHeadsUpChangedListener, CommandQueue.Callbacks, ZenModeController.Callback,
         ColorExtractor.OnColorsChangedListener, ConfigurationListener, NotificationPresenter {
@@ -286,9 +285,6 @@ public class StatusBar extends SystemUI implements DemoMode, TunerService.Tunabl
     public static final String SYSTEM_DIALOG_REASON_HOME_KEY = "homekey";
     public static final String SYSTEM_DIALOG_REASON_RECENT_APPS = "recentapps";
     static public final String SYSTEM_DIALOG_REASON_SCREENSHOT = "screenshot";
-
-    private static final String QS_TILE_TITLE_VISIBILITY =
-            "system:" + Settings.System.QS_TILE_TITLE_VISIBILITY;
 
     private static final String BANNER_ACTION_CANCEL =
             "com.android.systemui.statusbar.banner_action_cancel";
@@ -713,8 +709,6 @@ public class StatusBar extends SystemUI implements DemoMode, TunerService.Tunabl
         mColorExtractor = Dependency.get(SysuiColorExtractor.class);
         mColorExtractor.addOnColorsChangedListener(this);
 
-        final TunerService tunerService = Dependency.get(TunerService.class);
-        tunerService.addTunable(this, QS_TILE_TITLE_VISIBILITY);
         mWindowManager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
 
         mDisplay = mWindowManager.getDefaultDisplay();
@@ -836,7 +830,6 @@ public class StatusBar extends SystemUI implements DemoMode, TunerService.Tunabl
         }
 
         // end old BaseStatusBar.start().
-
 
         // Lastly, call to the icon policy to install/update all the icons.
         mIconPolicy = new PhoneStatusBarPolicy(mContext, mIconController);
@@ -4900,18 +4893,6 @@ public class StatusBar extends SystemUI implements DemoMode, TunerService.Tunabl
                     Settings.System.QS_FOOTER_WARNINGS),
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.QS_ROWS_PORTRAIT),
-                    false, this, UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.QS_ROWS_LANDSCAPE),
-                    false, this, UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.QS_COLUMNS_PORTRAIT),
-                    false, this, UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.QS_COLUMNS_LANDSCAPE),
-                    false, this, UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.BURN_IN_PROTECTION),
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
@@ -4921,27 +4902,14 @@ public class StatusBar extends SystemUI implements DemoMode, TunerService.Tunabl
 
         @Override
         public void onChange(boolean selfChange, Uri uri) {
-            if (uri.equals(Settings.System.getUriFor(Settings.System.QS_ROWS_PORTRAIT)) ||
-                    uri.equals(Settings.System.getUriFor(Settings.System.QS_ROWS_LANDSCAPE)) ||
-                    uri.equals(Settings.System.getUriFor(Settings.System.QS_COLUMNS_PORTRAIT)) ||
-                    uri.equals(Settings.System.getUriFor(Settings.System.QS_COLUMNS_LANDSCAPE))) {
-                setQsRowsColumns();
-                update();
-            }
+            // leavig empty as of now
         }
 
          public void update() {
             setHeadsUpStoplist();
             setHeadsUpBlacklist();
             setQsPanelOptions();
-            setQsRowsColumns();
         }
-    }
-
-         private void setQsRowsColumns() {
-            if (mQSPanel != null) {
-                mQSPanel.updateResources();
-         }
     }
 
     private void setHeadsUpStoplist() {
@@ -6095,18 +6063,6 @@ public class StatusBar extends SystemUI implements DemoMode, TunerService.Tunabl
         }
     }
 
-    @Override
-    public void onTuningChanged(String key, String newValue) {
-        switch (key) {
-            case QS_TILE_TITLE_VISIBILITY:
-                if (mQSPanel != null) {
-                    mQSPanel.updateResources();
-                }
-                break;
-            default:
-                break;
-        }
-    }
     // End Extra BaseStatusBarMethods.
 
     private final Runnable mAutoDim = () -> {
