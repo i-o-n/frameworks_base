@@ -772,6 +772,9 @@ public class StatusBar extends SystemUI implements DemoMode,
         mSbSettingsObserver.observe();
         mSbSettingsObserver.update();
 
+        mNosSettingsObserver.observe();
+        mNosSettingsObserver.update();
+
         // Make sure we always have the most current wallpaper info.
         IntentFilter wallpaperChangedFilter = new IntentFilter(Intent.ACTION_WALLPAPER_CHANGED);
         mContext.registerReceiver(mWallpaperChangedReceiver, wallpaperChangedFilter);
