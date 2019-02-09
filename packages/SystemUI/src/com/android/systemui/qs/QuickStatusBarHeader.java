@@ -56,11 +56,12 @@ import com.android.systemui.qs.QSDetail.Callback;
 import com.android.systemui.statusbar.phone.PhoneStatusBarView;
 import com.android.systemui.statusbar.phone.StatusBarIconController;
 import com.android.systemui.statusbar.phone.StatusBarIconController.TintedIconManager;
-import com.android.systemui.statusbar.policy.Clock;
 import com.android.systemui.statusbar.phone.StatusIconContainer;
+import com.android.systemui.statusbar.policy.Clock;
 import com.android.systemui.statusbar.policy.DarkIconDispatcher;
 import com.android.systemui.statusbar.policy.DarkIconDispatcher.DarkReceiver;
 import com.android.systemui.statusbar.policy.DateView;
+import com.android.systemui.statusbar.policy.NetworkTraffic;
 import com.android.systemui.statusbar.policy.NextAlarmController;
 import com.android.systemui.statusbar.policy.ZenModeController;
 import com.android.systemui.tuner.TunerService;
@@ -128,6 +129,8 @@ public class QuickStatusBarHeader extends RelativeLayout implements
     private int mShownCount;
     private boolean mHideDragHandle;
 
+    private NetworkTraffic mTraffic;
+
     private final BroadcastReceiver mRingerReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -189,6 +192,7 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         mClockView.setOnClickListener(this);
         mClockView.setQsHeader();
         mDateView = findViewById(R.id.date);
+        mTraffic = findViewById(R.id.networkTraffic);
     }
 
     private void updateStatusText() {
@@ -260,6 +264,7 @@ public class QuickStatusBarHeader extends RelativeLayout implements
     @Override
     protected void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
+        mTraffic.useWallpaperTextColor(mLandscape);
         updateResources();
 
         // Update color schemes in landscape to use wallpaperTextColor
