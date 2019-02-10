@@ -9264,12 +9264,6 @@ public final class Settings {
         public static final String PRIVACY_GUARD_NOTIFICATION = "privacy_guard_notification";
 
         /**
-         * Whether to display the ADB notification.
-         * @hide
-         */
-        public static final String ADB_NOTIFY = "adb_notify";
-
-        /**
          * @hide
          */
         public static final String DEVICE_HOSTNAME = "device_hostname";
