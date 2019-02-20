@@ -19,6 +19,7 @@ package com.android.internal.statusbar;
 import android.content.om.IOverlayManager;
 import android.content.om.OverlayInfo;
 import android.os.RemoteException;
+import android.util.Log;
 
 public class ThemeAccentUtils {
 
