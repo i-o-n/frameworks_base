@@ -4961,113 +4961,6 @@ public final class Settings {
          */
         public static final String DISABLE_TRANSITION_ANIMATIONS = "disable_transition_animations";
 
-         /**
-         * Show or hide clock
-         * 0 - hide
-         * 1 - show (default)
-         * @hide
-         */
-        public static final String STATUS_BAR_CLOCK = "status_bar_clock";
-
-        /** @hide */
-        public static final Validator STATUS_BAR_CLOCK_VALIDATOR = BOOLEAN_VALIDATOR;
-
-        /**
-         * Style of clock
-         * 0 - Left Clock (default)
-         * 1 - Center Clock
-         * 2 - Right Clock
-         * @hide
-         */
-        public static final String STATUSBAR_CLOCK_STYLE = "statusbar_clock_style";
-
-        /** @hide */
-        public static final Validator STATUSBAR_CLOCK_STYLE_VALIDATOR =
-                new SettingsValidators.InclusiveIntegerRangeValidator(0, 2);
-
-        /**
-         * Whether to show seconds next to clock in status bar
-         * 0 - hide (default)
-         * 1 - show
-         * @hide
-         */
-        public static final String STATUS_BAR_CLOCK_SECONDS = "status_bar_clock_seconds";
-
-        /** @hide */
-        public static final Validator STATUS_BAR_CLOCK_SECONDS_VALIDATOR = BOOLEAN_VALIDATOR;
-
-        /**
-         * AM/PM Style for clock options
-         * 0 - Normal AM/PM
-         * 1 - Small AM/PM
-         * 2 - No AM/PM  (default)
-         * @hide
-         */
-        public static final String STATUSBAR_CLOCK_AM_PM_STYLE = "statusbar_clock_am_pm_style";
-
-        /** @hide */
-        public static final Validator STATUSBAR_CLOCK_AM_PM_STYLE_VALIDATOR =
-                new SettingsValidators.InclusiveIntegerRangeValidator(0, 2);
-
-        /**
-         * Shows custom date before clock time
-         * 0 - No Date
-         * 1 - Small Date
-         * 2 - Normal Date
-         * @hide
-         */
-        public static final String STATUSBAR_CLOCK_DATE_DISPLAY = "statusbar_clock_date_display";
-
-        /** @hide */
-        public static final Validator STATUSBAR_CLOCK_DATE_DISPLAY_VALIDATOR =
-                new SettingsValidators.InclusiveIntegerRangeValidator(0, 2);
-
-        /**
-         * Sets the date string style
-         * 0 - Regular style
-         * 1 - Lowercase
-         * 2 - Uppercase
-         * @hide
-         */
-        public static final String STATUSBAR_CLOCK_DATE_STYLE = "statusbar_clock_date_style";
-
-        /** @hide */
-        public static final Validator STATUSBAR_CLOCK_DATE_STYLE_VALIDATOR =
-                new SettingsValidators.InclusiveIntegerRangeValidator(0, 2);
-
-
-        /**
-         * Stores the java DateFormat string for the date
-         * @hide
-         */
-        public static final String STATUSBAR_CLOCK_DATE_FORMAT = "statusbar_clock_date_format";
-
-        /** @hide */
-        public static final Validator STATUSBAR_CLOCK_DATE_FORMAT_VALIDATOR = ANY_STRING_VALIDATOR;
-
-        /**
-         * Position of date
-         * 0 - Left of clock
-         * 1 - Right of clock
-         * @hide
-         */
-        public static final String STATUSBAR_CLOCK_DATE_POSITION = "statusbar_clock_date_position";
-
-        /** @hide */
-        public static final Validator STATUSBAR_CLOCK_DATE_POSITION_VALIDATOR = BOOLEAN_VALIDATOR;
-
-        /**
-         * Clock font size
-         * @hide
-         */
-        public static final String STATUS_BAR_CLOCK_SIZE = "status_bar_clock_size";
-
-        /**
-         * Clock font style
-         * @hide
-         */
-        public static final String STATUS_BAR_CLOCK_FONT_STYLE = "status_bar_clock_font_style";
-
         /**
          * Status bar carrier label
          * 0: Hide
@@ -5096,6 +4989,12 @@ public final class Settings {
          * @hide
          */
         public static final String STATUS_BAR_CARRIER_FONT_STYLE = "status_bar_carrier_font_style";
+
+        /**
+         * Carrier Label Custom Color
+         * @hide
+         */
+        public static final String STATUS_BAR_CARRIER_COLOR = "status_bar_carrier_color";
 
         /**
          * @hide
@@ -5311,6 +5210,120 @@ public final class Settings {
          * @hide
          */
         public static final String SEEK_BAR_BATTERY_CHARGE_LEVEL_SOUND = "battery_level_charge_seek_bar";
+
+        /**
+         * Show or hide clock
+         * 0 - hide
+         * 1 - show (default)
+         * @hide
+         */
+        public static final String STATUS_BAR_CLOCK = "status_bar_clock";
+
+        /** @hide */
+        public static final Validator STATUS_BAR_CLOCK_VALIDATOR =
+                new SettingsValidators.InclusiveIntegerRangeValidator(0, 1);
+
+        /**
+         * Style of clock
+         * 0 - Left Clock (default)
+         * 1 - Center Clock
+         * 2 - Right Clock
+         * @hide
+         */
+        public static final String STATUSBAR_CLOCK_STYLE = "statusbar_clock_style";
+
+        /** @hide */
+        public static final Validator STATUSBAR_CLOCK_STYLE_VALIDATOR =
+                new SettingsValidators.InclusiveIntegerRangeValidator(0, 2);
+
+        /**
+         * Whether to show seconds next to clock in status bar
+         * 0 - hide (default)
+         * 1 - show
+         * @hide
+         */
+        public static final String STATUS_BAR_CLOCK_SECONDS = "status_bar_clock_seconds";
+
+        /** @hide */
+        public static final Validator STATUS_BAR_CLOCK_SECONDS_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
+         * AM/PM Style for clock options
+         * 0 - Normal AM/PM
+         * 1 - Small AM/PM
+         * 2 - No AM/PM  (default)
+         * @hide
+         */
+        public static final String STATUSBAR_CLOCK_AM_PM_STYLE = "statusbar_clock_am_pm_style";
+
+        /** @hide */
+        public static final Validator STATUSBAR_CLOCK_AM_PM_STYLE_VALIDATOR =
+                new SettingsValidators.InclusiveIntegerRangeValidator(0, 2);
+
+        /**
+         * Shows custom date before clock time
+         * 0 - No Date
+         * 1 - Small Date
+         * 2 - Normal Date
+         * @hide
+         */
+        public static final String STATUSBAR_CLOCK_DATE_DISPLAY = "statusbar_clock_date_display";
+
+        /** @hide */
+        public static final Validator STATUSBAR_CLOCK_DATE_DISPLAY_VALIDATOR =
+                new SettingsValidators.InclusiveIntegerRangeValidator(0, 2);
+
+        /**
+         * Sets the date string style
+         * 0 - Regular style
+         * 1 - Lowercase
+         * 2 - Uppercase
+         * @hide
+         */
+        public static final String STATUSBAR_CLOCK_DATE_STYLE = "statusbar_clock_date_style";
+
+        /** @hide */
+        public static final Validator STATUSBAR_CLOCK_DATE_STYLE_VALIDATOR =
+                new SettingsValidators.InclusiveIntegerRangeValidator(0, 2);
+
+        /**
+         * Stores the java DateFormat string for the date
+         * @hide
+         */
+        public static final String STATUSBAR_CLOCK_DATE_FORMAT = "statusbar_clock_date_format";
+
+        /** @hide */
+        public static final Validator STATUSBAR_CLOCK_DATE_FORMAT_VALIDATOR = ANY_STRING_VALIDATOR;
+
+        /**
+         * Position of date
+         * 0 - Left of clock
+         * 1 - Right of clock
+         * @hide
+         */
+        public static final String STATUSBAR_CLOCK_DATE_POSITION = "statusbar_clock_date_position";
+
+        /** @hide */
+        public static final Validator STATUSBAR_CLOCK_DATE_POSITION_VALIDATOR =
+                new SettingsValidators.InclusiveIntegerRangeValidator(0, 1);
+
+        /**
+         * Clock font color
+         * @hide
+         */
+        public static final String STATUS_BAR_CLOCK_COLOR = "status_bar_clock_color";
+
+        /**
+         * Clock font size
+         * @hide
+         */
+        public static final String STATUS_BAR_CLOCK_SIZE = "status_bar_clock_size";
+
+        /**
+         * Clock font style
+         * @hide
+         */
+        public static final String STATUS_BAR_CLOCK_FONT_STYLE = "status_bar_clock_font_style";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
@@ -5697,8 +5710,8 @@ public final class Settings {
             VALIDATORS.put(STATUSBAR_CLOCK_AM_PM_STYLE, STATUSBAR_CLOCK_AM_PM_STYLE_VALIDATOR);
             VALIDATORS.put(STATUSBAR_CLOCK_DATE_DISPLAY, STATUSBAR_CLOCK_DATE_DISPLAY_VALIDATOR);
             VALIDATORS.put(STATUSBAR_CLOCK_DATE_STYLE, STATUSBAR_CLOCK_DATE_STYLE_VALIDATOR);
-            VALIDATORS.put(STATUSBAR_CLOCK_DATE_FORMAT, STATUSBAR_CLOCK_DATE_FORMAT_VALIDATOR);
             VALIDATORS.put(STATUSBAR_CLOCK_DATE_POSITION, STATUSBAR_CLOCK_DATE_POSITION_VALIDATOR);
+            VALIDATORS.put(STATUSBAR_CLOCK_DATE_FORMAT, STATUSBAR_CLOCK_DATE_FORMAT_VALIDATOR);
             VALIDATORS.put(BURN_IN_PROTECTION, BURN_IN_PROTECTION_VALIDATOR);
             VALIDATORS.put(BURN_IN_PROTECTION_INTERVAL, BURN_IN_PROTECTION_INTERVAL_VALIDATOR);
             VALIDATORS.put(QS_LAYOUT_COLUMNS_LANDSCAPE, QS_LAYOUT_COLUMNS_LANDSCAPE_VALIDATOR);

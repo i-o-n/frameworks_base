@@ -39,4 +39,7 @@
     <color name="qs_tiles_background_disabled_tint">@*android:color/secondary_text_material_light</color> <!-- keep in mind that the code adds 0.26 (light) or 0.30 (dark) alpha to this color. -->
     <color name="qs_tiles_background_inactive_tint">@*android:color/text_color_secondary</color>
 
+    <!-- Quicksettings main QS background-->
+    <color name="quick_settings_status_bar_background_color">#ff000000</color>
+
 </resources>

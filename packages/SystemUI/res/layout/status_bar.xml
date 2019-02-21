@@ -121,7 +121,6 @@
             >
 
             <include layout="@layout/system_icons" />
-
         </com.android.keyguard.AlphaOptimizedLinearLayout>
 
         <com.android.systemui.statusbar.policy.ClockRight
@@ -135,7 +134,6 @@
             android:paddingEnd="@dimen/status_bar_clock_end_padding"
             android:gravity="center_vertical|start"
             />
-
     </LinearLayout>
 
     <com.android.keyguard.AlphaOptimizedLinearLayout
