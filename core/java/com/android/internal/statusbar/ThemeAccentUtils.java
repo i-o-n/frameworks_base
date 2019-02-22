@@ -33,6 +33,9 @@ public class ThemeAccentUtils {
         "com.android.system.theme.dark", // 0
         "com.android.settings.theme.dark", // 1
         "com.android.systemui.custom.theme.dark", // 2
+        "com.android.gboard.theme.dark", // 3
+        "com.android.gboard.theme.light", // 4
+        "com.android.wellbeing.theme.dark", // 5
     };
 
     // Accents
