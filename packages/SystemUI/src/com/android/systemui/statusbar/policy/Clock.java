@@ -415,7 +415,7 @@ public class Clock extends TextView implements DemoMode, CommandQueue.Callbacks,
             // Do nothing
         }
         super.setVisibility(visibility);
-        if (mClockAutoHide && visible) {
+        if (!mQsHeader && mClockAutoHide && visible) {
             autoHideHandler.postDelayed(()->autoHideClock(), mShowDuration * 1000);
         }
     }
