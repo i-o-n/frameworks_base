@@ -336,4 +336,8 @@
 
     <!-- Alerting notification header label -->
     <string name="notification_section_header_alerting">Alerting notifications</string>
+
+    <!-- App picker -->
+    <string name="active_edge_app_select_title">Select app</string>
+    <string name="active_edge_activity_select_title">Select activity</string>
 </resources>
