@@ -129,6 +129,7 @@ public class QuickStatusBarHeader extends RelativeLayout implements
     private int mShownCount;
     private boolean mHideDragHandle;
 
+    private boolean mLandscape;
     private NetworkTraffic mTraffic;
 
     private final BroadcastReceiver mRingerReceiver = new BroadcastReceiver() {
@@ -264,6 +265,7 @@ public class QuickStatusBarHeader extends RelativeLayout implements
     @Override
     protected void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
+        mLandscape = newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE;
         mTraffic.useWallpaperTextColor(mLandscape);
         updateResources();
 
