@@ -4179,10 +4179,10 @@ public class StatusBar extends SystemUI implements DemoMode,
     }
 
     private boolean themeNeedsRefresh(){
-        if (mContext.getSharedPreferences("systemui_theming", 0).getString("build_fingerprint", "").equals(Build.CUSTOM_FINGERPRINT)){
+        if (mContext.getSharedPreferences("systemui_theming", 0).getString("build_fingerprint", "").equals(Build.ION_FINGERPRINT)){
             return false;
         }
-        mContext.getSharedPreferences("systemui_theming", 0).edit().putString("build_fingerprint", Build.CUSTOM_FINGERPRINT).commit();
+        mContext.getSharedPreferences("systemui_theming", 0).edit().putString("build_fingerprint", Build.ION_FINGERPRINT).commit();
         return true;
     }
 
@@ -4200,6 +4200,7 @@ public class StatusBar extends SystemUI implements DemoMode,
             mUiOffloadThread.submit(() -> {
                 unfuckBlackWhiteAccent();
                 ThemeAccentUtils.setLightDarkTheme(mOverlayManager, mLockscreenUserManager.getCurrentUserId(), useDarkTheme);
+                umm.setNightMode(useDarkTheme ? UiModeManager.MODE_NIGHT_YES : UiModeManager.MODE_NIGHT_NO);
             });
         }
 

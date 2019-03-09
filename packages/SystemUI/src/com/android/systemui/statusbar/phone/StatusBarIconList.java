@@ -253,21 +253,6 @@ public class StatusBarIconList {
             return holders;
         }
 
-        public List<StatusBarIconHolder> getHolderList() {
-            ArrayList<StatusBarIconHolder> holders = new ArrayList<>();
-            if (mHolder != null) {
-                holders.add(mHolder);
-            }
-
-            if (mSubSlots != null) {
-                for (int i = 0; i < mSubSlots.size(); i++) {
-                    holders.add(mSubSlots.get(i));
-                }
-            }
-
-            return holders;
-        }
-
         /**
          * Build a list of the {@link StatusBarIconHolder}s in the same order.
          * This provides a safe list that can be iterated and inserted into its group.
