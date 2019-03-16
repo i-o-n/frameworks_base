@@ -155,4 +155,7 @@
          before setting power profiles on boot. -->
     <java-symbol type="bool" name="config_waitForMpctlOnBoot" />
 
+    <!-- Whether device has a physical display cutout -->
+    <java-symbol type="bool" name="config_physicalDisplayCutout" />
+
 </resources>

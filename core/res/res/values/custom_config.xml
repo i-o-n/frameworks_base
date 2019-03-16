@@ -198,4 +198,7 @@
          before setting power profiles on boot. -->
     <bool name="config_waitForMpctlOnBoot">false</bool>
 
+    <!-- Whether device has a physical display cutout -->
+    <bool name="config_physicalDisplayCutout">false</bool>
+
 </resources>
