@@ -31,6 +31,8 @@ import static android.view.View.VISIBLE;
 
 import static com.android.systemui.volume.Events.DISMISS_REASON_SETTINGS_CLICKED;
 
+import android.database.ContentObserver;
+import android.os.UserHandle;
 import android.accessibilityservice.AccessibilityServiceInfo;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
@@ -152,6 +154,30 @@ public class VolumeDialogImpl implements VolumeDialog {
 
     private boolean mLeftVolumeRocker;
 
+    private class SettingsObserver extends ContentObserver {
+        SettingsObserver(Handler handler) {
+            super(handler);
+        }
+
+        void observe() {
+            mContext.getContentResolver().registerContentObserver(Settings.Secure.getUriFor(Settings.Secure.VOLUME_LINK_NOTIFICATION), false, this, UserHandle.USER_ALL);
+            update();
+        }
+
+        @Override
+        public void onChange(boolean selfChange) {
+            update();
+            updateRowsH(getActiveRow());
+        }
+
+        public void update() {
+            isNotificationLinked = Settings.Secure.getIntForUser(mContext.getContentResolver(), Settings.Secure.VOLUME_LINK_NOTIFICATION, 1, UserHandle.USER_CURRENT) == 1;
+            updateRowsH(getActiveRow());
+        }
+    }
+
+    private SettingsObserver settingsObserver;
+
     public VolumeDialogImpl(Context context) {
         mContext = new ContextThemeWrapper(context, com.android.systemui.R.style.global_actions_theme);
         mController = Dependency.get(VolumeDialogController.class);
@@ -236,8 +262,7 @@ public class VolumeDialogImpl implements VolumeDialog {
 
         mActiveTint = ColorStateList.valueOf(Utils.getColorAccent(mContext));
         mActiveAlpha = Color.alpha(mActiveTint.getDefaultColor());
-        mInactiveTint = ColorStateList.valueOf(
-                Utils.getColorAttr(mContext, android.R.attr.colorForeground));
+        mInactiveTint = ColorStateList.valueOf(Utils.getColorAccent(mContext));
         mInactiveAlpha = getAlphaAttr(android.R.attr.secondaryContentAlpha);
 
         mDialogRowsView = mDialog.findViewById(R.id.volume_dialog_rows);
@@ -264,11 +289,9 @@ public class VolumeDialogImpl implements VolumeDialog {
                     addRow(AudioManager.STREAM_RING, R.drawable.ic_volume_ringer,
                             R.drawable.ic_volume_ringer_mute, true, false);
                 } else {
-                    addRow(AudioManager.STREAM_RING, R.drawable.ic_volume_notification,
+                    addRow(AudioManager.STREAM_NOTIFICATION, R.drawable.ic_volume_notification,
                             R.drawable.ic_volume_notification_mute, true, false);
                 }
-                addRow(AudioManager.STREAM_RING,
-                        R.drawable.ic_volume_ringer, R.drawable.ic_volume_ringer_mute, true, false);
                 addRow(STREAM_ALARM,
                         R.drawable.ic_volume_alarm, R.drawable.ic_volume_alarm_mute, true, false);
                 addRow(AudioManager.STREAM_VOICE_CALL,
@@ -285,6 +308,9 @@ public class VolumeDialogImpl implements VolumeDialog {
         updateRowsH(getActiveRow());
         initRingerH();
         initSettingsH();
+
+        settingsObserver = new SettingsObserver(mHandler);
+        settingsObserver.observe();
     }
 
     protected ViewGroup getDialogView() {
