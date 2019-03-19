@@ -719,6 +719,9 @@ public class VolumeDialogImpl implements VolumeDialog {
                 mSafetyWarning.dismiss();
             }
         }
+
+        cleanExpandRows();
+        mExpanded = false;
         mExpandRows.setExpanded(mExpanded);
     }
 
