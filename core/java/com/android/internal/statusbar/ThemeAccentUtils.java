@@ -133,9 +133,10 @@ public class ThemeAccentUtils {
 
     // Switch themes
     private static final String[] SWITCH_THEMES = {
-        "com.android.system.switch.stock", // 0
-        "com.android.system.switch.md2", // 1
-        "com.android.system.switch.oneplus", // 2
+        "com.android.system.switch.ion", // 0
+        "com.android.system.switch.stock", // 1
+        "com.android.system.switch.md2", // 2
+        "com.android.system.switch.oneplus", // 3
     };
 
     // Unloads the stock dark theme
@@ -332,7 +333,7 @@ public class ThemeAccentUtils {
     }
 
     public static void updateSwitchStyle(IOverlayManager om, int userId, int switchStyle) {
-        if (switchStyle == 2) {
+        if (switchStyle == 0) {
             stockSwitchStyle(om, userId);
         } else {
             try {
