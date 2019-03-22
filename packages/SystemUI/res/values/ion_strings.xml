@@ -138,7 +138,8 @@
     <string name="lockscreen_tuner_activity">Lockscreen shortcuts</string>
 
     <!-- Nav Bar Swipe -->
-    <string name="nav_bar_layout_inverse">Swap back and recents</string>
+    <string name="nav_bar_layout_inverse">Swap buttons</string>
+    <string name="nav_bar_layout_inverse_summary">Swap back and recents navbar buttons</string>
 
     <!-- Gaming Mode -->
     <string name="gaming_mode_tile_title">Gaming Mode</string>
