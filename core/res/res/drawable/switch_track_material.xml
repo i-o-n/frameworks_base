@@ -19,7 +19,7 @@
                 <shape android:shape="rectangle">
                     <corners android:radius="18.0px" />
                     <solid android:color="@android:color/transparent" />
-                    <stroke android:width="5.0px" android:color="?android:attr/textColorSecondary" />
+                    <stroke android:width="5.0px" android:color="@*android:color/switch_track_material" />
                     <size android:height="37.0px" />
                 </shape>
             </item>
