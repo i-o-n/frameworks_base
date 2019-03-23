@@ -137,6 +137,15 @@ public class ThemeAccentUtils {
         "com.android.system.switch.stock", // 1
         "com.android.system.switch.md2", // 2
         "com.android.system.switch.oneplus", // 3
+        "com.android.system.switch.one", // 4
+        "com.android.system.switch.two", // 5
+        "com.android.system.switch.three", // 6
+        "com.android.system.switch.four", // 7
+        "com.android.system.switch.five", // 8
+        "com.android.system.switch.six", // 9
+        "com.android.system.switch.seven", // 10
+        "com.android.system.switch.eight", // 11
+        "com.android.system.switch.nine", // 12
     };
 
     // Unloads the stock dark theme
