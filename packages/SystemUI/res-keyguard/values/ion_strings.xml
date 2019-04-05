@@ -18,16 +18,6 @@
 -->
 <resources>
 
-    <!-- Lockscreen clock styles -->
-    <declare-styleable name="CustomAnalogClock">
-        <attr name="custom_dial" format="reference"/>
-        <attr name="custom_hand_hour" format="reference"/>
-        <attr name="custom_hand_minute" format="reference"/>
-        <attr name="custom_clock_dial_ambient" format="reference"/>
-    </declare-styleable>
-
-    <declare-styleable name="CustomTextClock">
-        <attr name="HandType"/>
-    </declare-styleable>
+    <string name="custom_text_clock_top_text_default">It\s</string>
 
 </resources>
