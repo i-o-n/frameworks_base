@@ -120,4 +120,8 @@ interface IStatusBarService
 
     // Used to disable keyboard rotation
     void setAutoRotate(boolean enabled);
+
+    // Used to show or hide in display fingerprint view
+    void showInDisplayFingerprintView();
+    void hideInDisplayFingerprintView();
 }
