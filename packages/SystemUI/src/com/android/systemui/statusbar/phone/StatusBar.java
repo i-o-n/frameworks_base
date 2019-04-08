@@ -5167,21 +5167,20 @@ public class StatusBar extends SystemUI implements DemoMode,
             } else if (uri.equals(Settings.System.getUriFor(
                     Settings.System.LOCKSCREEN_ALBUM_ART_FILTER))) {
                 updateLockscreenFilter();
+            } else if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.USE_OLD_MOBILETYPE))) {
+                updateTelephonyIcons();
             }
         }
 
         public void update() {
-            ContentResolver resolver = mContext.getContentResolver();
-            USE_OLD_MOBILETYPE = Settings.System.getIntForUser(mContext.getContentResolver(),
-                    Settings.System.USE_OLD_MOBILETYPE, 0,
-                    UserHandle.USER_CURRENT) != 0;
-            TelephonyIcons.updateIcons(USE_OLD_MOBILETYPE);
             setHeadsUpStoplist();
             setHeadsUpBlacklist();
             setQsPanelOptions();
             setQsRowsColumns();
             setBrightnessSlider();
             updateLockscreenFilter();
+            updateTelephonyIcons();
         }
     }
 
@@ -5214,6 +5213,13 @@ public class StatusBar extends SystemUI implements DemoMode,
         mAlbumArtFilter = Settings.System.getIntForUser(mContext.getContentResolver(),
                 Settings.System.LOCKSCREEN_ALBUM_ART_FILTER, 0,
                 UserHandle.USER_CURRENT);
+    }
+
+    private void updateTelephonyIcons() {
+        USE_OLD_MOBILETYPE = Settings.System.getIntForUser(mContext.getContentResolver(),
+            Settings.System.USE_OLD_MOBILETYPE, 0,
+            UserHandle.USER_CURRENT) != 0;
+        TelephonyIcons.updateIcons(USE_OLD_MOBILETYPE);
     }
 
     public int getWakefulnessState() {
