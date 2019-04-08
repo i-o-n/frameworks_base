@@ -1,18 +1,19 @@
 /*
-* Copyright (C) 2015 The CyanogenMod Project
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
+ * Copyright (C) 2015 The CyanogenMod Project
+ *               2018-2019 crDroid Android Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 package com.android.systemui.statusbar;
 
@@ -31,14 +32,15 @@ import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.UserHandle;
 import android.provider.Settings;
-import android.provider.Settings.Secure;
 import android.support.v7.graphics.Palette;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 
+import com.android.internal.util.ion.ColorAnimator;
+
 public class VisualizerView extends View
-        implements Palette.PaletteAsyncListener {
+        implements Palette.PaletteAsyncListener, ColorAnimator.ColorAnimationListener {
 
     private static final String TAG = VisualizerView.class.getSimpleName();
     private static final boolean DEBUG = false;
@@ -62,11 +64,14 @@ public class VisualizerView extends View
     private boolean mDozing = false;
     private boolean mOccluded = false;
 
-    private boolean mUseCustomColor;
-    private int mColorToUse;
-    private int mDefaultColor;
-    private int mCustomColor;
+    private int mColor;
     private Bitmap mCurrentBitmap;
+
+    private ColorAnimator mLavaLamp;
+    private boolean mAutoColorEnabled;
+    private boolean mLavaLampEnabled;
+    private int mLavaLampSpeed;
+    private boolean shouldAnimate;
 
     private Visualizer.OnDataCaptureListener mVisualizerListener =
             new Visualizer.OnDataCaptureListener() {
@@ -108,6 +113,7 @@ public class VisualizerView extends View
                 return;
             }
 
+            shouldAnimate = true;
             mVisualizer.setEnabled(false);
             mVisualizer.setCaptureSize(66);
             mVisualizer.setDataCaptureListener(mVisualizerListener,Visualizer.getMaxCaptureRate(),
@@ -138,6 +144,8 @@ public class VisualizerView extends View
                 mVisualizer.release();
                 mVisualizer = null;
             }
+            shouldAnimate = false;
+
             if (DEBUG) {
                 Log.w(TAG, "--- mUninkVisualizer run()");
             }
@@ -148,16 +156,18 @@ public class VisualizerView extends View
         super(context, attrs, defStyle);
         mContext = context;
 
-        mDefaultColor = Color.TRANSPARENT;
-        updateColorSettings();
-        mColorToUse = mUseCustomColor ? mCustomColor : mDefaultColor;
+        mColor = Color.TRANSPARENT;
 
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
-        mPaint.setColor(mColorToUse);
+        setColor(mColor);
 
         mFFTPoints = new float[128];
         mValueAnimators = new ValueAnimator[32];
+
+        mLavaLamp = new ColorAnimator();
+        mLavaLamp.setColorAnimatorListener(this);
+
         for (int i = 0; i < 32; i++) {
             final int j = i * 4 + 1;
             mValueAnimators[i] = new ValueAnimator();
@@ -201,6 +211,7 @@ public class VisualizerView extends View
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
+        mLavaLamp.stop();
         mSettingObserver.unobserve();
         mSettingObserver = null;
         mCurrentBitmap = null;
@@ -236,9 +247,45 @@ public class VisualizerView extends View
         }
     }
 
+    @Override
+    public void onColorChanged(ColorAnimator colorAnimator, int color) {
+        if (mLavaLampEnabled)
+            setColor(color);
+    }
+
+    @Override
+    public void onStartAnimation(ColorAnimator colorAnimator, int firstColor) {
+    }
+
+    @Override
+    public void onStopAnimation(ColorAnimator colorAnimator, int lastColor) {
+        setBitmap(null);
+    }
+
     private void setVisualizerEnabled() {
         mVisualizerEnabled = Settings.Secure.getInt(mContext.getContentResolver(),
                 Settings.Secure.LOCKSCREEN_VISUALIZER_ENABLED, 0) == 1;
+    }
+
+    private void setLavaLampEnabled() {
+        mLavaLampEnabled = Settings.Secure.getIntForUser(mContext.getContentResolver(),
+                Settings.Secure.LOCKSCREEN_LAVALAMP_ENABLED , 0, UserHandle.USER_CURRENT) == 1;
+    }
+
+    private void setLavaLampSpeed() {
+        mLavaLampSpeed = Settings.Secure.getIntForUser(mContext.getContentResolver(),
+                Settings.Secure.LOCKSCREEN_LAVALAMP_SPEED, 10000, UserHandle.USER_CURRENT);
+        mLavaLamp.setAnimationTime(mLavaLampSpeed);
+    }
+
+    private void setAutoColorEnabled() {
+        mAutoColorEnabled = Settings.Secure.getIntForUser(mContext.getContentResolver(),
+                Settings.Secure.LOCKSCREEN_VISUALIZER_AUTOCOLOR, 1, UserHandle.USER_CURRENT) == 1;
+        if (mCurrentBitmap != null && mAutoColorEnabled && !mLavaLampEnabled) {
+            Palette.generateAsync(mCurrentBitmap, this);
+        } else {
+            setBitmap(null);
+        }
     }
 
     public void setVisible(boolean visible) {
@@ -299,17 +346,15 @@ public class VisualizerView extends View
     }
 
     public void setBitmap(Bitmap bitmap) {
-        if (mCurrentBitmap == bitmap) {
+        if (mCurrentBitmap == bitmap)
             return;
-        }
+
         mCurrentBitmap = bitmap;
-        if (bitmap != null) {
-            Palette.generateAsync(bitmap, this);
-        } else {
-            mDefaultColor = Color.TRANSPARENT;
-            if (!mUseCustomColor) {
-                setColor(mDefaultColor);
-            }
+
+        if (mCurrentBitmap == null) {
+            setColor(Color.TRANSPARENT);
+        } else if (mAutoColorEnabled && !mLavaLampEnabled) {
+            Palette.generateAsync(mCurrentBitmap, this);
         }
     }
 
@@ -324,10 +369,7 @@ public class VisualizerView extends View
                 color = palette.getDarkVibrantColor(color);
             }
         }
-        mDefaultColor = color;
-        if (!mUseCustomColor) {
-            setColor(mDefaultColor);
-        }
+        setColor(color);
     }
 
     private void setColor(int color) {
@@ -335,24 +377,25 @@ public class VisualizerView extends View
             color = Color.WHITE;
         }
 
-        color = (140 << 24) | (color & 0x00ffffff);
+        color = Color.argb(140, Color.red(color), Color.green(color), Color.blue(color));
 
-        if (mColorToUse != color) {
-            mColorToUse = color;
+        if (mColor != color) {
+            mColor = color;
 
-            if (mVisualizer != null) {
+            if (mVisualizer != null && shouldAnimate) {
+                shouldAnimate = false;
+
                 if (mVisualizerColorAnimator != null) {
                     mVisualizerColorAnimator.cancel();
                 }
 
                 mVisualizerColorAnimator = ObjectAnimator.ofArgb(mPaint, "color",
-                        mPaint.getColor(), mColorToUse);
+                        mPaint.getColor(), mColor);
                 mVisualizerColorAnimator.setStartDelay(600);
                 mVisualizerColorAnimator.setDuration(1200);
                 mVisualizerColorAnimator.start();
-            } else {
-                mPaint.setColor(mColorToUse);
             }
+            mPaint.setColor(mColor);
         }
     }
 
@@ -366,10 +409,12 @@ public class VisualizerView extends View
                         .alpha(1f)
                         .withEndAction(null)
                         .setDuration(800);
+                if (mLavaLampEnabled) mLavaLamp.start();
             }
         } else {
             if (mDisplaying) {
                 mDisplaying = false;
+                mLavaLamp.stop();
                 if (mVisible) {
                     animate()
                             .alpha(0f)
@@ -385,17 +430,6 @@ public class VisualizerView extends View
         }
     }
 
-    private void updateColorSettings() {
-        ContentResolver resolver = mContext.getContentResolver();
-        mUseCustomColor = Settings.System.getInt(resolver,
-                Settings.System.LOCK_SCREEN_VISUALIZER_USE_CUSTOM_COLOR, 0) == 1;
-        final int color = Settings.System.getInt(resolver,
-                Settings.System.LOCK_SCREEN_VISUALIZER_CUSTOM_COLOR, 0xff1976D2);
-
-        // make sure custom color always has the right transparency
-        mCustomColor = (140 << 24) | (color & 0x00ffffff);
-    }
-
     private class SettingsObserver extends ContentObserver {
 
         public SettingsObserver(Handler handler) {
@@ -405,14 +439,17 @@ public class VisualizerView extends View
         protected void observe() {
             ContentResolver resolver = mContext.getContentResolver();
             resolver.registerContentObserver(Settings.Secure.getUriFor(
-                Settings.Secure.LOCKSCREEN_VISUALIZER_ENABLED),
-                false, this, UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.LOCK_SCREEN_VISUALIZER_USE_CUSTOM_COLOR),
-                    false, this);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.LOCK_SCREEN_VISUALIZER_CUSTOM_COLOR),
-                    false, this);
+                    Settings.Secure.LOCKSCREEN_VISUALIZER_ENABLED),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.Secure.getUriFor(
+                    Settings.Secure.LOCKSCREEN_LAVALAMP_ENABLED),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.Secure.getUriFor(
+                    Settings.Secure.LOCKSCREEN_LAVALAMP_SPEED),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.Secure.getUriFor(
+                    Settings.Secure.LOCKSCREEN_VISUALIZER_AUTOCOLOR),
+                    false, this, UserHandle.USER_ALL);
             update();
         }
 
@@ -426,20 +463,23 @@ public class VisualizerView extends View
             if (uri.equals(Settings.Secure.getUriFor(
                     Settings.Secure.LOCKSCREEN_VISUALIZER_ENABLED))) {
                 setVisualizerEnabled();
-                checkStateChanged();
-                updateViewVisibility();
-            } else if (uri.equals(Settings.System.getUriFor(
-                    Settings.System.LOCK_SCREEN_VISUALIZER_USE_CUSTOM_COLOR))
-                || uri.equals(Settings.System.getUriFor(
-                    Settings.System.LOCK_SCREEN_VISUALIZER_CUSTOM_COLOR))) {
-                updateColorSettings();
-                setColor(mUseCustomColor ? mCustomColor : mDefaultColor);
+            } else if (uri.equals(Settings.Secure.getUriFor(
+                    Settings.Secure.LOCKSCREEN_LAVALAMP_ENABLED))) {
+                setLavaLampEnabled();
+            } else if (uri.equals(Settings.Secure.getUriFor(
+                    Settings.Secure.LOCKSCREEN_LAVALAMP_SPEED))) {
+                setLavaLampSpeed();
+            } else if (uri.equals(Settings.Secure.getUriFor(
+                    Settings.Secure.LOCKSCREEN_VISUALIZER_AUTOCOLOR))) {
+                setAutoColorEnabled();
             }
         }
 
         protected void update() {
             setVisualizerEnabled();
-            updateColorSettings();
+            setLavaLampEnabled();
+            setLavaLampSpeed();
+            setAutoColorEnabled();
             checkStateChanged();
             updateViewVisibility();
         }
