@@ -42,10 +42,6 @@ import android.os.SystemProperties;
 import android.os.UserHandle;
 import android.net.ConnectivityManager;
 import android.os.Looper;
-import android.renderscript.Element;
-import android.renderscript.Allocation;
-import android.renderscript.ScriptIntrinsicBlur;
-import android.renderscript.RenderScript;
 import android.util.DisplayMetrics;
 import android.view.InputDevice;
 import android.view.IWindowManager;
@@ -385,29 +381,5 @@ public class IonUtils {
         DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
         float px = 24 * (metrics.densityDpi / 160f);
         return result > Math.round(px);
-    }
-
-    public static Bitmap getBlurredImage(Context context, Bitmap image) {
-        return getBlurredImage(context, image, 3.5f);
-    }
-
-    public static Bitmap getBlurredImage(Context context, Bitmap image, float radius) {
-        float BITMAP_SCALE = 0.4f;
-
-        int width = Math.round(image.getWidth() * BITMAP_SCALE);       
-        int height = Math.round(image.getHeight() * BITMAP_SCALE);
-
-        Bitmap inputBitmap = Bitmap.createScaledBitmap(image, width, height, false);
-        Bitmap outputBitmap = Bitmap.createBitmap(inputBitmap);
-
-        RenderScript rs = RenderScript.create(context);
-        ScriptIntrinsicBlur theIntrinsic = ScriptIntrinsicBlur.create(rs, Element.U8_4(rs));
-        Allocation tmpIn = Allocation.createFromBitmap(rs, inputBitmap);
-        Allocation tmpOut = Allocation.createFromBitmap(rs, outputBitmap);  
-        theIntrinsic.setRadius(radius);
-        theIntrinsic.setInput(tmpIn);
-        theIntrinsic.forEach(tmpOut);
-        tmpOut.copyTo(outputBitmap);
-        return outputBitmap;
     }
 }
