@@ -1893,7 +1893,7 @@ public class StatusBar extends SystemUI implements DemoMode,
                         break;
                     case 2:
                         Drawable aw = new BitmapDrawable(mBackdropBack.getResources(), artworkBitmap);
-                        artworkDrawable = new BitmapDrawable(ImageHelper.getColoredBitmap(aw, mContext.getResources().getColor(R.color.sammy_minutes_accent)));
+                        artworkDrawable = new BitmapDrawable(ImageHelper.getColoredBitmap(aw, mContext.getResources().getColor(R.color.coverart_accent)));
                         break;
                     case 3:
                         artworkDrawable = new BitmapDrawable(mBackdropBack.getResources(), ImageHelper.getBlurredImage(mContext, artworkBitmap, 7.0f));
