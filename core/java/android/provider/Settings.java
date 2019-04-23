@@ -5893,6 +5893,12 @@ public final class Settings {
                 ANY_INTEGER_VALIDATOR;
 
         /**
+         * Select alignment for text clock on lockscreen
+         * @hide
+         */
+        public static final String LOCKSCREEN_TEXT_CLOCK_ALIGN = "lockscreen_text_clock_align";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *

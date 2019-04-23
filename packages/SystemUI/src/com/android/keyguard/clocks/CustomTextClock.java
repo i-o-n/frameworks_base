@@ -632,4 +632,8 @@ public class CustomTextClock extends TextView {
         canvas.drawPaint(paint);
         return convertedBitmap;
     }
+
+    public void setAlign() {
+         onTimeChanged();
+    }
 }

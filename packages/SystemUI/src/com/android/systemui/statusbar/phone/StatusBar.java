@@ -5316,11 +5316,14 @@ private void swapWhiteBlackAccent() {
                     Settings.System.LOCKSCREEN_INFO),
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                   Settings.System.LOCKSCREEN_CLOCK_SELECTION),
-                   false, this, UserHandle.USER_ALL);
+                    Settings.System.LOCKSCREEN_CLOCK_SELECTION),
+                    false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                  Settings.System.USE_SLIM_RECENTS),
-                  false, this, UserHandle.USER_ALL);
+                    Settings.System.LOCKSCREEN_TEXT_CLOCK_ALIGN),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.USE_SLIM_RECENTS),
+                    false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.GAMING_MODE_ACTIVE),
                     false, this, UserHandle.USER_ALL);
@@ -5351,7 +5354,8 @@ private void swapWhiteBlackAccent() {
                 updateTelephonyIcons();
             } else if (uri.equals(Settings.System.getUriFor(Settings.System.LOCKSCREEN_CLOCK)) ||
                 uri.equals(Settings.System.getUriFor(Settings.System.LOCKSCREEN_INFO)) ||
-                uri.equals(Settings.System.getUriFor(Settings.System.LOCKSCREEN_CLOCK_SELECTION))) {
+                uri.equals(Settings.System.getUriFor(Settings.System.LOCKSCREEN_CLOCK_SELECTION)) ||
+                uri.equals(Settings.System.getUriFor(Settings.System.LOCKSCREEN_TEXT_CLOCK_ALIGN))) {
                 updateKeyguardStatusSettings();
             } else if (uri.equals(Settings.System.getUriFor(
                     Settings.System.USE_SLIM_RECENTS))) {
