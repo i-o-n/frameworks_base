@@ -36,6 +36,9 @@ public class ThemeAccentUtils {
         "com.android.gboard.theme.dark", // 3
         "com.android.gboard.theme.light", // 4
         "com.android.wellbeing.theme.dark", // 5
+        "devicesettings.overlay.theme", // 6
+        "devicesettings.overlay.theme2", // 7
+        "devicesettings.overlay.theme3", // 8
     };
 
     // Accents
