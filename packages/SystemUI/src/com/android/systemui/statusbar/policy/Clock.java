@@ -275,6 +275,40 @@ public class Clock extends TextView implements DemoMode, CommandQueue.Callbacks,
     }
 
     @Override
+    public Parcelable onSaveInstanceState() {
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(CLOCK_SUPER_PARCELABLE, super.onSaveInstanceState());
+        bundle.putInt(CURRENT_USER_ID, mCurrentUserId);
+        bundle.putBoolean(VISIBLE_BY_POLICY, mClockVisibleByPolicy);
+        bundle.putBoolean(VISIBLE_BY_USER, mClockVisibleByUser);
+        bundle.putBoolean(SHOW_SECONDS, mShowSeconds);
+        bundle.putInt(VISIBILITY, getVisibility());
+
+        return bundle;
+    }
+
+    @Override
+    public void onRestoreInstanceState(Parcelable state) {
+        if (state == null || !(state instanceof Bundle)) {
+            super.onRestoreInstanceState(state);
+            return;
+        }
+
+        Bundle bundle = (Bundle) state;
+        Parcelable superState = bundle.getParcelable(CLOCK_SUPER_PARCELABLE);
+        super.onRestoreInstanceState(superState);
+        if (bundle.containsKey(CURRENT_USER_ID)) {
+            mCurrentUserId = bundle.getInt(CURRENT_USER_ID);
+        }
+        mClockVisibleByPolicy = bundle.getBoolean(VISIBLE_BY_POLICY, true);
+        mClockVisibleByUser = bundle.getBoolean(VISIBLE_BY_USER, true);
+        mShowSeconds = bundle.getBoolean(SHOW_SECONDS, false);
+        if (bundle.containsKey(VISIBILITY)) {
+            setVisibility(bundle.getInt(VISIBILITY));
+        }
+    }
+
+    @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
 
