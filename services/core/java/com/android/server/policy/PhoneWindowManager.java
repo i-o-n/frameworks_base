@@ -2497,7 +2497,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         mOPGestures = new OPGesturesListener(context, new OPGesturesListener.Callbacks() {
             @Override
             public void onSwipeThreeFinger() {
-                mHandler.post(mScreenshotRunnable);
+                if (!mPocketLockShowing){
+                    mHandler.post(mScreenshotRunnable);
+                }
             }
         });
 
