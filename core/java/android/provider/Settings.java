@@ -5588,6 +5588,15 @@ public final class Settings {
         /** @hide */
         public static final Validator SWIPE_TO_SCREENSHOT_VALIDATOR = BOOLEAN_VALIDATOR;
 
+         /**
+         * Whether night theme acquired from automatic theme (based on time of day) is enabled
+         * @hide
+         */
+        public static final String THEME_AUTOMATIC_TIME_IS_NIGHT = "theme_mode_automatic_time_is_night";
+
+        /** @hide */
+        public static final Validator THEME_AUTOMATIC_TIME_IS_NIGHT_VALIDATOR = BOOLEAN_VALIDATOR;
+
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
@@ -5860,6 +5869,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(DISPLAY_PICTURE_ADJUSTMENT);
             PRIVATE_SETTINGS.add(LIVE_DISPLAY_HINTED);
             PRIVATE_SETTINGS.add(SWIPE_TO_SCREENSHOT);
+            PRIVATE_SETTINGS.add(THEME_AUTOMATIC_TIME_IS_NIGHT);
         }
 
         /**
@@ -6026,6 +6036,7 @@ public final class Settings {
             VALIDATORS.put(DISPLAY_PICTURE_ADJUSTMENT, DISPLAY_PICTURE_ADJUSTMENT_VALIDATOR);
             VALIDATORS.put(LIVE_DISPLAY_HINTED, LIVE_DISPLAY_HINTED_VALIDATOR);
             VALIDATORS.put(SWIPE_TO_SCREENSHOT, SWIPE_TO_SCREENSHOT_VALIDATOR);
+            VALIDATORS.put(THEME_AUTOMATIC_TIME_IS_NIGHT, THEME_AUTOMATIC_TIME_IS_NIGHT_VALIDATOR);
         }
 
         /**
