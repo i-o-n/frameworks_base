@@ -536,6 +536,7 @@ public class StatusBar extends SystemUI implements DemoMode,
 
     private VisualizerView mVisualizerView;
 
+    private boolean mPocketJudgeAllowFP;
     private boolean mWallpaperSupportsAmbientMode;
     private final BroadcastReceiver mWallpaperChangedReceiver = new BroadcastReceiver() {
         @Override
@@ -4099,6 +4100,9 @@ public class StatusBar extends SystemUI implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.LESS_BORING_HEADS_UP),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.POCKET_JUDGE_ALLOW_FP),
+                    false, this, UserHandle.USER_ALL);
         }
 
         @Override
@@ -4126,6 +4130,9 @@ public class StatusBar extends SystemUI implements DemoMode,
                 setScreenBrightnessMode();
             } else if (uri.equals(Settings.System.getUriFor(Settings.System.LESS_BORING_HEADS_UP))) {
                 setUseLessBoringHeadsUp();
+            } else if (uri.equals(Settings.System.getUriFor(Settings.System.POCKET_JUDGE_ALLOW_FP))) {
+                updatePocketJudgeFP();
+            }
             }
         }
 
@@ -4137,7 +4144,14 @@ public class StatusBar extends SystemUI implements DemoMode,
             updateNavigationBarVisibility();
             setScreenBrightnessMode();
             setUseLessBoringHeadsUp();
+            updatePocketJudgeFP();
         }
+    }
+
+    private void updatePocketJudgeFP() {
+        mPocketJudgeAllowFP = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.POCKET_JUDGE_ALLOW_FP, 0,
+                UserHandle.USER_CURRENT) == 1;
     }
 
     private void setUseLessBoringHeadsUp() {

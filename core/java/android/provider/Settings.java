@@ -5789,6 +5789,11 @@ public final class Settings {
                 new SettingsValidators.InclusiveIntegerRangeValidator(-3, 1);
 
         /**
+         * @hide
+         */
+        public static final String POCKET_JUDGE_ALLOW_FP = "pocket_judge_allow_fp";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
