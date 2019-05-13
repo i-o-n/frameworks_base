@@ -39,6 +39,7 @@ public class ThemeAccentUtils {
         "devicesettings.overlay.theme", // 6
         "devicesettings.overlay.theme2", // 7
         "devicesettings.overlay.theme3", // 8
+        "com.android.documentsui.theme.dark", // 9
     };
 
     // Accents
