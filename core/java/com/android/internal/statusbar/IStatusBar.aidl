@@ -182,4 +182,6 @@ oneway interface IStatusBar
      * Ion
      */
     void toggleCameraFlash();
+    void toggleCameraFlashState(boolean enable);
+
 }
