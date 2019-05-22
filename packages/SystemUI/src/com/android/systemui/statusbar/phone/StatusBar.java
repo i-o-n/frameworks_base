@@ -2408,13 +2408,66 @@ public class StatusBar extends SystemUI implements DemoMode,
 
     // Check for the dark system theme
     public boolean isUsingDarkTheme() {
-        return ThemeAccentUtils.isUsingDarkTheme(mOverlayManager, mLockscreenUserManager.getCurrentUserId());
+        OverlayInfo themeInfo = null;
+        try {
+            themeInfo = mOverlayManager.getOverlayInfo("com.android.system.theme.dark",
+                    mLockscreenUserManager.getCurrentUserId());
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return themeInfo != null && themeInfo.isEnabled();
     }
 
     // Unloads the stock dark theme
     public void unloadStockDarkTheme() {
-        ThemeAccentUtils.unloadStockDarkTheme(mOverlayManager, mLockscreenUserManager.getCurrentUserId());
+        OverlayInfo themeInfo = null;
+        try {
+            themeInfo = mOverlayManager.getOverlayInfo("com.android.systemui.theme.dark",
+                    mLockscreenUserManager.getCurrentUserId());
+            if (themeInfo != null && themeInfo.isEnabled()) {
+                mOverlayManager.setEnabled("com.android.systemui.theme.dark",
+                        false /*disable*/, mLockscreenUserManager.getCurrentUserId());
+            }
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
+
+private void swapWhiteBlackAccent() {
+        OverlayInfo themeInfo = null;
+        try {
+            themeInfo = mOverlayManager.getOverlayInfo("com.accents.white",
+                    mLockscreenUserManager.getCurrentUserId());
+            boolean isUsingWhiteAccent = themeInfo != null && themeInfo.isEnabled();
+            if (isUsingDarkTheme()){
+                themeInfo = mOverlayManager.getOverlayInfo("com.accents.black",
+                        mLockscreenUserManager.getCurrentUserId());
+                if (themeInfo != null && themeInfo.isEnabled()) {
+                    isUsingWhiteAccent = true;
+                    mOverlayManager.setEnabled("com.accents.black",
+                            false, mLockscreenUserManager.getCurrentUserId());
+                    mOverlayManager.setEnabled("com.accents.white",
+                            true, mLockscreenUserManager.getCurrentUserId());
+                }
+            } else {
+                if (isUsingWhiteAccent) {
+                    isUsingWhiteAccent = false;
+                    mOverlayManager.setEnabled("com.accents.white",
+                            false, mLockscreenUserManager.getCurrentUserId());
+                    mOverlayManager.setEnabled("com.accents.black",
+                            true, mLockscreenUserManager.getCurrentUserId());
+                }
+            }
+            mOverlayManager.setEnabled("devicesettings.overlay.theme",
+                    isUsingWhiteAccent, mLockscreenUserManager.getCurrentUserId());
+            mOverlayManager.setEnabled("devicesettings.overlay.theme2",
+                    isUsingWhiteAccent, mLockscreenUserManager.getCurrentUserId());
+            mOverlayManager.setEnabled("devicesettings.overlay.theme3",
+                    isUsingWhiteAccent, mLockscreenUserManager.getCurrentUserId());
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+}
 
     // Check for black and white accent overlays
     public void unfuckBlackWhiteAccent() {
@@ -4383,9 +4436,31 @@ public class StatusBar extends SystemUI implements DemoMode,
         final boolean useDarkTheme = darkThemeNeeded;
         if (themeNeedsRefresh || isUsingDarkTheme() != useDarkTheme) {
             mUiOffloadThread.submit(() -> {
-                unfuckBlackWhiteAccent();
-                ThemeAccentUtils.setLightDarkTheme(mOverlayManager, mLockscreenUserManager.getCurrentUserId(), useDarkTheme);
                 umm.setNightMode(useDarkTheme ? UiModeManager.MODE_NIGHT_YES : UiModeManager.MODE_NIGHT_NO);
+                try {
+                    mOverlayManager.setEnabled("com.android.system.theme.dark",
+                            useDarkTheme, mLockscreenUserManager.getCurrentUserId());
+                    mOverlayManager.setEnabled("com.android.settings.theme.dark",
+                            useDarkTheme, mLockscreenUserManager.getCurrentUserId());
+                    mOverlayManager.setEnabled("com.android.systemui.custom.theme.dark",
+                            useDarkTheme, mLockscreenUserManager.getCurrentUserId());
+                    mOverlayManager.setEnabled("com.android.gboard.theme.dark",
+                            useDarkTheme, mLockscreenUserManager.getCurrentUserId());
+                    mOverlayManager.setEnabled("com.android.gboard.theme.light",
+                            !useDarkTheme, mLockscreenUserManager.getCurrentUserId());
+                    mOverlayManager.setEnabled("com.android.wellbeing.theme.dark",
+                            useDarkTheme, mLockscreenUserManager.getCurrentUserId());
+                    mOverlayManager.setEnabled("com.android.documentsui.theme.dark",
+                            useDarkTheme, mLockscreenUserManager.getCurrentUserId());
+                    if (useDarkTheme) {
+                        unloadStockDarkTheme();
+                    }
+                } catch (RemoteException e) {
+                    Log.w(TAG, "Can't change theme", e);
+                }
+            });
+            mUiOffloadThread.submit(() -> {
+                swapWhiteBlackAccent();
             });
         }
 
