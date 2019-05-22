@@ -213,6 +213,7 @@ public class QSFooterImpl extends FrameLayout implements Tunable, QSFooter,
                 .addFloat(mDragHandle, "alpha", 1, 0, 0)
                 .addFloat(mPageIndicator, "alpha", 0, 1)
                 .addFloat(mRunningServicesButton, "alpha", 0, 1)
+                .addFloat(mSettingsButton, "alpha", 0, 1)
                 .setStartDelay(0.15f)
                 .build();
     }
@@ -303,7 +304,7 @@ public class QSFooterImpl extends FrameLayout implements Tunable, QSFooter,
                 Settings.System.QSFOOTER_SHOW_SETTINGS, 1) != 0;
         mMultiUserSwitch.setVisibility(showUserSwitcher(isDemo) ? View.VISIBLE : View.INVISIBLE);
         mEdit.setVisibility(isEditEnabled() ? isDemo || !mExpanded ? View.INVISIBLE : View.VISIBLE : View.GONE);
-        mSettingsButton.setVisibility(isDemo || settingsButtonVisible ? View.VISIBLE : View.GONE);
+        mSettingsButton.setVisibility(settingsButtonVisible ? (isDemo || mExpanded ? View.VISIBLE : View.INVISIBLE) : View.GONE);
         mRunningServicesButton.setVisibility(!isDemo && mExpanded ? View.VISIBLE : View.INVISIBLE);
         mRunningServicesButton.setVisibility(servicesButtonVisible ? (!isDemo && mExpanded ? View.VISIBLE : View.INVISIBLE) : View.GONE);
     }
