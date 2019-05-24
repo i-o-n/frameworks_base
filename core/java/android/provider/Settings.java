@@ -5607,6 +5607,21 @@ public final class Settings {
         public static final Validator THEME_DARK_STYLE_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /**
+        * Battery Estimate
+        * @hide
+        */
+        public static final String SHOW_BATTERY_ESTIMATE = "show_battery_estimate";
+
+        /** @hide */
+        public static final Validator SHOW_BATTERY_ESTIMATE_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
+        * Battery Estimate Position
+        * @hide
+        */
+        public static final String BATTERY_ESTIMATE_POSITION = "battery_estimate_position";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -5880,6 +5895,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(SWIPE_TO_SCREENSHOT);
             PRIVATE_SETTINGS.add(THEME_AUTOMATIC_TIME_IS_NIGHT);
             PRIVATE_SETTINGS.add(THEME_DARK_STYLE);
+            PRIVATE_SETTINGS.add(SHOW_BATTERY_ESTIMATE);
         }
 
         /**
@@ -6048,6 +6064,7 @@ public final class Settings {
             VALIDATORS.put(SWIPE_TO_SCREENSHOT, SWIPE_TO_SCREENSHOT_VALIDATOR);
             VALIDATORS.put(THEME_AUTOMATIC_TIME_IS_NIGHT, THEME_AUTOMATIC_TIME_IS_NIGHT_VALIDATOR);
             VALIDATORS.put(THEME_DARK_STYLE, THEME_DARK_STYLE_VALIDATOR);
+            VALIDATORS.put(SHOW_BATTERY_ESTIMATE, SHOW_BATTERY_ESTIMATE_VALIDATOR);
         }
 
         /**
