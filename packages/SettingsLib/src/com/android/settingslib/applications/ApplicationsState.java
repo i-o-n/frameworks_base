@@ -1658,7 +1658,6 @@ public class ApplicationsState {
         private final String[] overlays = {
             "com.android.system.theme.dark",
             "com.android.system.theme.black",
-            "com.android.settings.theme.dark",
             "com.android.systemui.custom.theme.dark",
             "com.android.systemui.custom.theme.black",
             "com.android.gboard.theme.dark",
