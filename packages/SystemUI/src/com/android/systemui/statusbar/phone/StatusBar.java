@@ -4459,6 +4459,8 @@ private void swapWhiteBlackAccent() {
                             useDarkTheme && !mUseBlackTheme, mLockscreenUserManager.getCurrentUserId());
                     mOverlayManager.setEnabled("com.android.documentsui.theme.black",
                             useDarkTheme && mUseBlackTheme, mLockscreenUserManager.getCurrentUserId());
+                    mOverlayManager.setEnabled("com.android.facelock.theme.dark",
+                            useDarkTheme || mUseBlackTheme, mLockscreenUserManager.getCurrentUserId());
                     if (useDarkTheme) {
                         unloadStockDarkTheme();
                     }

@@ -1763,6 +1763,7 @@ public class ApplicationsState {
             "com.android.system.switch.seven",
             "com.android.system.switch.eight",
             "com.android.system.switch.nine",
+            "com.android.facelock.theme.dark",
         };
 
         @Override
