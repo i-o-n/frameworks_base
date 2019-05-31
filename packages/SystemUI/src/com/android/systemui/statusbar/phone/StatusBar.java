@@ -2463,34 +2463,25 @@ public class StatusBar extends SystemUI implements DemoMode,
 private void swapWhiteBlackAccent() {
         OverlayInfo themeInfo = null;
         try {
-            themeInfo = mOverlayManager.getOverlayInfo("com.accents.white",
-                    mLockscreenUserManager.getCurrentUserId());
-            boolean isUsingWhiteAccent = themeInfo != null && themeInfo.isEnabled();
             if (isUsingDarkTheme()){
                 themeInfo = mOverlayManager.getOverlayInfo("com.accents.black",
                         mLockscreenUserManager.getCurrentUserId());
                 if (themeInfo != null && themeInfo.isEnabled()) {
-                    isUsingWhiteAccent = true;
                     mOverlayManager.setEnabled("com.accents.black",
                             false, mLockscreenUserManager.getCurrentUserId());
                     mOverlayManager.setEnabled("com.accents.white",
                             true, mLockscreenUserManager.getCurrentUserId());
                 }
             } else {
-                if (isUsingWhiteAccent) {
-                    isUsingWhiteAccent = false;
+                themeInfo = mOverlayManager.getOverlayInfo("com.accents.white",
+                        mLockscreenUserManager.getCurrentUserId());
+                if (themeInfo != null && themeInfo.isEnabled()) {
                     mOverlayManager.setEnabled("com.accents.white",
                             false, mLockscreenUserManager.getCurrentUserId());
                     mOverlayManager.setEnabled("com.accents.black",
                             true, mLockscreenUserManager.getCurrentUserId());
                 }
             }
-            mOverlayManager.setEnabled("devicesettings.overlay.theme",
-                    isUsingWhiteAccent, mLockscreenUserManager.getCurrentUserId());
-            mOverlayManager.setEnabled("devicesettings.overlay.theme2",
-                    isUsingWhiteAccent, mLockscreenUserManager.getCurrentUserId());
-            mOverlayManager.setEnabled("devicesettings.overlay.theme3",
-                    isUsingWhiteAccent, mLockscreenUserManager.getCurrentUserId());
         } catch (RemoteException e) {
             e.printStackTrace();
         }
