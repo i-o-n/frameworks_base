@@ -5634,6 +5634,12 @@ public final class Settings {
         public static final String POWER_MENU_BG_STYLE = "power_menu_bg_style";
 
         /**
+         * Whether to show charging animation
+         * @hide
+         */
+        public static final String CHARGING_ANIMATION = "charging_animation";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
