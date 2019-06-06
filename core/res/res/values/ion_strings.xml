@@ -148,4 +148,9 @@
     <!-- Text of the checkbox for the permission confirmation dialog to remember the user's choice. [CHAR LIMIT=40] -->
     <string name="permission_remember_choice">Remember my choice</string>
 
+    <!-- FireHound Gaming -->
+    <string name="notification_channel_gaming">Gaming Mode</string>
+    <string name="gaming_notif_title">Gaming mode On</string>
+    <string name="gaming_notif_ticker">Gaming mode enabled</string>
+
 </resources>
