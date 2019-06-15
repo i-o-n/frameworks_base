@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-/* Copyright 2015, The Android Open Source Project
+/*
+** Copyright 2018, The Android Open Source Project
 **
 ** Licensed under the Apache License, Version 2.0 (the "License");
 ** you may not use this file except in compliance with the License.
@@ -16,11 +17,11 @@
 */
 -->
 <set
-    xmlns:android="http://schemas.android.com/apk/res/android" >
+  xmlns:android="http://schemas.android.com/apk/res/android">
     <objectAnimator
+        android:interpolator="@interpolator/ft_avd_toarrow_animation_interpolator_6"
         android:duration="516"
-        android:propertyXName="translateX"
-        android:propertyYName="translateY"
         android:pathData="M 9.0,0.0 c -1.5,0.0 -7.5,0.0 -9.0,0.0"
-        android:interpolator="@interpolator/ft_avd_toarrow_animation_interpolator_6" />
+        android:propertyXName="translateX"
+        android:propertyYName="translateY"/>
 </set>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /*
-** Copyright 2014, The Android Open Source Project
+** Copyright 2018, The Android Open Source Project
 **
 ** Licensed under the Apache License, Version 2.0 (the "License");
 ** you may not use this file except in compliance with the License.
@@ -18,17 +18,18 @@
 -->
 <set xmlns:android="http://schemas.android.com/apk/res/android">
     <objectAnimator
-        android:propertyName="alpha"
-        android:valueType="floatType"
+        android:duration="@integer/leanback_setup_alpha_backward_out_content_duration"
+        android:startOffset="@integer/leanback_setup_alpha_backward_out_content_delay"
         android:valueFrom="@dimen/leanback_setup_alpha_backward_out_content_start"
         android:valueTo="@dimen/leanback_setup_alpha_backward_out_content_end"
-        android:duration="@integer/leanback_setup_alpha_backward_out_content_duration"
-        android:startOffset="@integer/leanback_setup_alpha_backward_out_content_delay"/>
-    <objectAnimator
-        android:propertyName="x"
         android:valueType="floatType"
+        android:propertyName="alpha"/>
+
+    <objectAnimator
+        android:duration="@integer/leanback_setup_translation_backward_out_content_duration"
+        android:startOffset="@integer/leanback_setup_translation_backward_out_content_delay"
         android:valueFrom="@dimen/leanback_setup_translation_backward_out_content_start"
         android:valueTo="@dimen/leanback_setup_translation_backward_out_content_end"
-        android:duration="@integer/leanback_setup_translation_backward_out_content_duration"
-        android:startOffset="@integer/leanback_setup_translation_backward_out_content_delay"/>
+        android:valueType="floatType"
+        android:propertyName="x"/>
 </set>
