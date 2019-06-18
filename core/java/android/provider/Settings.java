@@ -5630,6 +5630,12 @@ public final class Settings {
         public static final String CHARGING_ANIMATION = "charging_animation";
 
         /**
+         * Gaming Mode master switch
+         * @hide
+         */
+        public static final String GAMING_MODE_MASTER_SWITCH = "gaming_mode_master_switch";
+
+        /**
          * Save the user defined brightness state
          */
         public static final String GAMING_SCREEN_BRIGHTNESS_MODE = "gaming_screen_brightness_mode";
