@@ -134,8 +134,7 @@
    <java-symbol type="id" name="notification_media_elapsed_time" />
    <java-symbol type="id" name="notification_media_total_time" />
 
-  <!-- FireHound Gaming -->
-  <java-symbol type="string" name="gaming_notif_title" />
+  <!-- Gaming mode -->
   <java-symbol type="string" name="gaming_notif_ticker" />
   <java-symbol type="string" name="notification_channel_gaming" />
   <java-symbol type="drawable" name="ic_gaming_notif" />
