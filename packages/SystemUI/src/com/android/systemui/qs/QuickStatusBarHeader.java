@@ -198,6 +198,8 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         mBatteryMeterView = findViewById(R.id.battery);
         mBatteryRemainingIcon = findViewById(R.id.batteryRemainingIcon);
 
+        mUser = ActivityManager.getCurrentUser();
+
         int showestimate = Settings.System.getIntForUser(getContext().getContentResolver(),
                 SHOW_BATTERY_ESTIMATE, 0, mUser);
         if ( showestimate != 0 ) {
