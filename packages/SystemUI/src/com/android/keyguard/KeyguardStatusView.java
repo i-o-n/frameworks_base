@@ -476,8 +476,11 @@ public class KeyguardStatusView extends GridLayout implements
         if (info == null) {
 
             final ContentResolver resolver = mContext.getContentResolver();
-            boolean mClockSelection = Settings.System.getIntForUser(resolver,
-                    Settings.System.LOCKSCREEN_CLOCK_SELECTION, 0, UserHandle.USER_CURRENT) == 14;
+            boolean mClockSelection = (Settings.System.getIntForUser(resolver,
+                    Settings.System.LOCKSCREEN_CLOCK_SELECTION, 0, UserHandle.USER_CURRENT) == 14
+                    || Settings.System.getIntForUser(resolver,
+                    Settings.System.LOCKSCREEN_CLOCK_SELECTION, 0, UserHandle.USER_CURRENT) == 15
+                    );
 
             // If text style clock, align the textView to start else keep it center.
             if (mClockSelection) {
@@ -1003,6 +1006,7 @@ public class KeyguardStatusView extends GridLayout implements
                 mTextClock.setVisibility(View.GONE);
                 break;
             case 14: // custom text clock
+            case 15: // custom text clock (Accent)
                 mTextClock.setVisibility(mDarkAmount != 1 ? (mShowClock ? View.VISIBLE :
                        View.GONE) : View.VISIBLE);
                 mKeyguardSlice.setVisibility(mShowInfo ? View.VISIBLE : View.GONE);
@@ -1087,6 +1091,7 @@ public class KeyguardStatusView extends GridLayout implements
                 params.addRule(RelativeLayout.BELOW, R.id.sneeky_clock_view);
                 break;
             case 14: // custom text clock
+            case 15: // custom text clock
                 params.addRule(RelativeLayout.BELOW, R.id.custom_textclock_view);
                 break;
         }

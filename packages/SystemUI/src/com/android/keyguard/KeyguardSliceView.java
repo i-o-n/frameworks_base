@@ -173,8 +173,11 @@ public class KeyguardSliceView extends LinearLayout implements View.OnClickListe
         }
 
         final ContentResolver resolver = mContext.getContentResolver();
-        boolean mClockSelection = Settings.System.getIntForUser(resolver,
-                Settings.System.LOCKSCREEN_CLOCK_SELECTION, 0, UserHandle.USER_CURRENT) == 14;
+        boolean mClockSelection = (Settings.System.getIntForUser(resolver,
+                Settings.System.LOCKSCREEN_CLOCK_SELECTION, 0, UserHandle.USER_CURRENT) == 14
+                || Settings.System.getIntForUser(resolver,
+                Settings.System.LOCKSCREEN_CLOCK_SELECTION, 0, UserHandle.USER_CURRENT) == 15
+                );
 
         ListContent lc = new ListContent(getContext(), mSlice);
         mHasHeader = lc.hasHeader();

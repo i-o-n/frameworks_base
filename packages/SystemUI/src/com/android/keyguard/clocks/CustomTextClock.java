@@ -1,3 +1,17 @@
+/*
+ * Copyright (C) 2019 >ion
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+ * except in compliance with the License. You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under the
+ * License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
+ */
+
 package com.android.keyguard.clocks;
 
 import android.app.WallpaperManager;
@@ -45,6 +59,7 @@ public class CustomTextClock extends TextView {
     private int handType;
     private Context mContext;
     private boolean h24;
+    private int mClockColor;
 
     public CustomTextClock(Context context) {
         this(context, null);
@@ -110,41 +125,48 @@ public class CustomTextClock extends TextView {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (handType == 2) {
-            Bitmap mBitmap;
-            //Get wallpaper as bitmap
-            WallpaperManager manager = WallpaperManager.getInstance(mContext);
-            ParcelFileDescriptor pfd = manager.getWallpaperFile(WallpaperManager.FLAG_LOCK);
+            mClockColor = Settings.System.getIntForUser(mContext.getContentResolver(),
+                    Settings.System.LOCKSCREEN_CLOCK_SELECTION, 0,
+                    UserHandle.USER_CURRENT);
 
-            //Sometimes lock wallpaper maybe null as getWallpaperFile doesnt return builtin wallpaper
-            if (pfd == null)
-                pfd = manager.getWallpaperFile(WallpaperManager.FLAG_SYSTEM);
-            try {
-                if (pfd != null)
-                {
-                    mBitmap = BitmapFactory.decodeFileDescriptor(pfd.getFileDescriptor());
-                } else {
-                    //Incase both cases return null wallpaper, generate a yellow bitmap
-                    mBitmap = drawEmpty();
-                }
-                Palette palette = Palette.generate(mBitmap);
+            if ( mClockColor != 15 ) {
+                Bitmap mBitmap;
+                //Get wallpaper as bitmap
+                WallpaperManager manager = WallpaperManager.getInstance(mContext);
+                ParcelFileDescriptor pfd = manager.getWallpaperFile(WallpaperManager.FLAG_LOCK);
 
-                //For monochrome and single color bitmaps, the value returned is 0
-                if (Color.valueOf(palette.getLightVibrantColor(0x000000)).toArgb() == 0) {
-                    //So get bodycolor on dominant color instead as a hacky workaround
-                    setTextColor(palette.getDominantSwatch().getBodyTextColor());
-                //On Black Wallpapers set color to White
-                } else if(String.format("#%06X", (0xFFFFFF & (palette.getLightVibrantColor(0x000000)))) == "#000000") {
+                //Sometimes lock wallpaper maybe null as getWallpaperFile doesnt return builtin wallpaper
+                if (pfd == null)
+                    pfd = manager.getWallpaperFile(WallpaperManager.FLAG_SYSTEM);
+                try {
+                    if (pfd != null)
+                    {
+                        mBitmap = BitmapFactory.decodeFileDescriptor(pfd.getFileDescriptor());
+                    } else {
+                        //Incase both cases return null wallpaper, generate a yellow bitmap
+                        mBitmap = drawEmpty();
+                    }
+                    Palette palette = Palette.generate(mBitmap);
+
+                    //For monochrome and single color bitmaps, the value returned is 0
+                    if (Color.valueOf(palette.getLightVibrantColor(0x000000)).toArgb() == 0) {
+                        //So get bodycolor on dominant color instead as a hacky workaround
+                        setTextColor(palette.getDominantSwatch().getBodyTextColor());
+                    //On Black Wallpapers set color to White
+                    } else if(String.format("#%06X", (0xFFFFFF & (palette.getLightVibrantColor(0x000000)))) == "#000000") {
+                        setTextColor(Color.WHITE);
+                    } else {
+                        setTextColor((Color.valueOf(palette.getLightVibrantColor(0xff000000))).toArgb());
+                    }
+
+                  //Just a fallback, although I doubt this case will ever come
+                } catch (NullPointerException e) {
                     setTextColor(Color.WHITE);
-                } else {
-                    setTextColor((Color.valueOf(palette.getLightVibrantColor(0xff000000))).toArgb());
                 }
-
-              //Just a fallback, although I doubt this case will ever come
-            } catch (NullPointerException e) {
-                setTextColor(Color.WHITE);
+            } else {
+                setTextColor(mContext.getResources().getColor(R.color.coverart_accent));
             }
         }
-
         refreshLockFont();
     }
 
