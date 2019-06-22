@@ -5281,9 +5281,6 @@ private void swapWhiteBlackAccent() {
                    Settings.System.LOCKSCREEN_CLOCK_SELECTION),
                    false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                   Settings.System.SHOW_BATTERY_ESTIMATE),
-                   false, this, UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.System.getUriFor(
                    Settings.System.BATTERY_ESTIMATE_POSITION),
                    false, this, UserHandle.USER_ALL);
 	    }
@@ -5312,8 +5309,8 @@ private void swapWhiteBlackAccent() {
                 uri.equals(Settings.System.getUriFor(Settings.System.LOCKSCREEN_INFO)) ||
                 uri.equals(Settings.System.getUriFor(Settings.System.LOCKSCREEN_CLOCK_SELECTION))) {
                 updateKeyguardStatusSettings();
-            } else if (uri.equals(Settings.System.getUriFor(Settings.System.SHOW_BATTERY_ESTIMATE)) ||
-                uri.equals(Settings.System.getUriFor(Settings.System.BATTERY_ESTIMATE_POSITION))) {
+            } else if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.BATTERY_ESTIMATE_POSITION))) {
                 restartUI();
             }
         }
