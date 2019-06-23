@@ -111,27 +111,33 @@ public class ThemeAccentUtils {
         "com.android.systemui.qstile.circlegradient", // 1
         "com.android.systemui.qstile.circletrim", // 2
         "com.android.systemui.qstile.cookie", // 3
-        "com.android.systemui.qstile.dottedcircle", // 4
-        "com.android.systemui.qstile.dualtonecircle", // 5
-        "com.android.systemui.qstile.dualtonecircletrim", // 6
-        "com.android.systemui.qstile.ink", // 7
-        "com.android.systemui.qstile.inkdrop", // 8
-        "com.android.systemui.qstile.mountain", // 9
-        "com.android.systemui.qstile.ninja", // 10
-        "com.android.systemui.qstile.oreo", // 11
-        "com.android.systemui.qstile.oreocircletrim", // 12
-        "com.android.systemui.qstile.oreosquircletrim", // 13
-        "com.android.systemui.qstile.pokesign", // 14
-        "com.android.systemui.qstile.squaremedo", // 15
-        "com.android.systemui.qstile.squircle", // 16
-        "com.android.systemui.qstile.squircletrim", // 17
-        "com.android.systemui.qstile.teardrop", // 18
-        "com.android.systemui.qstile.wavey", // 19
-        "com.android.systemui.qstile.neonlike", // 20
-        "com.android.systemui.qstile.oos", // 21
-        "com.android.systemui.qstile.triangles", // 22
-        "com.android.systemui.qstile.divided", // 23
-        "com.android.systemui.qstile.cosmos", // 24
+        "com.android.systemui.qstile.cosmos", // 4
+        "com.android.systemui.qstile.diamond", // 5
+        "com.android.systemui.qstile.divided", // 6
+        "com.android.systemui.qstile.dottedcircle", // 7
+        "com.android.systemui.qstile.dualtonecircle", // 8
+        "com.android.systemui.qstile.dualtonecircletrim", // 9
+        "com.android.systemui.qstile.gear", // 10
+        "com.android.systemui.qstile.hexagon", // 11
+        "com.android.systemui.qstile.ink", // 12
+        "com.android.systemui.qstile.inkdrop", // 13
+        "com.android.systemui.qstile.mountain", // 14
+        "com.android.systemui.qstile.neonlike", // 15
+        "com.android.systemui.qstile.ninja", // 16
+        "com.android.systemui.qstile.oreo", // 17
+        "com.android.systemui.qstile.oreocircletrim", // 18
+        "com.android.systemui.qstile.oreosquircletrim", // 19
+        "com.android.systemui.qstile.oxygen", // 20
+        "com.android.systemui.qstile.pokesign", // 21
+        "com.android.systemui.qstile.roundedsquare", // 22
+        "com.android.systemui.qstile.square", // 23
+        "com.android.systemui.qstile.squircle", // 24
+        "com.android.systemui.qstile.squircletrim", // 25
+        "com.android.systemui.qstile.squaremedo", // 26
+        "com.android.systemui.qstile.star", // 27
+        "com.android.systemui.qstile.teardrop", // 28
+        "com.android.systemui.qstile.triangles", // 29
+        "com.android.systemui.qstile.wavey", // 30
     };
 
     // QS header themes
