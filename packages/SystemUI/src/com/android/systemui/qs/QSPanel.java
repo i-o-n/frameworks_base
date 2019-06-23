@@ -142,7 +142,7 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
     protected void addDivider() {
         mDivider = LayoutInflater.from(mContext).inflate(R.layout.qs_divider, this, false);
         mDivider.setBackgroundColor(Utils.applyAlpha(mDivider.getAlpha(),
-                getColorForState(mContext, Tile.STATE_ACTIVE)));
+                Utils.getColorAttr(mContext, android.R.attr.colorPrimary)));
         addView(mDivider);
     }
 
