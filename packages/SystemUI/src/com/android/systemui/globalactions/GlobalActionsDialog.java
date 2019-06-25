@@ -1789,8 +1789,6 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener,
         private final OnItemLongClickListener mLongClickListener;
         private final GradientDrawable mGradientDrawable;
         private final ColorExtractor mColorExtractor;
-        private final Drawable mbackground;
-        private final Bitmap mbittemp;
         private int mbackgroundfilter;
         private boolean mKeyguardShowing;
         private boolean mShouldDisplaySeparatedButton;
@@ -1806,59 +1804,74 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener,
             mColorExtractor = Dependency.get(SysuiColorExtractor.class);
             mShouldDisplaySeparatedButton = shouldDisplaySeparatedButton;
 
-            // Window initialization
-            Window window = getWindow();
-            window.requestFeature(Window.FEATURE_NO_TITLE);
-
-            View v1 = window.getDecorView();
-            mbackgroundfilter = Settings.System.getIntForUser(mContext.getContentResolver(),
-                    Settings.System.POWER_MENU_BG_STYLE, 0,
-                    UserHandle.USER_CURRENT);
-            switch (mbackgroundfilter) {
-                case 1:
-                    mbittemp = ImageHelper.toGrayscale(ImageHelper.screenshotSurface(mContext));
-                    break;
-                case 2:
-                    Drawable bittemp = new BitmapDrawable(mContext.getResources(), ImageHelper.screenshotSurface(mContext));
-                    mbittemp = ImageHelper.getColoredBitmap(bittemp, mContext.getResources().getColor(color.coverart_accent));
-                    break;
-                case 3:
-                    mbittemp = ImageHelper.getGrayscaleBlurredImage(mContext, ImageHelper.screenshotSurface(mContext), 25.0f);
-                    break;
-                case 4:
-                    Drawable bittempp = new BitmapDrawable(mContext.getResources(), ImageHelper.screenshotSurface(mContext));
-                    Bitmap bittemppp = ImageHelper.getColoredBitmap(bittempp, mContext.getResources().getColor(color.coverart_accent));
-                    mbittemp = ImageHelper.getBlurredImage(mContext, bittemppp, 25.0f);
-                    break;
-                case 0:
-                default:
-                    mbittemp = ImageHelper.getBlurredImage(mContext, ImageHelper.screenshotSurface(mContext), 25.0f);
-            }
-            mbackground = new BitmapDrawable(mContext.getResources(), mbittemp);
-
-            // Inflate the decor view, so the attributes below are not overwritten by the theme.
-            window.getDecorView();
-            window.getAttributes().systemUiVisibility |= View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION;
-            window.setLayout(MATCH_PARENT, MATCH_PARENT);
-            window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-            window.addFlags(
-                    WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
-                    | WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
-                    | WindowManager.LayoutParams.FLAG_LAYOUT_INSET_DECOR
-                    | WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
-                    | WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH
-                    | WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
-
             if (Settings.System.getInt(mContext.getContentResolver(),
                     Settings.System.POWER_MENU_BG, 0) == 0) {
+                // Window initialization
+                Window window = getWindow();
+                window.requestFeature(Window.FEATURE_NO_TITLE);
+                // Inflate the decor view, so the attributes below are not overwritten by the theme.
+                window.getDecorView();
+                window.getAttributes().systemUiVisibility |= View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION;
+                window.setLayout(MATCH_PARENT, MATCH_PARENT);
+                window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+                window.addFlags(
+                        WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
+                        | WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
+                        | WindowManager.LayoutParams.FLAG_LAYOUT_INSET_DECOR
+                        | WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
+                        | WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH
+                        | WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
                 window.setBackgroundDrawable(mGradientDrawable);
+                window.setType(WindowManager.LayoutParams.TYPE_VOLUME_OVERLAY);
             } else {
+                // Window initialization
+                Window window = getWindow();
+                View v1 = window.getDecorView();
+                window.requestFeature(Window.FEATURE_NO_TITLE);
+                Bitmap mbittemp;
+                mbackgroundfilter = Settings.System.getIntForUser(mContext.getContentResolver(),
+                        Settings.System.POWER_MENU_BG_STYLE, 0,
+                        UserHandle.USER_CURRENT);
+                switch (mbackgroundfilter) {
+                    case 1:
+                        mbittemp = ImageHelper.toGrayscale(ImageHelper.screenshotSurface(mContext));
+                        break;
+                    case 2:
+                        Drawable bittemp = new BitmapDrawable(mContext.getResources(), ImageHelper.screenshotSurface(mContext));
+                        mbittemp = ImageHelper.getColoredBitmap(bittemp, mContext.getResources().getColor(color.coverart_accent));
+                        break;
+                    case 3:
+                        mbittemp = ImageHelper.getGrayscaleBlurredImage(mContext, ImageHelper.screenshotSurface(mContext), 25.0f);
+                        break;
+                    case 4:
+                        Drawable bittempp = new BitmapDrawable(mContext.getResources(), ImageHelper.screenshotSurface(mContext));
+                        Bitmap bittemppp = ImageHelper.getColoredBitmap(bittempp, mContext.getResources().getColor(color.coverart_accent));
+                        mbittemp = ImageHelper.getBlurredImage(mContext, bittemppp, 25.0f);
+                        break;
+                    case 0:
+                    default:
+                        mbittemp = ImageHelper.getBlurredImage(mContext, ImageHelper.screenshotSurface(mContext), 25.0f);
+                }
+                Drawable mbackground = new BitmapDrawable(mContext.getResources(), mbittemp);
+                // Inflate the decor view, so the attributes below are not overwritten by the theme.
+                window.getDecorView();
+                window.getAttributes().systemUiVisibility |= View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION;
+                window.setLayout(MATCH_PARENT, MATCH_PARENT);
+                window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+                window.addFlags(
+                        WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
+                        | WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
+                        | WindowManager.LayoutParams.FLAG_LAYOUT_INSET_DECOR
+                        | WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
+                        | WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH
+                        | WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
                 window.setBackgroundDrawable(mbackground);
+                window.setType(WindowManager.LayoutParams.TYPE_VOLUME_OVERLAY);
             }
-
-            window.setType(WindowManager.LayoutParams.TYPE_VOLUME_OVERLAY);
 
             setContentView(com.android.systemui.R.layout.global_actions_wrapped);
             mListView = findViewById(android.R.id.list);
