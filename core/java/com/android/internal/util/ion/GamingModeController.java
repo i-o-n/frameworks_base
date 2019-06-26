@@ -257,7 +257,7 @@ public class GamingModeController {
                     Settings.Global.HEADS_UP_NOTIFICATIONS_ENABLED, 0);
         }
         // Capacitive keys
-        boolean disableHwKeys = Settings.System.getInt(mContext.getContentResolver(),
+        /*boolean disableHwKeys = Settings.System.getInt(mContext.getContentResolver(),
                     Settings.System.GAMING_MODE_HW_KEYS_TOGGLE, 1) == 1;
         if (disableHwKeys) {
             final boolean isHwKeysEnabledByUser = Settings.Secure.getInt(mContext.getContentResolver(),
@@ -266,7 +266,7 @@ public class GamingModeController {
                     Settings.Secure.GAMING_HARDWARE_KEYS_DISABLE, isHwKeysEnabledByUser ? 0 : 1);
                 Settings.Secure.putInt(mContext.getContentResolver(),
                     Settings.Secure.HARDWARE_KEYS_DISABLE, 1);
-        }
+        }*/
         // Ringer mode (0: OFF, 1: Vibrate, 2:DND: 3:Silent
             int ringerMode = Settings.System.getInt(mContext.getContentResolver(),
                  Settings.System.GAMING_MODE_RINGER_MODE, 0);
@@ -315,10 +315,10 @@ public class GamingModeController {
                               Settings.Global.GAMING_HEADS_UP_NOTIFICATIONS_ENABLED, 1) == 1;
                 Settings.Global.putInt(resolver,
                     Settings.Global.HEADS_UP_NOTIFICATIONS_ENABLED, wasHeadsUpEnabledByUser ? 1 : 0);
-            final boolean wasHwKeyEnabledByUser = Settings.Secure.getInt(resolver,
+            /*final boolean wasHwKeyEnabledByUser = Settings.Secure.getInt(resolver,
                               Settings.Secure.GAMING_HARDWARE_KEYS_DISABLE, 0) == 0;
                 Settings.Secure.putInt(resolver,
-                    Settings.Secure.HARDWARE_KEYS_DISABLE, wasHwKeyEnabledByUser ? 0 : 1);
+                    Settings.Secure.HARDWARE_KEYS_DISABLE, wasHwKeyEnabledByUser ? 0 : 1);*/
             int ringerMode = Settings.System.getInt(mContext.getContentResolver(),
                  Settings.System.GAMING_MODE_RINGER_MODE, 0);
             final int ringerState = Settings.System.getInt(resolver,
