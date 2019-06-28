@@ -73,7 +73,7 @@ public class IonUtils {
         }
     }
 
-    /*public static void restartSystemUi(Context context) {
+    public static void restartSystemUi(Context context) {
         new RestartSystemUiTask(context).execute();
     }
 
@@ -88,7 +88,7 @@ public class IonUtils {
                 })
                 .setNegativeButton(R.string.cancel, null)
                 .show();
-    }*/
+    }
 
     private static class RestartSystemUiTask extends AsyncTask<Void, Void, Void> {
         private Context mContext;
