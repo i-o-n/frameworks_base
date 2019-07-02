@@ -1738,6 +1738,7 @@ public class ApplicationsState {
             "com.accents.usereight",
             "com.accents.usernine",
             "com.android.systemui.qstile.default",
+            "com.android.systemui.qstile.circle",
             "com.android.systemui.qstile.circlegradient",
             "com.android.systemui.qstile.circletrim",
             "com.android.systemui.qstile.cookie",
