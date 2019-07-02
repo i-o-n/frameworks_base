@@ -1668,6 +1668,7 @@ public class ApplicationsState {
     public static final AppFilter FILTER_EVERYTHING = new AppFilter() {
 
         private final String[] overlays = {
+            "com.android.system.theme.light",
             "com.android.system.theme.dark",
             "com.android.system.theme.black",
             "com.android.systemui.custom.theme.dark",
