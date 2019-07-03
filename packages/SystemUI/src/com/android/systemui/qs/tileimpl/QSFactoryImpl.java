@@ -61,6 +61,7 @@ import com.android.systemui.qs.tiles.SoundSearchTile;
 import com.android.systemui.qs.tiles.SoundTile;
 import com.android.systemui.qs.tiles.UsbTetherTile;
 import com.android.systemui.qs.tiles.UserTile;
+import com.android.systemui.qs.tiles.VpnTile;
 import com.android.systemui.qs.tiles.WifiTile;
 import com.android.systemui.qs.tiles.WorkModeTile;
 import com.android.systemui.util.leak.GarbageMonitor;
@@ -111,6 +112,7 @@ public class QSFactoryImpl implements QSFactory {
     private final Provider<CompassTile> mCompassTileProvider;
     private final Provider<AmbientDisplayTile> mAmbientDisplayTileProvider;
     private final Provider<SleepScreenTile> mSleepScreenTileProvider;
+    private final Provider<VpnTile> mVpnTileProvider;
 
     private QSTileHost mHost;
 
@@ -151,7 +153,8 @@ public class QSFactoryImpl implements QSFactory {
             Provider<MusicTile> musicTileProvider,
             Provider<CompassTile> compassTileProvider,
             Provider<AmbientDisplayTile> ambientDisplayTileProvider,
-            Provider<SleepScreenTile> sleepScreenTileProvider) {
+            Provider<SleepScreenTile> sleepScreenTileProvider,
+            Provider<VpnTile> vpnTileProvider) {
         mWifiTileProvider = wifiTileProvider;
         mBluetoothTileProvider = bluetoothTileProvider;
         mCellularTileProvider = cellularTileProvider;
@@ -189,6 +192,7 @@ public class QSFactoryImpl implements QSFactory {
         mCompassTileProvider = compassTileProvider;
         mAmbientDisplayTileProvider = ambientDisplayTileProvider;
         mSleepScreenTileProvider = sleepScreenTileProvider;
+        mVpnTileProvider = vpnTileProvider;
     }
 
     public void setHost(QSTileHost host) {
@@ -278,6 +282,8 @@ public class QSFactoryImpl implements QSFactory {
                 return mAmbientDisplayTileProvider.get();
             case "sleepscreen":
                 return mSleepScreenTileProvider.get();
+            case "vpn":
+                return mVpnTileProvider.get();
         }
 
         // Intent tiles.
