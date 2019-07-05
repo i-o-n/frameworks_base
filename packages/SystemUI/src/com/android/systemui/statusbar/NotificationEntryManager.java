@@ -130,6 +130,7 @@ public class NotificationEntryManager implements Dumpable, NotificationInflater.
     protected boolean mDisableNotificationAlerts;
     protected NotificationListContainer mListContainer;
     private ExpandableNotificationRow.OnAppOpsClickListener mOnAppOpsClickListener;
+    private boolean mSkipHeadsUp;
     /**
      * Notifications with keys in this set are not actually around anymore. We kept them around
      * when they were canceled in response to a remote input interaction. This allows us to show
@@ -928,6 +929,10 @@ public class NotificationEntryManager implements Dumpable, NotificationInflater.
     public void updateNotificationRanking(NotificationListenerService.RankingMap ranking) {
         mNotificationData.updateRanking(ranking);
         updateNotifications();
+    }
+
+    public void setGamingPeekMode(boolean skipHeadsUp) {
+        mSkipHeadsUp = skipHeadsUp;
     }
 
     public void onOverlayChanged() {
