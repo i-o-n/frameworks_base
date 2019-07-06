@@ -305,7 +305,7 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         // Update color schemes in landscape to use wallpaperTextColor
         boolean shouldUseWallpaperTextColor =
                 newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE;
-        if (mBatteryInQS) {
+        if (!mBatteryInQS) {
             mBatteryMeterView.useWallpaperTextColor(shouldUseWallpaperTextColor);
         }
         mClockView.useWallpaperTextColor(shouldUseWallpaperTextColor);
