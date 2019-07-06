@@ -38,7 +38,6 @@ import com.android.systemui.qs.tiles.FlashlightTile;
 import com.android.systemui.qs.tiles.HeadsUpTile;
 import com.android.systemui.qs.tiles.HotspotTile;
 import com.android.systemui.qs.tiles.IntentTile;
-import com.android.systemui.qs.tiles.LiveDisplayTile;
 import com.android.systemui.qs.tiles.LocationTile;
 import com.android.systemui.qs.tiles.NfcTile;
 import com.android.systemui.qs.tiles.NightDisplayTile;
@@ -131,10 +130,8 @@ public class QSFactoryImpl implements QSFactory {
                 return new HeadsUpTile(mHost);
             case "screenrecord":
                 return new ScreenrecordTile(mHost);
-	    case "screenstabilization":
+            case "screenstabilization":
                 return new ScreenStabilizationTile(mHost);
-            case "livedisplay":
-                return new LiveDisplayTile(mHost);
             case "reading_mode":
                 return new ReadingModeTile(mHost);
         }
