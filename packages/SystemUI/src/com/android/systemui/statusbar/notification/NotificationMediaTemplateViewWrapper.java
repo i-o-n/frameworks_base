@@ -112,6 +112,8 @@ public class NotificationMediaTemplateViewWrapper extends NotificationTemplateVi
             if (!mTrackingTouch && mMediaController.getPlaybackState() != null) {
                 long position = mMediaController.getPlaybackState().getPosition();
                 mSeekBar.setProgress((int) position);
+            } else {
+                mSeekBarView.setVisibility(View.GONE);
             }
         }
     };
@@ -151,7 +153,7 @@ public class NotificationMediaTemplateViewWrapper extends NotificationTemplateVi
                 }
             }
             ViewStub seekBarStub = mView.findViewById(com.android.internal.R.id.notification_media_seekbar_container);
-            if (seekBarStub != null) {
+            if (seekBarStub != null && mMediaController.getPlaybackState() != null) {
                 seekBarStub.setLayoutInflater(LayoutInflater.from(seekBarStub.getContext()));
                 seekBarStub.setLayoutResource(com.android.internal.R.layout.notification_material_media_seekbar);
                 mSeekBarView = seekBarStub.inflate();
