@@ -224,76 +224,196 @@ public class CarrierLabel extends TextView implements DarkReceiver {
         switch (font) {
             case FONT_NORMAL:
             default:
-                setTypeface(Typeface.create("sans-serif",
-                    Typeface.NORMAL));
+                setTypeface(Typeface.create("sans-serif", Typeface.NORMAL));
                 break;
             case FONT_ITALIC:
-                setTypeface(Typeface.create("sans-serif",
-                    Typeface.ITALIC));
+                setTypeface(Typeface.create("sans-serif", Typeface.ITALIC));
                 break;
             case FONT_BOLD:
-                setTypeface(Typeface.create("sans-serif",
-                    Typeface.BOLD));
+                setTypeface(Typeface.create("sans-serif", Typeface.BOLD));
                 break;
             case FONT_BOLD_ITALIC:
-                setTypeface(Typeface.create("sans-serif",
-                    Typeface.BOLD_ITALIC));
+                setTypeface(Typeface.create("sans-serif", Typeface.BOLD_ITALIC));
                 break;
             case FONT_LIGHT:
-                setTypeface(Typeface.create("sans-serif-light",
-                    Typeface.NORMAL));
+                setTypeface(Typeface.create("sans-serif-light", Typeface.NORMAL));
                 break;
             case FONT_LIGHT_ITALIC:
-                setTypeface(Typeface.create("sans-serif-light",
-                    Typeface.ITALIC));
+                setTypeface(Typeface.create("sans-serif-light", Typeface.ITALIC));
                 break;
             case FONT_THIN:
-                setTypeface(Typeface.create("sans-serif-thin",
-                    Typeface.NORMAL));
+                setTypeface(Typeface.create("sans-serif-thin", Typeface.NORMAL));
                 break;
             case FONT_THIN_ITALIC:
-                setTypeface(Typeface.create("sans-serif-thin",
-                    Typeface.ITALIC));
+                setTypeface(Typeface.create("sans-serif-thin", Typeface.ITALIC));
                 break;
             case FONT_CONDENSED:
-                setTypeface(Typeface.create("sans-serif-condensed",
-                    Typeface.NORMAL));
+                setTypeface(Typeface.create("sans-serif-condensed", Typeface.NORMAL));
                 break;
             case FONT_CONDENSED_ITALIC:
-                setTypeface(Typeface.create("sans-serif-condensed",
-                    Typeface.ITALIC));
+                setTypeface(Typeface.create("sans-serif-condensed", Typeface.ITALIC));
                 break;
             case FONT_CONDENSED_LIGHT:
-                setTypeface(Typeface.create("sans-serif-condensed-light",
-                    Typeface.NORMAL));
+                setTypeface(Typeface.create("sans-serif-condensed-light", Typeface.NORMAL));
                 break;
             case FONT_CONDENSED_LIGHT_ITALIC:
-                setTypeface(Typeface.create("sans-serif-condensed-light",
-                    Typeface.ITALIC));
+                setTypeface(Typeface.create("sans-serif-condensed-light", Typeface.ITALIC));
                 break;
             case FONT_CONDENSED_BOLD:
-                setTypeface(Typeface.create("sans-serif-condensed",
-                    Typeface.BOLD));
+                setTypeface(Typeface.create("sans-serif-condensed", Typeface.BOLD));
                 break;
             case FONT_CONDENSED_BOLD_ITALIC:
-                setTypeface(Typeface.create("sans-serif-condensed",
-                    Typeface.BOLD_ITALIC));
+                setTypeface(Typeface.create("sans-serif-condensed", Typeface.BOLD_ITALIC));
                 break;
             case FONT_MEDIUM:
-                setTypeface(Typeface.create("sans-serif-medium",
-                    Typeface.NORMAL));
+                setTypeface(Typeface.create("sans-serif-medium", Typeface.NORMAL));
                 break;
             case FONT_MEDIUM_ITALIC:
-                setTypeface(Typeface.create("sans-serif-medium",
-                    Typeface.ITALIC));
+                setTypeface(Typeface.create("sans-serif-medium", Typeface.ITALIC));
                 break;
             case FONT_BLACK:
-                setTypeface(Typeface.create("sans-serif-black",
-                    Typeface.NORMAL));
+                setTypeface(Typeface.create("sans-serif-black", Typeface.NORMAL));
                 break;
             case FONT_BLACK_ITALIC:
-                setTypeface(Typeface.create("sans-serif-black",
-                    Typeface.ITALIC));
+                setTypeface(Typeface.create("sans-serif-black", Typeface.ITALIC));
+                break;
+            case 18:
+                setTypeface(Typeface.create("abelreg", Typeface.NORMAL));
+                break;
+            case 19:
+                setTypeface(Typeface.create("adamcg-pro", Typeface.NORMAL));
+                break;
+            case 20:
+                setTypeface(Typeface.create("adventpro", Typeface.NORMAL));
+                break;
+            case 21:
+                setTypeface(Typeface.create("alexana-neue", Typeface.NORMAL));
+                break;
+            case 22:
+                setTypeface(Typeface.create("alien-league", Typeface.NORMAL));
+                break;
+            case 23:
+                setTypeface(Typeface.create("archivonar", Typeface.NORMAL));
+                break;
+            case 24:
+                setTypeface(Typeface.create("autourone", Typeface.NORMAL));
+                break;
+            case 25:
+                setTypeface(Typeface.create("azedo-light", Typeface.NORMAL));
+                break;
+            case 26:
+                setTypeface(Typeface.create("badscript", Typeface.NORMAL));
+                break;
+            case 27:
+                setTypeface(Typeface.create("bignoodle-regular", Typeface.NORMAL));
+                break;
+            case 28:
+                setTypeface(Typeface.create("biko", Typeface.NORMAL));
+                break;
+            case 29:
+                setTypeface(Typeface.create("blern", Typeface.NORMAL));
+                break;
+            case 30:
+                setTypeface(Typeface.create("cherryswash", Typeface.NORMAL));
+                break;
+            case 31:
+                setTypeface(Typeface.create("cocon", Typeface.NORMAL));
+                break;
+            case 32:
+                setTypeface(Typeface.create("codystar", Typeface.NORMAL));
+                break;
+            case 33:
+                setTypeface(Typeface.create("fester", Typeface.NORMAL));
+                break;
+            case 34:
+                setTypeface(Typeface.create("fox-and-cat", Typeface.NORMAL));
+                break;
+            case 35:
+                setTypeface(Typeface.create("ginora-sans", Typeface.NORMAL));
+                break;
+            case 36:
+                setTypeface(Typeface.create("gobold-sys", Typeface.NORMAL));
+                break;
+            case 37:
+                setTypeface(Typeface.create("ibmplex-mono", Typeface.NORMAL));
+                break;
+            case 38:
+                setTypeface(Typeface.create("inkferno", Typeface.NORMAL));
+                break;
+            case 39:
+                setTypeface(Typeface.create("instruction", Typeface.NORMAL));
+                break;
+            case 40:
+                setTypeface(Typeface.create("jacklane", Typeface.NORMAL));
+                break;
+            case 41:
+                setTypeface(Typeface.create("jura-reg", Typeface.NORMAL));
+                break;
+            case 42:
+                setTypeface(Typeface.create("kellyslab", Typeface.NORMAL));
+                break;
+            case 43:
+                setTypeface(Typeface.create("metropolis1920", Typeface.NORMAL));
+                break;
+            case 44:
+                setTypeface(Typeface.create("monad", Typeface.NORMAL));
+                break;
+            case 45:
+                setTypeface(Typeface.create("neonneon", Typeface.NORMAL));
+                break;
+            case 46:
+                setTypeface(Typeface.create("noir", Typeface.NORMAL));
+                break;
+            case 47:
+                setTypeface(Typeface.create("northfont", Typeface.NORMAL));
+                break;
+            case 48:
+                setTypeface(Typeface.create("outrun-future", Typeface.NORMAL));
+                break;
+            case 49:
+                setTypeface(Typeface.create("pompiere", Typeface.NORMAL));
+                break;
+            case 50:
+                setTypeface(Typeface.create("qontra", Typeface.NORMAL));
+                break;
+            case 51:
+                setTypeface(Typeface.create("raleway-light", Typeface.NORMAL));
+                break;
+            case 52:
+                setTypeface(Typeface.create("reemkufi", Typeface.NORMAL));
+                break;
+            case 53:
+                setTypeface(Typeface.create("riviera", Typeface.NORMAL));
+                break;
+            case 54:
+                setTypeface(Typeface.create("roadrage-sys", Typeface.NORMAL));
+                break;
+            case 55:
+                setTypeface(Typeface.create("satisfy", Typeface.NORMAL));
+                break;
+            case 56:
+                setTypeface(Typeface.create("seaweedsc", Typeface.NORMAL));
+                break;
+            case 57:
+                setTypeface(Typeface.create("sedgwick-ave", Typeface.NORMAL));
+                break;
+            case 58:
+                setTypeface(Typeface.create("snowstorm-sys", Typeface.NORMAL));
+                break;
+            case 59:
+                setTypeface(Typeface.create("themeable-clock", Typeface.NORMAL));
+                break;
+            case 60:
+                setTypeface(Typeface.create("the-outbox", Typeface.NORMAL));
+                break;
+            case 61:
+                setTypeface(Typeface.create("unionfont", Typeface.NORMAL));
+                break;
+            case 62:
+                setTypeface(Typeface.create("vibur", Typeface.NORMAL));
+                break;
+            case 63:
+                setTypeface(Typeface.create("voltaire", Typeface.NORMAL));
                 break;
         }
     }
