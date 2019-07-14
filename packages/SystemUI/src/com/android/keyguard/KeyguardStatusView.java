@@ -582,7 +582,7 @@ public class KeyguardStatusView extends GridLayout implements
         } else if (lockClockSize == 66) {
         mClockView.setTextSize(TypedValue.COMPLEX_UNIT_PX,
                 getResources().getDimensionPixelSize(R.dimen.lock_clock_font_size_66));
-        } else if (lockClockSize == 66) {
+        } else if (lockClockSize == 67) {
         mClockView.setTextSize(TypedValue.COMPLEX_UNIT_PX,
                 getResources().getDimensionPixelSize(R.dimen.lock_clock_font_size_67));
         } else if (lockClockSize == 68) {

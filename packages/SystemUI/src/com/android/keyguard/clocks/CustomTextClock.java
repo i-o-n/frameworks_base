@@ -77,6 +77,7 @@ public class CustomTextClock extends TextView {
         mCalendar = new Time();
 
         refreshLockFont();
+        refreshclocksize();
     }
 
     @Override
@@ -168,6 +169,7 @@ public class CustomTextClock extends TextView {
             }
         }
         refreshLockFont();
+        refreshclocksize();
     }
 
     private void onTimeChanged() {
@@ -267,6 +269,11 @@ public class CustomTextClock extends TextView {
     private int getLockClockFont() {
         return Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.LOCK_CLOCK_FONTS, 0);
+    }
+
+    private int getLockClockSize() {
+        return Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.LOCKCLOCK_FONT_SIZE, 64);
     }
 
     private void refreshLockFont() {
@@ -464,6 +471,156 @@ public class CustomTextClock extends TextView {
         }
         if (lockClockFont == 63) {
             setTypeface(Typeface.create("voltaire", Typeface.NORMAL));
+        }
+    }
+
+    public void refreshclocksize() {
+        final Resources res = getContext().getResources();
+        boolean isPrimary = UserHandle.getCallingUserId() == UserHandle.USER_OWNER;
+        int lockClockSize = isPrimary ? getLockClockSize() : 64;
+
+        if (lockClockSize == 50) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_15));
+        } else if (lockClockSize == 51) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_15_2));
+        } else if (lockClockSize == 52) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_15_5));
+        } else if (lockClockSize == 53) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_15_8));
+        } else if (lockClockSize == 54) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_16));
+        } else if (lockClockSize == 55) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_16_2));
+        } else if (lockClockSize == 56) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_16_5));
+        } else if (lockClockSize == 57) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_16_8));
+        } else if (lockClockSize == 58) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_17));
+        } else if (lockClockSize == 59) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_17_2));
+        } else if (lockClockSize == 60) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_17_5));
+        } else if (lockClockSize == 61) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_17_8));
+        } else if (lockClockSize == 62) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_18));
+        } else if (lockClockSize == 63) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_18_2));
+        } else if (lockClockSize == 64) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_18_5));
+        } else if (lockClockSize == 65) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_18_8));
+        } else if (lockClockSize == 66) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_19));
+        } else if (lockClockSize == 66) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_19_2));
+        } else if (lockClockSize == 68) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_19_5));
+        } else if (lockClockSize == 69) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_19_8));
+        } else if (lockClockSize == 70) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_20));
+        } else if (lockClockSize == 71) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_20_2));
+        } else if (lockClockSize == 72) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_20_5));
+        } else if (lockClockSize == 73) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_20_8));
+        } else if (lockClockSize == 74) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_21));
+        } else if (lockClockSize == 75) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_21_2));
+        } else if (lockClockSize == 76) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_21_5));
+        } else if (lockClockSize == 77) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_21_8));
+        } else if (lockClockSize == 78) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_22));
+        } else if (lockClockSize == 79) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_22_2));
+        } else if (lockClockSize == 80) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_22_5));
+        } else if (lockClockSize == 81) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_22_8));
+        } else if (lockClockSize == 82) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_23));
+        } else if (lockClockSize == 83) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_23_2));
+        } else if (lockClockSize == 84) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_23_5));
+        } else if (lockClockSize == 85) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_23_8));
+        } else if (lockClockSize == 86) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_24));
+        } else if (lockClockSize == 87) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_24_2));
+        } else if (lockClockSize == 88) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_24_5));
+        } else if (lockClockSize == 89) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_24_8));
+        } else if (lockClockSize == 90) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_25));
+        } else if (lockClockSize == 91) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_25_2));
+        } else if (lockClockSize == 92) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_25_5));
+        } else if (lockClockSize == 93) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_25_8));
+        } else if (lockClockSize == 94) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_26));
+        } else if (lockClockSize == 95) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_26_2));
+        } else if (lockClockSize == 96) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_26_5));
+        } else if (lockClockSize == 97) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_26_8));
+        } else if (lockClockSize == 98) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_27));
+        } else if (lockClockSize == 99) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_27_2));
+        } else if (lockClockSize == 100) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_27_5));
+        } else if (lockClockSize == 101) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_27_8));
+        } else if (lockClockSize == 102) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_28));
+        } else if (lockClockSize == 103) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_28_2));
+        } else if (lockClockSize == 104) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_28_5));
+        } else if (lockClockSize == 105) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_28_8));
+        } else if (lockClockSize == 106) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_29));
+        } else if (lockClockSize == 107) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_29_2));
+        } else if (lockClockSize == 108) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_29_5));
+        } else if (lockClockSize == 109) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_29_8));
+        } else if (lockClockSize == 110) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_30));
+        } else if (lockClockSize == 111) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_30_2));
+        } else if (lockClockSize == 112) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_30_5));
+        } else if (lockClockSize == 113) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_30_8));
+        } else if (lockClockSize == 114) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_31));
+        } else if (lockClockSize == 115) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_31_2));
+        } else if (lockClockSize == 116) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_31_5));
+        } else if (lockClockSize == 117) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_31_8));
+        } else if (lockClockSize == 118) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_32));
+        } else if (lockClockSize == 119) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_33));
+        } else if (lockClockSize == 120) {
+            setTextSize(getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_34));
         }
     }
 
