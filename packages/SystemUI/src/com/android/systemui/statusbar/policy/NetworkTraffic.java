@@ -41,6 +41,7 @@ public class NetworkTraffic extends TextView {
     private static final int BOTH = 0;
     private static final int UP = 1;
     private static final int DOWN = 2;
+    private static final int COMBINED = 3;
     private static final int KB = 1024;
     private static final int MB = KB * KB;
     private static final int GB = MB * KB;
@@ -102,13 +103,15 @@ public class NetworkTraffic extends TextView {
                     output = formatOutput(timeDelta, txData, symbol);
                 } else if (mTrafficType == DOWN){
                     output = formatOutput(timeDelta, rxData, symbol);
-                } else {
+                } else if (mTrafficType == BOTH) {
                     // Get information for uplink ready so the line return can be added
                     output = formatOutput(timeDelta, txData, symbol);
                     // Ensure text size is where it needs to be
                     output += "\n";
                     // Add information for downlink if it's called for
                     output += formatOutput(timeDelta, rxData, symbol);
+                } else {
+                    output = formatOutput(timeDelta, rxData + txData, symbol);
                 }
                 // Update view if there's anything new to show
                 if (! output.contentEquals(getText())) {
