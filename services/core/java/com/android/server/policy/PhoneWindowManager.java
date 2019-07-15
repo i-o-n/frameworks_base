@@ -2095,7 +2095,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 mScreenrecordChordVolumeUpKeyConsumed = true;
                 cancelPendingPowerKeyAction();
 
-                mHandler.postDelayed(mScreenrecordRunnable, getScreenshotChordLongPressDelay());
+                mHandler.postDelayed(mScreenrecordRunnable, ViewConfiguration.get(mContext).getDeviceGlobalActionKeyTimeout());
             }
         }
     }
@@ -2143,8 +2143,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     private long getScreenshotChordLongPressDelay() {
         if (mKeyguardDelegate.isShowing()) {
             // Double the time it takes to take a screenshot from the keyguard
-            return (long) (KEYGUARD_SCREENSHOT_CHORD_DELAY_MULTIPLIER *
-                    ViewConfiguration.get(mContext).getDeviceGlobalActionKeyTimeout());
+            return (long) (KEYGUARD_SCREENSHOT_CHORD_DELAY_MULTIPLIER * SCREENSHOT_CHORD_DEBOUNCE_DELAY_MILLIS);
         }
         return SCREENSHOT_CHORD_DELAY_TIMER;
     }
