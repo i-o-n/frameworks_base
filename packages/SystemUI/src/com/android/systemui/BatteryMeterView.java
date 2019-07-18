@@ -323,16 +323,25 @@ public class BatteryMeterView extends LinearLayout implements
         if (estimate != null) {
             int percentageStyle = Settings.System.getIntForUser(getContext().getContentResolver(),
                     SHOW_BATTERY_PERCENT, 0, mUser);
-            if (Settings.System.getInt(mContext.getContentResolver(),
-                    Settings.System.SHOW_BATTERY_ESTIMATE, 0) != 0) {
-                if ( percentageStyle != 0 ) {
+            if (getMeterStyle() == BatteryMeterDrawableBase.BATTERY_STYLE_TEXT) {
+                if (Settings.System.getInt(mContext.getContentResolver(),
+                        Settings.System.SHOW_BATTERY_ESTIMATE, 0) != 0) {
                     mBatteryPercentView.setText(NumberFormat.getPercentInstance().format(mLevel / 100f) + " | " + estimate);
                 } else {
-                    mBatteryPercentView.setText(estimate);
+                    setPercentTextAtCurrentLevel();
                 }
             } else {
-                if ( percentageStyle != 0 ) {
-                    mBatteryPercentView.setText(NumberFormat.getPercentInstance().format(mLevel / 100f));
+                if (Settings.System.getInt(mContext.getContentResolver(),
+                        Settings.System.SHOW_BATTERY_ESTIMATE, 0) != 0) {
+                    if ( percentageStyle == 1 ) {
+                        mBatteryPercentView.setText(NumberFormat.getPercentInstance().format(mLevel / 100f) + " | " + estimate);
+                    } else if (percentageStyle == 0 ) {
+                        mBatteryPercentView.setText(estimate);
+                    } else {
+                        setPercentTextAtCurrentLevel();
+                    }
+                } else {
+                    setPercentTextAtCurrentLevel();
                 }
             }
         } else {
