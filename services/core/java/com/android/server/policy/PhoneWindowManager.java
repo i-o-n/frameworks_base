@@ -6618,4 +6618,10 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         public void onAccuracyChanged(Sensor sensor, int accuracy) {
         }
     };
+
+    @Override
+    public void takeAlternativeScreenshot() {
+        mScreenshotRunnable.setScreenshotType(TAKE_SCREENSHOT_FULLSCREEN);
+        mHandler.post(mScreenshotRunnable);
+    }
 }

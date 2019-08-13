@@ -34,6 +34,7 @@ import android.util.Log;
 import androidx.annotation.VisibleForTesting;
 
 import com.android.internal.annotations.GuardedBy;
+import com.android.internal.custom.screenshot.StitchImageUtility;
 import com.android.systemui.R;
 import com.android.systemui.util.Utils;
 
@@ -177,6 +178,10 @@ public class CastControllerImpl implements CastController {
         }
 
         synchronized (mProjectionLock) {
+            if (mProjection != null && mProjection.getPackageName().equals(
+                    StitchImageUtility.STITCHIMAGE_APP_PACKAGE_NAME)){
+                mProjection = null;
+            }
             if (mProjection != null) {
                 final CastDevice device = new CastDevice();
                 device.id = mProjection.getPackageName();
