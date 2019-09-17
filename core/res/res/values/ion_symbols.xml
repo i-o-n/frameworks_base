@@ -170,4 +170,10 @@
 
     <!-- Whether device supports variable refresh rate -->
     <java-symbol type="bool" name="config_hasVariableRefreshRate" />
+
+    <!-- Smart charging battery percentage -->
+    <java-symbol type="integer" name="config_smartChargingBatteryLevel" />
+    <java-symbol type="string" name="config_SmartChargingSysfsNode" />
+    <java-symbol type="string" name="config_SmartChargingSupspendValue" />
+    <java-symbol type="string" name="config_SmartChargingResumeValue" />
 </resources>
