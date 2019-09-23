@@ -1409,8 +1409,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     private long getScreenshotChordLongPressDelay() {
         if (mKeyguardDelegate.isShowing()) {
             // Double the time it takes to take a screenshot from the keyguard
-            return (long) (KEYGUARD_SCREENSHOT_CHORD_DELAY_MULTIPLIER *
-                    ViewConfiguration.get(mContext).getScreenshotChordKeyTimeout());
+            return (long) (KEYGUARD_SCREENSHOT_CHORD_DELAY_MULTIPLIER * SCREENSHOT_CHORD_DEBOUNCE_DELAY_MILLIS);
         }
         return SCREENSHOT_CHORD_DELAY_TIMER;
     }
