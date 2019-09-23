@@ -1002,10 +1002,23 @@ public class Build {
     public static final String FINGERPRINT = deriveFingerprint();
 
     /**
+     * Ion fingerprint
+     * @hide
+     */
+    public static final String PROP_ION_FINGERPRINT = "ro.ion.fingerprint";
+
+    /**
+     * Ion fingerprint
+     * @hide
+     */
+    public static final String ION_FINGERPRINT = SystemProperties.get(PROP_ION_FINGERPRINT,
+            deriveFingerprint());
+
+    /**
      * Custom fingerprint
      * @hide
      */
-    public static final String PROP_CUSTOM_FINGERPRINT = "org.pixelexperience.fingerprint";
+    public static final String PROP_CUSTOM_FINGERPRINT = "ro.ion.fingerprint";
 
     /**
      * Custom fingerprint
