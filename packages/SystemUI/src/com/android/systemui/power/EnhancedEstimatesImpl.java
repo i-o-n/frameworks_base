@@ -43,7 +43,7 @@ public class EnhancedEstimatesImpl implements EnhancedEstimates {
                             EstimateKt.AVERAGE_TIME_TO_DISCHARGE_UNKNOWN);
                 }
             }
-        } catch (NullPointerException | IndexOutOfBoundsException e) {
+        } catch (Exception e) {
         }
         return null;
     }
