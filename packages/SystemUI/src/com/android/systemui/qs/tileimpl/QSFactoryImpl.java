@@ -37,6 +37,7 @@ import com.android.systemui.qs.tiles.CPUInfoTile;
 import com.android.systemui.qs.tiles.DataSaverTile;
 import com.android.systemui.qs.tiles.DndTile;
 import com.android.systemui.qs.tiles.FlashlightTile;
+import com.android.systemui.qs.tiles.HWKeysTile;
 import com.android.systemui.qs.tiles.HeadsUpTile;
 import com.android.systemui.qs.tiles.HotspotTile;
 import com.android.systemui.qs.tiles.IntentTile;
@@ -93,6 +94,7 @@ public class QSFactoryImpl implements QSFactory {
     private final Provider<UsbTetherTile> mUsbTetherTileProvider;
     private final Provider<SyncTile> mSyncTileProvider;
     private final Provider<CPUInfoTile> mCPUInfoTileProvider;
+    private final Provider<HWKeysTile> mHWKeysTileProvider;
 
     private QSTileHost mHost;
 
@@ -124,7 +126,8 @@ public class QSFactoryImpl implements QSFactory {
             Provider<HeadsUpTile> headsUpTileProvider,
             Provider<UsbTetherTile> usbTetherTileProvider,
             Provider<SyncTile> syncTileProvider,
-            Provider<CPUInfoTile> cpuInfoTileProvider) {
+            Provider<CPUInfoTile> cpuInfoTileProvider,
+            Provider<HWKeysTile> hWKeysTileProvider) {
         mWifiTileProvider = wifiTileProvider;
         mBluetoothTileProvider = bluetoothTileProvider;
         mCellularTileProvider = cellularTileProvider;
@@ -153,6 +156,7 @@ public class QSFactoryImpl implements QSFactory {
         mUsbTetherTileProvider = usbTetherTileProvider;
         mSyncTileProvider = syncTileProvider;
         mCPUInfoTileProvider = cpuInfoTileProvider;
+        mHWKeysTileProvider = hWKeysTileProvider;
     }
 
     public void setHost(QSTileHost host) {
@@ -224,6 +228,8 @@ public class QSFactoryImpl implements QSFactory {
                 return mSyncTileProvider.get();
             case "cpuinfo":
                 return mCPUInfoTileProvider.get();
+            case "hwkeys":
+                return mHWKeysTileProvider.get();
         }
 
         // Intent tiles.
