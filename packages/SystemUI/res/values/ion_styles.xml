@@ -30,4 +30,9 @@
         <item name="android:textSize">@dimen/status_bar_carrier_height</item>
         <item name="android:textStyle">normal</item>
     </style>
+
+    <style name="TriStateUiText">
+        <item name="android:textSize">11.0sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
 </resources>
