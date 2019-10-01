@@ -97,6 +97,7 @@ public class MobileSignalController extends SignalController<
     private ImsManager mImsManager;
     private ImsManager.Connector mImsManagerConnector;
     private boolean mVolteIcon;
+    private boolean mDataDisabledIcon;
 
     // Show lte/4g switch
     private boolean mShowLteFourGee;
@@ -120,7 +121,6 @@ public class MobileSignalController extends SignalController<
         mNetworkNameDefault = getStringIfExists(
                 com.android.internal.R.string.lockscreen_carrier_default);
 
-        Dependency.get(TunerService.class).addTunable(this, "volte");
         mapIconSets();
 
         String networkName = info.getCarrierName() != null ? info.getCarrierName().toString()
@@ -155,6 +155,8 @@ public class MobileSignalController extends SignalController<
                 updateTelephony();
             }
         };
+        Dependency.get(TunerService.class).addTunable(this, "volte");
+        Dependency.get(TunerService.class).addTunable(this, "data_disabled");
 
         Handler mHandler = new Handler();
         SettingsObserver settingsObserver = new SettingsObserver(mHandler);
@@ -195,6 +197,12 @@ public class MobileSignalController extends SignalController<
                      mVolteIcon =
                         TunerService.parseIntegerSwitch(newValue, true);
                         notifyListenersIfNecessary();
+                break;
+            case "data_disabled":
+                     mDataDisabledIcon  =
+                        TunerService.parseIntegerSwitch(newValue, true);
+                     updateTelephony();
+                break;
             default:
                 break;
         }
@@ -632,7 +640,7 @@ public class MobileSignalController extends SignalController<
         mCurrentState.roaming = isRoaming();
         if (isCarrierNetworkChangeActive()) {
             mCurrentState.iconGroup = TelephonyIcons.CARRIER_NETWORK_CHANGE;
-        } else if (isDataDisabled() && !mConfig.alwaysShowDataRatIcon) {
+        } else if (isDataDisabled() && mDataDisabledIcon) {
             if (mSubscriptionInfo.getSubscriptionId()
                     != mDefaults.getDefaultDataSubId()) {
                 mCurrentState.iconGroup = TelephonyIcons.NOT_DEFAULT_DATA;
