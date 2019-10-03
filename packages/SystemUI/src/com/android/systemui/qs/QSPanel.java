@@ -28,6 +28,8 @@ import android.metrics.LogMaker;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.UserHandle;
+import android.provider.Settings;
 import android.service.quicksettings.Tile;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -98,6 +100,8 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
     private BrightnessMirrorController mBrightnessMirrorController;
     private View mDivider;
 
+    private int mQsDividerAlpha;
+
     public QSPanel(Context context) {
         this(context, null);
     }
@@ -140,7 +144,10 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
 
     protected void addDivider() {
         mDivider = LayoutInflater.from(mContext).inflate(R.layout.qs_divider, this, false);
-        mDivider.setBackgroundColor(Utils.applyAlpha(mDivider.getAlpha(),
+        mQsDividerAlpha = Settings.System.getIntForUser(getContext().getContentResolver(),
+                Settings.System.QS_PANEL_BG_ALPHA, 255,
+                UserHandle.USER_CURRENT);
+        mDivider.setBackgroundColor(Utils.applyAlpha(mQsDividerAlpha,
                 getColorForState(mContext, Tile.STATE_ACTIVE)));
         addView(mDivider);
     }

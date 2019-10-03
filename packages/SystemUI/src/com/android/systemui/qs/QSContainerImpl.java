@@ -57,6 +57,7 @@ public class QSContainerImpl extends FrameLayout {
     private boolean mQsDisabled;
 
     private Drawable mQsBackGround;
+    private int mQsBackGroundAlpha;
 
     public QSContainerImpl(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -71,7 +72,7 @@ public class QSContainerImpl extends FrameLayout {
         mQSPanel = findViewById(R.id.quick_settings_panel);
         mQSDetail = findViewById(R.id.qs_detail);
         mHeader = findViewById(R.id.header);
-        mQSCustomizer = (QSCustomizer) findViewById(R.id.qs_customize);
+        mQSCustomizer = findViewById(R.id.qs_customize);
         mQSFooter = findViewById(R.id.qs_footer);
         mBackground = findViewById(R.id.quick_settings_background);
         mStatusBarBackground = findViewById(R.id.quick_settings_status_bar_background);
@@ -111,18 +112,16 @@ public class QSContainerImpl extends FrameLayout {
     }
 
     private void updateSettings() {
-        int mQsBackGroundAlpha = Settings.System.getIntForUser(getContext().getContentResolver(),
+        mQsBackGroundAlpha = Settings.System.getIntForUser(getContext().getContentResolver(),
                 Settings.System.QS_PANEL_BG_ALPHA, 255,
                 UserHandle.USER_CURRENT);
+        setQsBackground();
+    }
 
-        if (mQsBackGroundAlpha < 255 ) {
-            mBackground.setVisibility(View.INVISIBLE);
-            mBackgroundGradient.setVisibility(View.INVISIBLE);
+    private void setQsBackground() {
+        if (mQsBackGround != null) {
             mQsBackGround.setAlpha(mQsBackGroundAlpha);
-            setBackground(mQsBackGround);
-        } else {
-            mBackground.setVisibility(View.VISIBLE);
-            mBackgroundGradient.setVisibility(View.VISIBLE);
+            mBackground.setBackground(mQsBackGround);
         }
     }
 
