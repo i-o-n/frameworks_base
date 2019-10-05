@@ -155,4 +155,7 @@
     <!-- Do the battery/notification LEDs support pulsing?
          Used to decide if we show pulse settings -->
     <bool name="config_ledCanPulse">true</bool>
+
+    <!-- -1 means use same as config_screenBrightnessDoze -->
+    <integer name="config_screenBrightnessPulse">-1</integer>
 </resources>

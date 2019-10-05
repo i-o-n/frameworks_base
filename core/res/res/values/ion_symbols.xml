@@ -204,4 +204,6 @@
   <java-symbol type="drawable" name="perm_group_sms" />
   <java-symbol type="drawable" name="perm_group_storage" />
   <java-symbol type="drawable" name="perm_group_visual" />
+
+    <java-symbol type="integer" name="config_screenBrightnessPulse" />
 </resources>
