@@ -367,6 +367,7 @@ import com.android.server.wm.ActivityTaskManagerInternal;
 import com.android.server.wm.ActivityTaskManagerService;
 import com.android.server.wm.WindowManagerService;
 import com.android.server.wm.WindowProcessController;
+import com.android.server.ActivityTriggerService;
 
 import dalvik.system.VMRuntime;
 
@@ -756,6 +757,10 @@ public class ActivityManagerService extends IActivityManager.Stub
             synchronized (this) {
                 mPidMap.put(app.pid, app);
             }
+            ActivityTriggerService atService = LocalServices.getService(ActivityTriggerService.class);
+            if(atService != null) {
+                atService.updateRecord(app.hostingRecord, app.info, app.pid, ActivityTriggerService.PROC_ADDED_NOTIFICATION);
+            }
             mAtmInternal.onProcessMapped(app.pid, app.getWindowProcessController());
         }
 
@@ -774,6 +779,10 @@ public class ActivityManagerService extends IActivityManager.Stub
                 }
             }
             if (removed) {
+                ActivityTriggerService atService = LocalServices.getService(ActivityTriggerService.class);
+                if(atService != null) {
+                    atService.updateRecord(app.hostingRecord, app.info, app.pid, ActivityTriggerService.PROC_REMOVED_NOTIFICATION);
+                }
                 mAtmInternal.onProcessUnMapped(app.pid);
             }
         }
@@ -1564,8 +1573,6 @@ public class ActivityManagerService extends IActivityManager.Stub
     static final int FIRST_BROADCAST_QUEUE_MSG = 200;
 
     static final String SERVICE_RECORD_KEY = "servicerecord";
-
-    static final ActivityTrigger mActivityTrigger = new ActivityTrigger();
 
     long mLastMemUsageReportTime = 0;
 
@@ -5266,8 +5273,6 @@ public class ActivityManagerService extends IActivityManager.Stub
                 (int) (SystemClock.elapsedRealtime() - app.startTime),
                 app.hostingRecord.getType(),
                 (app.hostingRecord.getName() != null ? app.hostingRecord.getName() : ""));
-        //send start notification to AT with the starting app's info.
-        mActivityTrigger.activityStartTrigger(app.info, app.pid);
         return true;
     }
 
