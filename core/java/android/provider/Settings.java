@@ -4926,6 +4926,25 @@ public final class Settings {
         private static final Validator POWERMENU_LS_AIRPLANE_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /**
+         * Show Settings icon in QS Footer
+         *
+         * @hide
+         */
+        public static final String QSFOOTER_SHOW_SETTINGS = "qs_footer_show_settings";
+
+        /** @hide */
+        private static final Validator QSFOOTER_SHOW_SETTINGS_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
+         * Whether to show or hide the edit icon
+         * @hide
+         */
+        public static final String QS_EDIT_TOGGLE = "qs_edit_toggle";
+
+        /** @hide */
+        private static final Validator QS_EDIT_TOGGLE_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -5029,6 +5048,8 @@ public final class Settings {
             POWERMENU_LS_ADVANCED_REBOOT,
             POWERMENU_LS_SCREENSHOT,
             POWERMENU_LS_AIRPLANE,
+            QSFOOTER_SHOW_SETTINGS,
+            QS_EDIT_TOGGLE,
         };
 
         /**
@@ -5191,6 +5212,8 @@ public final class Settings {
             PRIVATE_SETTINGS.add(POWERMENU_LS_ADVANCED_REBOOT);
             PRIVATE_SETTINGS.add(POWERMENU_LS_SCREENSHOT);
             PRIVATE_SETTINGS.add(POWERMENU_LS_AIRPLANE);
+            PRIVATE_SETTINGS.add(QSFOOTER_SHOW_SETTINGS);
+            PRIVATE_SETTINGS.add(QS_EDIT_TOGGLE);
         }
 
         /**
@@ -5327,6 +5350,8 @@ public final class Settings {
             VALIDATORS.put(POWERMENU_LS_ADVANCED_REBOOT, POWERMENU_LS_ADVANCED_REBOOT_VALIDATOR);
             VALIDATORS.put(POWERMENU_LS_SCREENSHOT, POWERMENU_LS_SCREENSHOT_VALIDATOR);
             VALIDATORS.put(POWERMENU_LS_AIRPLANE, POWERMENU_LS_AIRPLANE_VALIDATOR);
+            VALIDATORS.put(QSFOOTER_SHOW_SETTINGS, QSFOOTER_SHOW_SETTINGS_VALIDATOR);
+            VALIDATORS.put(QS_EDIT_TOGGLE, QS_EDIT_TOGGLE_VALIDATOR);
         }
 
         /**
