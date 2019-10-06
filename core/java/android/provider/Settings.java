@@ -4798,18 +4798,13 @@ public final class Settings {
         private static final Validator DOUBLE_TAP_SLEEP_LOCKSCREEN_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /**
-         * @hide
-         */
-        public static final String SHOW_CPU_OVERLAY = "show_cpu_overlay";
-
-        /** @hide */
-        private static final Validator SHOW_CPU_OVERLAY_VALIDATOR = BOOLEAN_VALIDATOR;
-
-        /**
          * Unlock keystore with fingerprint after reboot
          * @hide
          */
         public static final String FP_UNLOCK_KEYSTORE = "fp_unlock_keystore";
+
+        /** @hide */
+        private static final Validator FP_UNLOCK_KEYSTORE_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /**
          * Whether to display reboot option in the power menu
@@ -5021,7 +5016,7 @@ public final class Settings {
             BACK_GESTURE_HEIGHT,
             DOUBLE_TAP_SLEEP_GESTURE,
             DOUBLE_TAP_SLEEP_LOCKSCREEN,
-            SHOW_CPU_OVERLAY,
+            FP_UNLOCK_KEYSTORE,
             POWERMENU_REBOOT,
             POWERMENU_ADVANCED_REBOOT,
             POWERMENU_LOCKDOWN,
@@ -5183,7 +5178,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(BACK_GESTURE_HEIGHT);
             PRIVATE_SETTINGS.add(DOUBLE_TAP_SLEEP_GESTURE);
             PRIVATE_SETTINGS.add(DOUBLE_TAP_SLEEP_LOCKSCREEN);
-            PRIVATE_SETTINGS.add(SHOW_CPU_OVERLAY);
+            PRIVATE_SETTINGS.add(FP_UNLOCK_KEYSTORE);
             PRIVATE_SETTINGS.add(POWERMENU_REBOOT);
             PRIVATE_SETTINGS.add(POWERMENU_ADVANCED_REBOOT);
             PRIVATE_SETTINGS.add(POWERMENU_LOCKDOWN);
@@ -5319,7 +5314,7 @@ public final class Settings {
             VALIDATORS.put(BACK_GESTURE_HEIGHT, BACK_GESTURE_HEIGHT_VALIDATOR);
             VALIDATORS.put(DOUBLE_TAP_SLEEP_GESTURE, DOUBLE_TAP_SLEEP_GESTURE_VALIDATOR);
             VALIDATORS.put(DOUBLE_TAP_SLEEP_LOCKSCREEN, DOUBLE_TAP_SLEEP_LOCKSCREEN_VALIDATOR);
-            VALIDATORS.put(SHOW_CPU_OVERLAY, SHOW_CPU_OVERLAY_VALIDATOR);
+            VALIDATORS.put(FP_UNLOCK_KEYSTORE, FP_UNLOCK_KEYSTORE_VALIDATOR);
             VALIDATORS.put(POWERMENU_REBOOT, POWERMENU_REBOOT_VALIDATOR);
             VALIDATORS.put(POWERMENU_ADVANCED_REBOOT, POWERMENU_ADVANCED_REBOOT_VALIDATOR);
             VALIDATORS.put(POWERMENU_LOCKDOWN, POWERMENU_LOCKDOWN_VALIDATOR);
@@ -14323,6 +14318,15 @@ public final class Settings {
                 new SettingsValidators.InclusiveIntegerRangeValidator(0, 1);
 
         /**
+         * Whether to show CPU info
+         *
+         * @hide
+         */
+        public static final String SHOW_CPU_OVERLAY = "show_cpu_overlay";
+
+        private static final Validator SHOW_CPU_OVERLAY_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -14371,6 +14375,7 @@ public final class Settings {
             ZEN_DURATION,
             CHARGING_VIBRATION_ENABLED,
             AWARE_ALLOWED,
+            SHOW_CPU_OVERLAY,
         };
 
         /**
@@ -14437,6 +14442,7 @@ public final class Settings {
             VALIDATORS.put(AWARE_ALLOWED, AWARE_ALLOWED_VALIDATOR);
             VALIDATORS.put(POWER_BUTTON_LONG_PRESS, POWER_BUTTON_LONG_PRESS_VALIDATOR);
             VALIDATORS.put(POWER_BUTTON_VERY_LONG_PRESS, POWER_BUTTON_VERY_LONG_PRESS_VALIDATOR);
+            VALIDATORS.put(SHOW_CPU_OVERLAY, SHOW_CPU_OVERLAY_VALIDATOR);
         }
 
         /**
