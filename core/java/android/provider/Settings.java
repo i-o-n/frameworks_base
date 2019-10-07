@@ -4717,6 +4717,9 @@ public final class Settings {
          */
         public static final String THREE_FINGER_GESTURE = "three_finger_gesture";
 
+        /** @hide */
+        private static final Validator THREE_FINGER_GESTURE_VALIDATOR = BOOLEAN_VALIDATOR;
+
         /**
          * Applications list where heasdup should't show
          *
@@ -4743,17 +4746,26 @@ public final class Settings {
          */
         public static final String DISABLE_FULLSCREEN_KEYBOARD = "disable_fullscreen_keyboard";
 
+        /** @hide */
+        private static final Validator DISABLE_FULLSCREEN_KEYBOARD_VALIDATOR = BOOLEAN_VALIDATOR;
+
         /**
          * Automatic keyboard rotation timeout.  0 to disable completely.
          * @hide
          */
         public static final String KEYBOARD_ROTATION_TIMEOUT = "keyboard_rotation_timeout";
 
+        /** @hide */
+        private static final Validator KEYBOARD_ROTATION_TIMEOUT_VALIDATOR = ANY_INTEGER_VALIDATOR;
+
         /**
          * Forces formal text input.  1 to replace emoticon key with enter key.
          * @hide
          */
         public static final String FORMAL_TEXT_INPUT = "formal_text_input";
+
+        /** @hide */
+        private static final Validator FORMAL_TEXT_INPUT_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /**
          * Whether to change the transparency of the qs panel
@@ -4770,6 +4782,9 @@ public final class Settings {
          * @hide
          */
         public static final String SHOW_LTE_FOURGEE = "show_lte_fourgee";
+
+        /** @hide */
+        private static final Validator SHOW_LTE_FOURGEE_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /** @hide */
         public static final String BACK_GESTURE_HEIGHT = "back_gesture_height";
@@ -5038,9 +5053,14 @@ public final class Settings {
             NETWORK_TRAFFIC_REFRESH_INTERVAL,
             NETWORK_TRAFFIC_HIDEARROW,
             NETWORK_TRAFFIC_EXPANDED_STATUS_BAR_STATE,
+            THREE_FINGER_GESTURE,
             HEADS_UP_STOPLIST_VALUES,
             HEADS_UP_BLACKLIST_VALUES,
+            DISABLE_FULLSCREEN_KEYBOARD,
+            KEYBOARD_ROTATION_TIMEOUT,
+            FORMAL_TEXT_INPUT,
             QS_PANEL_BG_ALPHA,
+            SHOW_LTE_FOURGEE,
             BACK_GESTURE_HEIGHT,
             DOUBLE_TAP_SLEEP_GESTURE,
             DOUBLE_TAP_SLEEP_LOCKSCREEN,
@@ -5203,9 +5223,14 @@ public final class Settings {
             PRIVATE_SETTINGS.add(NETWORK_TRAFFIC_REFRESH_INTERVAL);
             PRIVATE_SETTINGS.add(NETWORK_TRAFFIC_HIDEARROW);
             PRIVATE_SETTINGS.add(NETWORK_TRAFFIC_EXPANDED_STATUS_BAR_STATE);
+            PRIVATE_SETTINGS.add(THREE_FINGER_GESTURE);
             PRIVATE_SETTINGS.add(HEADS_UP_STOPLIST_VALUES);
             PRIVATE_SETTINGS.add(HEADS_UP_BLACKLIST_VALUES);
+            PRIVATE_SETTINGS.add(DISABLE_FULLSCREEN_KEYBOARD);
+            PRIVATE_SETTINGS.add(KEYBOARD_ROTATION_TIMEOUT);
+            PRIVATE_SETTINGS.add(FORMAL_TEXT_INPUT);
             PRIVATE_SETTINGS.add(QS_PANEL_BG_ALPHA);
+            PRIVATE_SETTINGS.add(SHOW_LTE_FOURGEE);
             PRIVATE_SETTINGS.add(BACK_GESTURE_HEIGHT);
             PRIVATE_SETTINGS.add(DOUBLE_TAP_SLEEP_GESTURE);
             PRIVATE_SETTINGS.add(DOUBLE_TAP_SLEEP_LOCKSCREEN);
@@ -5342,9 +5367,14 @@ public final class Settings {
             VALIDATORS.put(NETWORK_TRAFFIC_REFRESH_INTERVAL, NETWORK_TRAFFIC_REFRESH_INTERVAL_VALIDATOR);
             VALIDATORS.put(NETWORK_TRAFFIC_HIDEARROW, NETWORK_TRAFFIC_HIDEARROW_VALIDATOR);
             VALIDATORS.put(NETWORK_TRAFFIC_EXPANDED_STATUS_BAR_STATE, NETWORK_TRAFFIC_EXPANDED_STATUS_BAR_STATE_VALIDATOR);
+            VALIDATORS.put(THREE_FINGER_GESTURE, THREE_FINGER_GESTURE_VALIDATOR);
             VALIDATORS.put(HEADS_UP_STOPLIST_VALUES, HEADS_UP_STOPLIST_VALUES_VALIDATOR);
             VALIDATORS.put(HEADS_UP_BLACKLIST_VALUES, HEADS_UP_BLACKLIST_VALUES_VALIDATOR);
+            VALIDATORS.put(DISABLE_FULLSCREEN_KEYBOARD, DISABLE_FULLSCREEN_KEYBOARD_VALIDATOR);
+            VALIDATORS.put(KEYBOARD_ROTATION_TIMEOUT, KEYBOARD_ROTATION_TIMEOUT_VALIDATOR);
+            VALIDATORS.put(FORMAL_TEXT_INPUT, FORMAL_TEXT_INPUT_VALIDATOR);
             VALIDATORS.put(QS_PANEL_BG_ALPHA, QS_PANEL_BG_ALPHA_VALIDATOR);
+            VALIDATORS.put(SHOW_LTE_FOURGEE, SHOW_LTE_FOURGEE_VALIDATOR);
             VALIDATORS.put(BACK_GESTURE_HEIGHT, BACK_GESTURE_HEIGHT_VALIDATOR);
             VALIDATORS.put(DOUBLE_TAP_SLEEP_GESTURE, DOUBLE_TAP_SLEEP_GESTURE_VALIDATOR);
             VALIDATORS.put(DOUBLE_TAP_SLEEP_LOCKSCREEN, DOUBLE_TAP_SLEEP_LOCKSCREEN_VALIDATOR);
