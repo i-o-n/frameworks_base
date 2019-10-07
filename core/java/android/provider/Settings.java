@@ -4969,6 +4969,15 @@ public final class Settings {
         private static final Validator LOCKSCREEN_MEDIA_METADATA_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /**
+         * Whether to show charging animation
+         * @hide
+         */
+        public static final String CHARGING_ANIMATION = "charging_animation";
+
+        /** @hide */
+        private static final Validator CHARGING_ANIMATION_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -5080,6 +5089,7 @@ public final class Settings {
             QSFOOTER_SHOW_SETTINGS,
             QS_EDIT_TOGGLE,
             LOCKSCREEN_MEDIA_METADATA,
+            CHARGING_ANIMATION,
         };
 
         /**
@@ -5250,6 +5260,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(QSFOOTER_SHOW_SETTINGS);
             PRIVATE_SETTINGS.add(QS_EDIT_TOGGLE);
             PRIVATE_SETTINGS.add(LOCKSCREEN_MEDIA_METADATA);
+            PRIVATE_SETTINGS.add(CHARGING_ANIMATION);
         }
 
         /**
@@ -5394,6 +5405,7 @@ public final class Settings {
             VALIDATORS.put(QSFOOTER_SHOW_SETTINGS, QSFOOTER_SHOW_SETTINGS_VALIDATOR);
             VALIDATORS.put(QS_EDIT_TOGGLE, QS_EDIT_TOGGLE_VALIDATOR);
             VALIDATORS.put(LOCKSCREEN_MEDIA_METADATA, LOCKSCREEN_MEDIA_METADATA_VALIDATOR);
+            VALIDATORS.put(CHARGING_ANIMATION, CHARGING_ANIMATION_VALIDATOR);
         }
 
         /**
