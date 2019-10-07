@@ -18,7 +18,6 @@
     xmlns:sysui="http://schemas.android.com/apk/res-auto"
     android:title="@string/other">
 
-
     <Preference
         android:key="sysui_keyguard_left"
         android:title="@string/lockscreen_shortcut_left"
