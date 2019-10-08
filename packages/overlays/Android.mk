@@ -24,10 +24,6 @@ LOCAL_REQUIRED_MODULES := \
 	AccentColorSpaceOverlay \
 	AccentColorGreenOverlay \
 	AccentColorPurpleOverlay \
-	AccentColorSluttyPinkOverlay \
-	AccentColorBlueMondayOverlay \
-	AccentColorOmniOverlay \
-	AccentColorGoldenShowerOverlay \
 	DisplayCutoutEmulationCornerOverlay \
 	DisplayCutoutEmulationDoubleOverlay \
 	DisplayCutoutEmulationTallOverlay \
