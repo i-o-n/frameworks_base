@@ -493,7 +493,7 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
                 }
             } else if (GLOBAL_ACTION_KEY_EMERGENCY.equals(actionKey)) {
                 if (Settings.System.getInt(mContext.getContentResolver(),
-                        Settings.System.POWERMENU_EMERGENCY, 0) != 0) {
+                        Settings.System.POWERMENU_EMERGENCY, 1) == 1) {
                     mItems.add(new EmergencyDualAction());
                 }
             } else if (GLOBAL_ACTION_KEY_ADVANCED.equals(actionKey)) {
