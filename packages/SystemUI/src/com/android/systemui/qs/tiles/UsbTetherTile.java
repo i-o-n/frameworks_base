@@ -112,7 +112,8 @@ public class UsbTetherTile extends QSTileImpl<BooleanState> {
         state.slash.isSlashed = !state.value;
         state.value = mUsbTetherEnabled;
         state.label = mContext.getString(R.string.quick_settings_usb_tether_label);
-        state.state = mUsbTetherEnabled ? Tile.STATE_ACTIVE : Tile.STATE_INACTIVE;
+        state.state = !mUsbConnected ? Tile.STATE_UNAVAILABLE
+                : mUsbTetherEnabled ? Tile.STATE_ACTIVE : Tile.STATE_INACTIVE;
     }
 
     @Override
