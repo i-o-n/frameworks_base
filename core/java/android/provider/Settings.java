@@ -5023,6 +5023,15 @@ public final class Settings {
                 ANY_INTEGER_VALIDATOR;
 
         /**
+         * Whether to show battey percentage with estimate
+         * @hide
+         */
+        public static final String BATTERY_PCT_WITH_ESTIMATE = "battery_pct_with_estimate";
+
+        /** @hide */
+        private static final Validator BATTERY_PCT_WITH_ESTIMATE_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -5140,6 +5149,7 @@ public final class Settings {
             OMNI_QS_TILE_TITLE_VISIBILITY,
             OMNI_QS_LAYOUT_ROWS,
             OMNI_QS_QUICKBAR_COLUMNS,
+            BATTERY_PCT_WITH_ESTIMATE,
         };
 
         /**
@@ -5316,6 +5326,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(OMNI_QS_TILE_TITLE_VISIBILITY);
             PRIVATE_SETTINGS.add(OMNI_QS_LAYOUT_ROWS);
             PRIVATE_SETTINGS.add(OMNI_QS_QUICKBAR_COLUMNS);
+            PRIVATE_SETTINGS.add(BATTERY_PCT_WITH_ESTIMATE);
         }
 
         /**
@@ -5466,6 +5477,7 @@ public final class Settings {
             VALIDATORS.put(OMNI_QS_TILE_TITLE_VISIBILITY, OMNI_QS_TILE_TITLE_VISIBILITY_VALIDATOR);
             VALIDATORS.put(OMNI_QS_LAYOUT_ROWS, OMNI_QS_LAYOUT_ROWS_VALIDATOR);
             VALIDATORS.put(OMNI_QS_QUICKBAR_COLUMNS, OMNI_QS_QUICKBAR_COLUMNS_VALIDATOR);
+            VALIDATORS.put(BATTERY_PCT_WITH_ESTIMATE, BATTERY_PCT_WITH_ESTIMATE_VALIDATOR);
         }
 
         /**
