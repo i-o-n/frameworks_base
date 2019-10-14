@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2015 The Android Open Source Project
+<!-- Copyright (C) 2019 ion-OS
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -14,15 +14,30 @@
      limitations under the License.
 -->
 
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:gravity="center_vertical|fill_horizontal"
-          android:start="4dp"
-          android:end="4dp">
-        <shape android:shape="rectangle"
-               android:tint="@color/switch_track_material">
-            <corners android:radius="7dp" />
-            <solid android:color="@color/white_disabled_material" />
-            <size android:height="14dp" />
-        </shape>
+<selector
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="true">
+        <layer-list>
+            <item android:gravity="fill_horizontal|center" android:start="7dp" android:end="7dp">
+                <shape android:shape="rectangle">
+                    <corners android:radius="7dp" />
+                    <solid android:color="@android:color/transparent" />
+                    <stroke android:width="2dp" android:color="@color/switch_track_material" />
+                    <size android:height="14dp" />
+                </shape>
+            </item>
+        </layer-list>
     </item>
-</layer-list>
+    <item android:state_checked="false">
+        <layer-list>
+            <item android:gravity="fill_horizontal|center" android:start="7dp" android:end="7dp">
+                <shape android:shape="rectangle">
+                    <corners android:radius="7dp" />
+                    <solid android:color="@android:color/transparent" />
+                    <stroke android:width="2dp" android:color="@color/switch_track_material" />
+                    <size android:height="14dp" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+</selector>
