@@ -3792,10 +3792,17 @@ public class StatusBar extends SystemUI implements DemoMode,
         @Override
         public void onChange(boolean selfChange, Uri uri) {
             super.onChange(selfChange, uri);
-            if (uri.equals(Settings.System.getUriFor(Settings.System.OMNI_QS_LAYOUT_COLUMNS)) ||
-                uri.equals(Settings.System.getUriFor(Settings.System.OMNI_QS_LAYOUT_COLUMNS_LANDSCAPE)) ||
-                uri.equals(Settings.System.getUriFor(Settings.System.OMNI_QS_QUICKBAR_COLUMNS)) ||
-                uri.equals(Settings.System.getUriFor(Settings.System.OMNI_QS_TILE_TITLE_VISIBILITY))) {
+            if (uri.equals(Settings.System.getUriFor(Settings.System.HEADS_UP_STOPLIST_VALUES))) {
+                setHeadsUpStoplist();
+            } else if (uri.equals(Settings.System.getUriFor(Settings.System.HEADS_UP_BLACKLIST_VALUES))) {
+                setHeadsUpBlacklist();
+            } else if (uri.equals(Settings.System.getUriFor(Settings.System.DOUBLE_TAP_SLEEP_GESTURE)) ||
+                    uri.equals(Settings.System.getUriFor(Settings.System.DOUBLE_TAP_SLEEP_LOCKSCREEN))) {
+                updateTaptoSleep();
+            } else if (uri.equals(Settings.System.getUriFor(Settings.System.OMNI_QS_LAYOUT_COLUMNS)) ||
+                    uri.equals(Settings.System.getUriFor(Settings.System.OMNI_QS_LAYOUT_COLUMNS_LANDSCAPE)) ||
+                    uri.equals(Settings.System.getUriFor(Settings.System.OMNI_QS_QUICKBAR_COLUMNS)) ||
+                    uri.equals(Settings.System.getUriFor(Settings.System.OMNI_QS_TILE_TITLE_VISIBILITY))) {
                 setQsRowsColumns();
             }
         }
@@ -3803,9 +3810,7 @@ public class StatusBar extends SystemUI implements DemoMode,
         public void update() {
             setHeadsUpStoplist();
             setHeadsUpBlacklist();
-            if (mStatusBarWindow != null) {
-                mStatusBarWindow.updateSettings();
-            }
+            updateTaptoSleep();
             setQsRowsColumns();
         }
     }
@@ -3815,6 +3820,12 @@ public class StatusBar extends SystemUI implements DemoMode,
             mQSPanel.updateResources();
             mQSPanel.updateSettings();
             mQuickQSPanel.updateSettings();
+        }
+    }
+
+    private void updateTaptoSleep() {
+        if (mStatusBarWindow != null) {
+            mStatusBarWindow.updateSettings();
         }
     }
 
