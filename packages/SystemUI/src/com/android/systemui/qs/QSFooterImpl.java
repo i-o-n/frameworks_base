@@ -342,7 +342,7 @@ public class QSFooterImpl extends FrameLayout implements Tunable, QSFooter,
                 Settings.System.QSFOOTER_SHOW_SETTINGS, 1) != 0;
         mMultiUserSwitch.setVisibility(showUserSwitcher() ? View.VISIBLE : View.INVISIBLE);
         mEditContainer.setVisibility(isEditEnabled() ? isDemo || !mExpanded ? View.INVISIBLE : View.VISIBLE : View.INVISIBLE);
-        mSettingsButton.setVisibility(isDemo || settingsButtonVisible ? View.VISIBLE : View.GONE);
+        mSettingsButton.setVisibility(settingsButtonVisible ? (isDemo || mExpanded ? View.VISIBLE : View.INVISIBLE) : View.GONE);
     }
 
     private boolean showUserSwitcher() {
