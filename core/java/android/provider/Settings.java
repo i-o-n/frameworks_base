@@ -5059,6 +5059,15 @@ public final class Settings {
         private static final Validator SWAP_VOLUME_BUTTONS_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /**
+         * Whether footer #ion text shows
+         * @hide
+         */
+        public static final String ION_FOOTER_TEXT_SHOW = "ion_footer_text_show";
+
+        /** @hide */
+        private static final Validator ION_FOOTER_TEXT_SHOW_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
