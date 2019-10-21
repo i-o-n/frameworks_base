@@ -157,10 +157,9 @@ public class TileLayout extends ViewGroup implements QSTileLayout {
             rowsSet = Settings.System.getIntForUser(resolver,
                     Settings.System.OMNI_QS_LAYOUT_ROWS, 3,
                     UserHandle.USER_CURRENT);
-        }
-        else {
+        } else {
             rowsSet = Settings.System.getIntForUser(resolver,
-                    Settings.System.OMNI_QS_LAYOUT_ROWS_LANDSCAPE, 3,
+                    Settings.System.OMNI_QS_LAYOUT_ROWS_LANDSCAPE, 2,
                     UserHandle.USER_CURRENT);
         }
         if (mRows > rowsSet)

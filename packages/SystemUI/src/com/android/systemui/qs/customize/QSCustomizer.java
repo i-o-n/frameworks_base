@@ -364,9 +364,6 @@ public class QSCustomizer extends LinearLayout implements OnMenuItemClickListene
         } else if (id == R.id.menu_item_rows_landscape_two) {
             Settings.System.putIntForUser(mContext.getContentResolver(),
                     Settings.System.OMNI_QS_LAYOUT_ROWS_LANDSCAPE, 2, UserHandle.USER_CURRENT);
-        } else if (id == R.id.menu_item_rows_landscape_three) {
-            Settings.System.putIntForUser(mContext.getContentResolver(),
-                    Settings.System.OMNI_QS_LAYOUT_ROWS_LANDSCAPE, 3, UserHandle.USER_CURRENT);
         } else if (id ==  R.id.menu_item_qs_columns_six) {
             Settings.System.putIntForUser(mContext.getContentResolver(),
                     Settings.System.OMNI_QS_QUICKBAR_COLUMNS, 6, UserHandle.USER_CURRENT);
@@ -488,24 +485,17 @@ public class QSCustomizer extends LinearLayout implements OnMenuItemClickListene
         boolean isPortrait = res.getConfiguration().orientation
                 == Configuration.ORIENTATION_PORTRAIT;
         int defaultColumns = Math.max(1, mContext.getResources().getInteger(R.integer.quick_settings_num_columns));
-        int defaultRows = 3;
+        int defaultRows = Math.max(1, mContext.getResources().getInteger(R.integer.quick_settings_num_rows));
         int columns = Settings.System.getIntForUser(
                 mContext.getContentResolver(), Settings.System.OMNI_QS_LAYOUT_COLUMNS, defaultColumns,
                 UserHandle.USER_CURRENT);
         int columnsLandscape = Settings.System.getIntForUser(
                 mContext.getContentResolver(), Settings.System.OMNI_QS_LAYOUT_COLUMNS_LANDSCAPE, defaultColumns,
                 UserHandle.USER_CURRENT);
-        int rows = Settings.System.getIntForUser(
-                mContext.getContentResolver(), Settings.System.OMNI_QS_LAYOUT_ROWS, defaultRows,
-                UserHandle.USER_CURRENT);
-        int rowsLandscape = Settings.System.getIntForUser(
-                mContext.getContentResolver(), Settings.System.OMNI_QS_LAYOUT_ROWS_LANDSCAPE, defaultRows,
-                UserHandle.USER_CURRENT);
         boolean showTitles = Settings.System.getIntForUser(
                 mContext.getContentResolver(), Settings.System.OMNI_QS_TILE_TITLE_VISIBILITY, 1,
                 UserHandle.USER_CURRENT) == 1;
         mTileAdapter.setColumnCount(isPortrait ? columns : columnsLandscape);
-        mTileAdapter.setRowsCount(isPortrait ? rows : rowsLandscape);
         mTileAdapter.setHideLabel(!showTitles);
         mLayout.setSpanCount(isPortrait ? columns : columnsLandscape);
         updateColumnsMenu(defaultColumns);
@@ -572,7 +562,5 @@ public class QSCustomizer extends LinearLayout implements OnMenuItemClickListene
         menuItemOne.setChecked(rowsLandscape == 1);
         menuItemTwo = mToolbar.getMenu().findItem(R.id.menu_item_rows_landscape_two);
         menuItemTwo.setChecked(rowsLandscape == 2);
-        menuItemThree = mToolbar.getMenu().findItem(R.id.menu_item_rows_landscape_three);
-        menuItemThree.setChecked(rowsLandscape == 3);
     }
 }
