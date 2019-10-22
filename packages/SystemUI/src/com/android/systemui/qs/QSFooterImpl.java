@@ -176,7 +176,7 @@ public class QSFooterImpl extends FrameLayout implements Tunable, QSFooter,
         TextView v = findViewById(R.id.build);
         if (v == null) return;
         boolean isShow = Settings.System.getIntForUser(mContext.getContentResolver(),
-                        Settings.System.ION_FOOTER_TEXT_SHOW, 0,
+                        Settings.System.ION_FOOTER_TEXT_SHOW, 1,
                         UserHandle.USER_CURRENT) == 1;
         if (isShow) {
             v.setText("#ion");

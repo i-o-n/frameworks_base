@@ -140,7 +140,7 @@ public class QSCustomizer extends LinearLayout implements OnMenuItemClickListene
                 Settings.System.OMNI_QS_TILE_TITLE_VISIBILITY, 1,
                 UserHandle.USER_CURRENT);
         int qsFooterValue = Settings.System.getIntForUser(mContext.getContentResolver(),
-                Settings.System.ION_FOOTER_TEXT_SHOW, 0,
+                Settings.System.ION_FOOTER_TEXT_SHOW, 1,
                 UserHandle.USER_CURRENT);
         MenuItem qsTitlesMenuItem = mToolbar.getMenu().findItem(R.id.menu_item_titles);
         MenuItem qsFooterText = mToolbar.getMenu().findItem(R.id.footer_text);
