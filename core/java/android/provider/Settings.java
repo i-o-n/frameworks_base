@@ -5596,6 +5596,12 @@ public final class Settings {
         public static final String FORCE_EXPANDED_NOTIFICATIONS = "force_expanded_notifications";
 
         /**
+         * Change fonts for the system lockscreen clock widget
+         * @hide
+         */
+        public static final String LOCK_CLOCK_FONTS = "lock_clock_fonts";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
