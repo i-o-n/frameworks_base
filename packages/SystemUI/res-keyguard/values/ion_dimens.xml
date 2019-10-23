@@ -183,4 +183,10 @@
     <dimen name="lock_clock_font_size_98">98dp</dimen>
     <dimen name="lock_clock_font_size_99">99dp</dimen>
     <dimen name="lock_clock_font_size_100">100dp</dimen>
+
+    <!-- Binary Clock Style -->
+    <dimen name="binary_clock_dot_size">8dp</dimen>
+    <dimen name="binary_clock_stroke_width">2dp</dimen>
+    <dimen name="binary_clock_width">100dp</dimen>
+    <dimen name="binary_clock_height">100dp</dimen>
 </resources>
