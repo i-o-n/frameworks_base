@@ -89,4 +89,7 @@
     <dimen name="qs_header_image_side_margin">4dp</dimen>
     <dimen name="qs_header_image_top_margin">4dp</dimen>
     <dimen name="qs_header_image_bottom_margin">4dp</dimen>
+
+    <!-- QS System Info -->
+    <dimen name="qs_temperatur_icon_size">16sp</dimen>
 </resources>
