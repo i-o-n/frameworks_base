@@ -170,6 +170,12 @@ public class QuickStatusBarHeader extends RelativeLayout implements
             resolver.registerContentObserver(Settings.System
                     .getUriFor(Settings.System.SHOW_QS_CLOCK), false,
                     this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System
+                    .getUriFor(Settings.System.QS_BATTERY_MODE), false,
+                    this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System
+                    .getUriFor(Settings.System.STATUS_BAR_BATTERY_STYLE), false,
+                    this, UserHandle.USER_ALL);
             }
 
         @Override
@@ -290,9 +296,7 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         mBatteryRemainingIcon = findViewById(R.id.batteryRemainingIcon);
         // Don't need to worry about tuner settings for this icon
         mBatteryRemainingIcon.setIgnoreTunerUpdates(true);
-        // QS will always show the estimate, and BatteryMeterView handles the case where
-        // it's unavailable or charging
-        mBatteryRemainingIcon.setPercentShowMode(BatteryMeterView.MODE_ESTIMATE);
+        mBatteryRemainingIcon.setPercentShowMode(BatteryMeterView.MODE_ON);
         mRingerModeTextView.setSelected(true);
         mNextAlarmTextView.setSelected(true);
         updateSettings();
@@ -457,7 +461,37 @@ public class QuickStatusBarHeader extends RelativeLayout implements
 
     private void updateSettings() {
         updateQSClock();
+        updateQSBatteryMode();
+        updateSBBatteryStyle();
         updateResources();
+    }
+
+    private void updateQSBatteryMode() {
+        int showEstimate = Settings.System.getInt(mContext.getContentResolver(),
+        Settings.System.QS_BATTERY_MODE, 0);
+        if (showEstimate == 0) {
+            mBatteryRemainingIcon.setShowPercent(0);
+            mBatteryRemainingIcon.setPercentShowMode(BatteryMeterView.MODE_OFF);
+        } else if (showEstimate == 1) {
+            mBatteryRemainingIcon.setShowPercent(0);
+            mBatteryRemainingIcon.setPercentShowMode(BatteryMeterView.MODE_ON);
+        } else if (showEstimate == 2) {
+            mBatteryRemainingIcon.setShowPercent(1);
+            mBatteryRemainingIcon.setPercentShowMode(BatteryMeterView.MODE_OFF);
+        } else if (showEstimate == 3) {
+            mBatteryRemainingIcon.setShowPercent(0);
+            mBatteryRemainingIcon.setPercentShowMode(BatteryMeterView.MODE_ESTIMATE);
+        }
+        mBatteryRemainingIcon.updatePercentView();
+        mBatteryRemainingIcon.updateVisibility();
+    }
+
+    private void updateSBBatteryStyle() {
+        mBatteryRemainingIcon.setBatteryStyle(Settings.System.getInt(mContext.getContentResolver(),
+        Settings.System.STATUS_BAR_BATTERY_STYLE, 0));
+        mBatteryRemainingIcon.updateBatteryStyle();
+        mBatteryRemainingIcon.updatePercentView();
+        mBatteryRemainingIcon.updateVisibility();
     }
 
     private void updateQSClock() {
