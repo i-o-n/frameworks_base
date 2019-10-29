@@ -145,4 +145,34 @@
     <string name="accessibility_quick_settings_hwkeys_on">HW keys on</string>
     <string name="accessibility_quick_settings_hwkeys_off">HW keys off</string>
     <string name="quick_settings_hwkeys_label">HW keys</string>
+
+    <!-- Text for activity recognition app op [CHAR LIMIT=20]-->
+    <string name="privacy_type_activity_recognition">Activity</string>
+
+    <!-- Text for aural app op [CHAR LIMIT=20]-->
+    <string name="privacy_type_aural">Aural</string>
+
+    <!-- Text for body sensor app op [CHAR LIMIT=20]-->
+    <string name="privacy_type_sensors">Sensor</string>
+
+    <!-- Text for calendar app op [CHAR LIMIT=20]-->
+    <string name="privacy_type_calendar">Calendar</string>
+
+    <!-- Text for call logs app op [CHAR LIMIT=20]-->
+    <string name="privacy_type_call_logs">Call Logs</string>
+
+    <!-- Text for contacts app op [CHAR LIMIT=20]-->
+    <string name="privacy_type_contacts">Contacts</string>
+
+    <!-- Text for phone app op [CHAR LIMIT=20]-->
+    <string name="privacy_type_phone_calls">Phone</string>
+
+    <!-- Text for sms app op [CHAR LIMIT=20]-->
+    <string name="privacy_type_sms">SMS</string>
+
+    <!-- Text for storage app op [CHAR LIMIT=20]-->
+    <string name="privacy_type_storage">Storage</string>
+
+    <!-- Text for visual app op [CHAR LIMIT=20]-->
+    <string name="privacy_type_visual">Visual</string>
 </resources>
