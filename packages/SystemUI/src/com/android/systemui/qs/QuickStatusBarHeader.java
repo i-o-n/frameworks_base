@@ -460,8 +460,7 @@ public class QuickStatusBarHeader extends RelativeLayout implements
     private void updateQSClock() {
         int show = Settings.System.getInt(mContext.getContentResolver(),
         Settings.System.SHOW_QS_CLOCK, 1);
-        mClockView.setClockVisibleByUser(show == null ? true :
-                Integer.valueOf(show) != 0);
+        mClockView.setClockVisibleByUser(show == 1);
     }
 
     private void updateStatusIconAlphaAnimator() {
