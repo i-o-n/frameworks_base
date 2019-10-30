@@ -230,10 +230,10 @@ public class TileLayout extends ViewGroup implements QSTileLayout {
                 mContext.getContentResolver(), Settings.System.OMNI_QS_LAYOUT_COLUMNS_LANDSCAPE, defaultColumns,
                 UserHandle.USER_CURRENT);
         int rows = Settings.System.getIntForUser(
-                mContext.getContentResolver(), Settings.System.OMNI_QS_LAYOUT_ROWS, defaultColumns,
+                mContext.getContentResolver(), Settings.System.OMNI_QS_LAYOUT_ROWS, 3,
                 UserHandle.USER_CURRENT);
         int rowsLandscape = Settings.System.getIntForUser(
-                mContext.getContentResolver(), Settings.System.OMNI_QS_LAYOUT_ROWS_LANDSCAPE, defaultColumns,
+                mContext.getContentResolver(), Settings.System.OMNI_QS_LAYOUT_ROWS_LANDSCAPE, 2,
                 UserHandle.USER_CURRENT);
         boolean showTitles = Settings.System.getIntForUser(
                 mContext.getContentResolver(), Settings.System.OMNI_QS_TILE_TITLE_VISIBILITY, 1,

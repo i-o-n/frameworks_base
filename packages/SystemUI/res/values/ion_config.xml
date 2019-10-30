@@ -32,9 +32,6 @@
     <!-- System icon area layout weight -->
     <item name="system_icon_area_weight" format="float" type="integer">1</item>
 
-    <!-- The number of rows in the QuickSettings -->
-    <integer name="quick_settings_num_rows">3</integer>
-
     <!-- The default tiles to display in QuickSettings -->
     <string name="quick_settings_tiles_extra" translatable="false"></string>
 

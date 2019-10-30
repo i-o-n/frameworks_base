@@ -465,18 +465,14 @@ public class PagedTileLayout extends ViewPager implements QSTileLayout {
             final Resources res = getContext().getResources();
             final ContentResolver resolver = mContext.getContentResolver();
 
-            int defaultRows = Math.max(1, mContext.getResources().getInteger(R.integer.quick_settings_num_rows));
-            int mRows;
             if (res.getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                mRows = Settings.System.getIntForUser(resolver,
-                        Settings.System.OMNI_QS_LAYOUT_ROWS, defaultRows,
-                        UserHandle.USER_CURRENT);
-            } else {
-                mRows = Settings.System.getIntForUser(resolver,
-                        Settings.System.OMNI_QS_LAYOUT_ROWS_LANDSCAPE, defaultRows,
+                return Settings.System.getIntForUser(resolver,
+                        Settings.System.OMNI_QS_LAYOUT_ROWS, 3,
                         UserHandle.USER_CURRENT);
             }
-            return mRows;
+            return Settings.System.getIntForUser(resolver,
+                        Settings.System.OMNI_QS_LAYOUT_ROWS_LANDSCAPE, 2,
+                        UserHandle.USER_CURRENT);
         }
     }
 
