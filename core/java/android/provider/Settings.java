@@ -4664,7 +4664,7 @@ public final class Settings {
          *
          * @hide
          */
-        public static final String FINGERPRINT_ERROR_VIB = "fingerprint_success_vib";
+        public static final String FINGERPRINT_ERROR_VIB = "fingerprint_error_vib";
 
         /** @hide */
         private static final Validator FINGERPRINT_ERROR_VIB_VALIDATOR = BOOLEAN_VALIDATOR;
