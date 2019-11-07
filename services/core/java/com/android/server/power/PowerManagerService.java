@@ -4985,7 +4985,6 @@ public final class PowerManagerService extends SystemService
         }
     }
 
-<<<<<<< HEAD
     private void setButtonBrightnessOverrideFromWindowManagerInternal(int brightness) {
         synchronized (mLock) {
             if (mButtonBrightnessOverrideFromWindowManager != brightness) {

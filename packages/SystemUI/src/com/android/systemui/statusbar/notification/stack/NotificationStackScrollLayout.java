@@ -5164,11 +5164,6 @@ public class NotificationStackScrollLayout extends ViewGroup implements ScrollAd
         notifyHeightChangeListener(null, animated);
     }
 
-    public void setPulseReason(int pulseReason) {
-        mPulseReason = pulseReason;
-        updateClipping();
-    }
-
     @ShadeViewRefactor(RefactorComponent.SHADE_VIEW)
     public void setQsExpanded(boolean qsExpanded) {
         mQsExpanded = qsExpanded;
