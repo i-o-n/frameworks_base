@@ -726,6 +726,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     private static final int MSG_DISPATCH_VOLKEY_WITH_WAKE_LOCK = 29;
     private static final int MSG_TOGGLE_TORCH = 30;
     private static final int MSG_CLEAR_PROXIMITY = 31;
+    private static final int MSG_TOGGLE_TORCH_ALT = 32;
 
     private int mTorchTimeout;
     private PendingIntent mTorchOffPendingIntent;
@@ -854,6 +855,12 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     break;
                 case HardkeyActionHandler.MSG_DO_HAPTIC_FB:
                     performHapticFeedback(HapticFeedbackConstants.LONG_PRESS, false, "Hardkey Long-Press");
+                    break;
+                case MSG_TOGGLE_TORCH_ALT:
+                    cancelTorchOff();
+                    performHapticFeedback(HapticFeedbackConstants.LONG_PRESS, true,
+                            "Power - Long Press - Torch");
+                    IonUtils.toggleCameraFlashOff();
                     break;
             }
         }
@@ -2338,8 +2345,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             @Override
             public void onReceive(Context context, Intent intent) {
                 mTorchOffPendingIntent = null;
-                mHandler.removeMessages(MSG_TOGGLE_TORCH);
-                Message msg = mHandler.obtainMessage(MSG_TOGGLE_TORCH);
+                mHandler.removeMessages(MSG_TOGGLE_TORCH_ALT);
+                Message msg = mHandler.obtainMessage(MSG_TOGGLE_TORCH_ALT);
                 msg.setAsynchronous(true);
                 msg.sendToTarget();
             }
