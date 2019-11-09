@@ -2047,6 +2047,17 @@ public class StatusBar extends SystemUI implements DemoMode,
         }
     }
 
+    @Override
+    public void toggleCameraFlashOff() {
+        if (DEBUG) {
+            Log.d(TAG, "Toggling camera flashlight Off");
+        }
+        if (mFlashlightController.isAvailable()) {
+            if (mFlashlightController.isEnabled()) {
+                mFlashlightController.setFlashlight(!mFlashlightController.isEnabled());
+            }
+        }
+    }
 
     @Override
     public void toggleCameraFlashState(boolean enable) {

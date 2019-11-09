@@ -123,6 +123,9 @@ public class IonUtils {
         FireActions.toggleCameraFlash();
     }
 
+    public static void toggleCameraFlashOff() {
+        FireActions.toggleCameraFlashOff();
+    }
 
     /**
      * @hide
@@ -185,6 +188,17 @@ public class IonUtils {
             if (service != null) {
                 try {
                     service.toggleCameraFlash();
+                } catch (RemoteException e) {
+                    // do nothing.
+                }
+            }
+        }
+
+        public static void toggleCameraFlashOff() {
+            IStatusBarService service = getStatusBarService();
+            if (service != null) {
+                try {
+                    service.toggleCameraFlashOff();
                 } catch (RemoteException e) {
                     // do nothing.
                 }

@@ -122,6 +122,7 @@ public class CommandQueue extends IStatusBar.Stub implements CallbackController<
     private static final int MSG_SHOW_IN_DISPLAY_FINGERPRINT_VIEW = 51 << MSG_SHIFT;
     private static final int MSG_HIDE_IN_DISPLAY_FINGERPRINT_VIEW = 52 << MSG_SHIFT;
     private static final int MSG_TOGGLE_CAMERA_FLASH_STATE     = 53 << MSG_SHIFT;
+    private static final int MSG_TOGGLE_CAMERA_FLASH_OFF       = 54 << MSG_SHIFT;
 
     public static final int FLAG_EXCLUDE_NONE = 0;
     public static final int FLAG_EXCLUDE_SEARCH_PANEL = 1 << 0;
@@ -302,6 +303,7 @@ public class CommandQueue extends IStatusBar.Stub implements CallbackController<
          */
         default void onRecentsAnimationStateChanged(boolean running) { }
         default void toggleCameraFlash() { }
+        default void toggleCameraFlashOff() { }
         default void setAutoRotate(boolean enabled) { }
         default void toggleCameraFlashState(boolean enable) { }
     }
@@ -859,6 +861,13 @@ public class CommandQueue extends IStatusBar.Stub implements CallbackController<
         }
     }
 
+    public void toggleCameraFlashOff() {
+        synchronized (mLock) {
+            mHandler.removeMessages(MSG_TOGGLE_CAMERA_FLASH_OFF);
+            mHandler.sendEmptyMessage(MSG_TOGGLE_CAMERA_FLASH_OFF);
+        }
+    }
+
     @Override
     public void setAutoRotate(boolean enabled) {
         synchronized (mLock) {
@@ -1152,11 +1161,12 @@ public class CommandQueue extends IStatusBar.Stub implements CallbackController<
                     for (int i = 0; i < mCallbacks.size(); i++) {
                         mCallbacks.get(i).toggleCameraFlash();
                     }
+                    break;
                 case MSG_SET_AUTOROTATE_STATUS:
                     for (int i = 0; i < mCallbacks.size(); i++) {
                         mCallbacks.get(i).setAutoRotate(msg.arg1 != 0);
-           }
-           break;
+                    }
+                    break;
                 case MSG_RESTART_UI:
                     for (int i = 0; i < mCallbacks.size(); i++) {
                         mCallbacks.get(i).restartUI();
@@ -1175,6 +1185,11 @@ public class CommandQueue extends IStatusBar.Stub implements CallbackController<
                 case MSG_TOGGLE_CAMERA_FLASH_STATE:
                     for (int i = 0; i < mCallbacks.size(); i++) {
                         mCallbacks.get(i).toggleCameraFlashState(msg.arg1 != 0);
+                    }
+                    break;
+                case MSG_TOGGLE_CAMERA_FLASH_OFF:
+                    for (int i = 0; i < mCallbacks.size(); i++) {
+                        mCallbacks.get(i).toggleCameraFlashOff();
                     }
                     break;
             }
