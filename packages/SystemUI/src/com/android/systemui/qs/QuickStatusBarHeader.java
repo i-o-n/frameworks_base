@@ -283,7 +283,7 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         mBatteryMeterView.setForceShowPercent(true);
         mBatteryMeterView.setIgnoreTunerUpdates(true);
         mBatteryMeterView.setOnClickListener(this);
-        mBatteryMeterView.setPercentShowMode(BatteryMeterView.MODE_ESTIMATE);
+        mBatteryMeterView.setPercentShowMode(BatteryMeterView.MODE_ON);
 
         mClockView = findViewById(R.id.clock);
         mClockView.setOnClickListener(this);
@@ -472,26 +472,41 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         if (showEstimate == 0) {
             mBatteryRemainingIcon.setShowPercent(0);
             mBatteryRemainingIcon.setPercentShowMode(BatteryMeterView.MODE_OFF);
+            mBatteryMeterView.setShowPercent(0);
+            mBatteryMeterView.setPercentShowMode(BatteryMeterView.MODE_OFF);
         } else if (showEstimate == 1) {
             mBatteryRemainingIcon.setShowPercent(0);
             mBatteryRemainingIcon.setPercentShowMode(BatteryMeterView.MODE_ON);
+            mBatteryMeterView.setShowPercent(0);
+            mBatteryMeterView.setPercentShowMode(BatteryMeterView.MODE_ON);
         } else if (showEstimate == 2) {
             mBatteryRemainingIcon.setShowPercent(1);
             mBatteryRemainingIcon.setPercentShowMode(BatteryMeterView.MODE_OFF);
+            mBatteryMeterView.setShowPercent(1);
+            mBatteryMeterView.setPercentShowMode(BatteryMeterView.MODE_OFF);
         } else if (showEstimate == 3) {
             mBatteryRemainingIcon.setShowPercent(0);
             mBatteryRemainingIcon.setPercentShowMode(BatteryMeterView.MODE_ESTIMATE);
+            mBatteryMeterView.setShowPercent(0);
+            mBatteryMeterView.setPercentShowMode(BatteryMeterView.MODE_ESTIMATE);
         }
         mBatteryRemainingIcon.updatePercentView();
         mBatteryRemainingIcon.updateVisibility();
+        mBatteryMeterView.updatePercentView();
+        mBatteryMeterView.updateVisibility();
     }
 
     private void updateSBBatteryStyle() {
         mBatteryRemainingIcon.setBatteryStyle(Settings.System.getInt(mContext.getContentResolver(),
         Settings.System.STATUS_BAR_BATTERY_STYLE, 0));
+        mBatteryMeterView.setBatteryStyle(Settings.System.getInt(mContext.getContentResolver(),
+        Settings.System.STATUS_BAR_BATTERY_STYLE, 0));
         mBatteryRemainingIcon.updateBatteryStyle();
         mBatteryRemainingIcon.updatePercentView();
         mBatteryRemainingIcon.updateVisibility();
+        mBatteryMeterView.updateBatteryStyle();
+        mBatteryMeterView.updatePercentView();
+        mBatteryMeterView.updateVisibility();
     }
 
     private void updateQSClock() {
