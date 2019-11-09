@@ -5085,15 +5085,6 @@ public final class Settings {
                 ANY_INTEGER_VALIDATOR;
 
         /**
-         * Whether to show battey percentage with estimate
-         * @hide
-         */
-        public static final String BATTERY_PCT_WITH_ESTIMATE = "battery_pct_with_estimate";
-
-        /** @hide */
-        private static final Validator BATTERY_PCT_WITH_ESTIMATE_VALIDATOR = BOOLEAN_VALIDATOR;
-
-        /**
          * Whether to use partial screenshot when using volume keys
          * @hide
          */
@@ -5522,7 +5513,6 @@ public final class Settings {
             OMNI_QS_LAYOUT_ROWS_LANDSCAPE,
             OMNI_QS_LAYOUT_ROWS,
             OMNI_QS_QUICKBAR_COLUMNS,
-            BATTERY_PCT_WITH_ESTIMATE,
             SCREENSHOT_TYPE,
             SWAP_VOLUME_BUTTONS,
             LOCKSCREEN_MEDIA_BLUR,
@@ -5723,7 +5713,6 @@ public final class Settings {
             PRIVATE_SETTINGS.add(OMNI_QS_LAYOUT_ROWS_LANDSCAPE);
             PRIVATE_SETTINGS.add(OMNI_QS_LAYOUT_ROWS);
             PRIVATE_SETTINGS.add(OMNI_QS_QUICKBAR_COLUMNS);
-            PRIVATE_SETTINGS.add(BATTERY_PCT_WITH_ESTIMATE);
             PRIVATE_SETTINGS.add(SCREENSHOT_TYPE);
             PRIVATE_SETTINGS.add(SWAP_VOLUME_BUTTONS);
             PRIVATE_SETTINGS.add(LOCKSCREEN_MEDIA_BLUR);
@@ -5901,7 +5890,6 @@ public final class Settings {
             VALIDATORS.put(OMNI_QS_TILE_TITLE_VISIBILITY, OMNI_QS_TILE_TITLE_VISIBILITY_VALIDATOR);
             VALIDATORS.put(OMNI_QS_LAYOUT_ROWS, OMNI_QS_LAYOUT_ROWS_VALIDATOR);
             VALIDATORS.put(OMNI_QS_QUICKBAR_COLUMNS, OMNI_QS_QUICKBAR_COLUMNS_VALIDATOR);
-            VALIDATORS.put(BATTERY_PCT_WITH_ESTIMATE, BATTERY_PCT_WITH_ESTIMATE_VALIDATOR);
             VALIDATORS.put(SCREENSHOT_TYPE, SCREENSHOT_TYPE_VALIDATOR);
             VALIDATORS.put(SWAP_VOLUME_BUTTONS, SWAP_VOLUME_BUTTONS_VALIDATOR);
             VALIDATORS.put(OMNI_QS_LAYOUT_ROWS_LANDSCAPE, OMNI_QS_LAYOUT_ROWS_LANDSCAPE_VALIDATOR);

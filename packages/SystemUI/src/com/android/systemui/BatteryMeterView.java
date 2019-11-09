@@ -18,7 +18,6 @@ package com.android.systemui;
 import static android.app.StatusBarManager.DISABLE2_SYSTEM_ICONS;
 import static android.app.StatusBarManager.DISABLE_NONE;
 import static android.provider.Settings.System.SHOW_BATTERY_PERCENT;
-import static android.provider.Settings.System.BATTERY_PCT_WITH_ESTIMATE;
 
 import static com.android.systemui.util.SysuiLifecycle.viewAttachLifecycle;
 
@@ -362,26 +361,15 @@ public class BatteryMeterView extends LinearLayout implements
                 .getIntForUser(getContext().getContentResolver(),
                 SHOW_BATTERY_PERCENT, 0, mUser);
 
-        final boolean batteryPct = 0 != Settings.System
-                .getIntForUser(getContext().getContentResolver(),
-                BATTERY_PCT_WITH_ESTIMATE, 0, mUser);
-
         if (mBatteryPercentView != null) {
             if (systemSetting && mShowPercentAvailable &&
                     mShowPercentMode == MODE_ESTIMATE && !mCharging) {
                 mBatteryController.getEstimatedTimeRemainingString((String estimate) -> {
                     if (estimate != null) {
-                        if (batteryPct) {
-                            mBatteryPercentView.setText(NumberFormat.getPercentInstance().format(mLevel / 100f) + " | " + estimate);
-                            setContentDescription(getContext().getString(
-                                    R.string.accessibility_battery_level_with_estimate,
-                                    mLevel, estimate));
-                        } else {
-                            mBatteryPercentView.setText(estimate);
-                            setContentDescription(getContext().getString(
-                                    R.string.accessibility_battery_level_with_estimate,
-                                    mLevel, estimate));
-                        }
+                        mBatteryPercentView.setText(estimate);
+                        setContentDescription(getContext().getString(
+                                R.string.accessibility_battery_level_with_estimate,
+                                mLevel, estimate));
                     } else {
                         setPercentTextAtCurrentLevel();
                     }
