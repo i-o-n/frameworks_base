@@ -488,7 +488,10 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
                     mItems.add(new ScreenshotAction());
                 }
             } else if (GLOBAL_ACTION_KEY_SCREENRECORD.equals(actionKey)) {
-                mItems.add(new ScreenrecordAction());
+                if (Settings.System.getInt(mContext.getContentResolver(),
+                        Settings.System.POWERMENU_SCREENRECORD, 0) != 0) {
+                    mItems.add(new ScreenrecordAction());
+                }
             } else if (GLOBAL_ACTION_KEY_LOGOUT.equals(actionKey)) {
                 if (mDevicePolicyManager.isLogoutEnabled()
                         && getCurrentUser().id != UserHandle.USER_SYSTEM) {
@@ -850,7 +853,9 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
 
         @Override
         public boolean showDuringKeyguard() {
-            return true;
+            boolean showlocked = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.POWERMENU_LS_SCREENRECORD, 0) == 1;
+            return showlocked;
         }
 
         @Override
