@@ -107,6 +107,7 @@ public class BatteryMeterView extends LinearLayout implements
     private int mBatteryStyle;
     private int mShowBatteryPercent;
     private boolean mBatteryPercentCharging;
+    private int mTextChargingSymbol;
     private final Handler mHandler = new Handler();
 
     private DualToneHandler mDualToneHandler;
@@ -136,6 +137,9 @@ public class BatteryMeterView extends LinearLayout implements
                     this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System
                     .getUriFor(Settings.System.STATUS_BAR_BATTERY_TEXT_CHARGING), false,
+                    this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System
+                    .getUriFor(Settings.System.TEXT_CHARGING_SYMBOL), false,
                     this, UserHandle.USER_ALL);
             }
 
@@ -320,6 +324,7 @@ public class BatteryMeterView extends LinearLayout implements
         updateSBBarBatteryStyle();
         updateSBBarShowBatteryPercent();
         updateSBBarBatteryTextCharging();
+        updateTextChargingSymbol();
     }
 
     private void updateSBBarBatteryStyle() {
@@ -348,6 +353,12 @@ public class BatteryMeterView extends LinearLayout implements
         mBatteryPercentCharging = Settings.System.getInt(mContext.getContentResolver(),
             Settings.System.STATUS_BAR_BATTERY_TEXT_CHARGING, 0) == 1;
         updatePercentView();
+    }
+
+    private void updateTextChargingSymbol() {
+        mTextChargingSymbol = Settings.System.getIntForUser(
+                mContext.getContentResolver(), Settings.System.
+                TEXT_CHARGING_SYMBOL, 0, mUser);
     }
 
     @Override
@@ -453,13 +464,29 @@ public class BatteryMeterView extends LinearLayout implements
     }
 
     private void setPercentTextAtCurrentLevel() {
-        // Use the high voltage symbol ⚡ (u26A1 unicode) but prevent the system
-        // to load its emoji colored variant with the uFE0E flag
-        String bolt = "\u26A1\uFE0E";
-        CharSequence mChargeIndicator =
-                mCharging && (mBatteryStyle == BATTERY_STYLE_TEXT
-                || mBatteryStyle == BATTERY_STYLE_HIDDEN)
-                ? (bolt + " ") : "";
+        String mChargeIndicator = "";
+        if (mCharging && (mBatteryStyle == BATTERY_STYLE_TEXT
+                || mBatteryStyle == BATTERY_STYLE_HIDDEN)) {
+            switch (mTextChargingSymbol) {
+                case 0:
+                default:
+                    mChargeIndicator = "";
+                    break;
+                case 1:
+                    // Use the high voltage symbol ⚡ (u26A1 unicode) but prevent the system
+                    // to load its emoji colored variant with the uFE0E flag
+                    String bolt = "\u26A1\uFE0E";
+                    mChargeIndicator = bolt + " ";
+                    break;
+                case 2:
+                    mChargeIndicator = "⚡️ ";
+                    break;
+                case 3:
+                    mChargeIndicator = "~ ";
+                    break;
+            }
+        }
+
         mBatteryPercentView.setText(mChargeIndicator +
                 NumberFormat.getPercentInstance().format(mLevel / 100f));
         setContentDescription(
@@ -608,6 +635,7 @@ public class BatteryMeterView extends LinearLayout implements
         public void onChange(boolean selfChange, Uri uri) {
             super.onChange(selfChange, uri);
             updateShowPercent();
+            updateTextChargingSymbol();
             if (TextUtils.equals(uri.getLastPathSegment(),
                     Settings.Global.BATTERY_ESTIMATES_LAST_UPDATE_TIME)) {
                 // update the text for sure if the estimate in the cache was updated
