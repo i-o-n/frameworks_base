@@ -168,4 +168,7 @@
     <java-symbol type="bool" name="config_defaultCABC" />
     <java-symbol type="bool" name="config_filterDisplayModes" />
     <java-symbol type="array" name="config_displayModeMappings" />
+
+    <!-- Whether device supports variable refresh rate -->
+    <java-symbol type="bool" name="config_hasVariableRefreshRate" />
 </resources>
