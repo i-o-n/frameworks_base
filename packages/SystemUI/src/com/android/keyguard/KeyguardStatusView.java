@@ -348,6 +348,144 @@ public class KeyguardStatusView extends GridLayout implements
         if (lockDateFont == 17) {
             mKeyguardSlice.setViewsTypeface(Typeface.create("sans-serif-black", Typeface.ITALIC));
         }
+        if (lockDateFont == 18) {
+            mKeyguardSlice.setViewsTypeface(Typeface.create("abelreg", Typeface.NORMAL));
+        }
+        if (lockDateFont == 19) {
+            mKeyguardSlice.setViewsTypeface(Typeface.create("adamcg-pro", Typeface.NORMAL));
+        }
+        if (lockDateFont == 20) {
+            mKeyguardSlice.setViewsTypeface(Typeface.create("adventpro", Typeface.NORMAL));
+        }
+        if (lockDateFont == 21) {
+            mKeyguardSlice.setViewsTypeface(Typeface.create("alexana-neue", Typeface.NORMAL));
+        }
+        if (lockDateFont == 22) {
+            mKeyguardSlice.setViewsTypeface(Typeface.create("alien-league", Typeface.NORMAL));
+        }
+        if (lockDateFont == 23) {
+            mKeyguardSlice.setViewsTypeface(Typeface.create("archivonar", Typeface.NORMAL));
+        }
+        if (lockDateFont == 24) {
+            mKeyguardSlice.setViewsTypeface(Typeface.create("autourone", Typeface.NORMAL));
+        }
+        if (lockDateFont == 25) {
+            mKeyguardSlice.setViewsTypeface(Typeface.create("azedo-light", Typeface.NORMAL));
+        }
+        if (lockDateFont == 26) {
+            mKeyguardSlice.setViewsTypeface(Typeface.create("badscript", Typeface.NORMAL));
+        }
+        if (lockDateFont == 27) {
+            mKeyguardSlice.setViewsTypeface(Typeface.create("bignoodle-regular", Typeface.NORMAL));
+        }
+        if (lockDateFont == 28) {
+            mKeyguardSlice.setViewsTypeface(Typeface.create("biko", Typeface.NORMAL));
+        }
+        if (lockDateFont == 29) {
+            mKeyguardSlice.setViewsTypeface(Typeface.create("blern", Typeface.NORMAL));
+        }
+        if (lockDateFont == 30) {
+            mKeyguardSlice.setViewsTypeface(Typeface.create("cherryswash", Typeface.NORMAL));
+        }
+        if (lockDateFont == 31) {
+            mKeyguardSlice.setViewsTypeface(Typeface.create("cocon", Typeface.NORMAL));
+        }
+        if (lockDateFont == 32) {
+            mKeyguardSlice.setViewsTypeface(Typeface.create("codystar", Typeface.NORMAL));
+        }
+        if (lockDateFont == 33) {
+            mKeyguardSlice.setViewsTypeface(Typeface.create("fester", Typeface.NORMAL));
+        }
+        if (lockDateFont == 34) {
+            mKeyguardSlice.setViewsTypeface(Typeface.create("fox-and-cat", Typeface.NORMAL));
+        }
+        if (lockDateFont == 35) {
+            mKeyguardSlice.setViewsTypeface(Typeface.create("ginora-sans", Typeface.NORMAL));
+        }
+        if (lockDateFont == 36) {
+            mKeyguardSlice.setViewsTypeface(Typeface.create("gobold-sys", Typeface.NORMAL));
+        }
+        if (lockDateFont == 37) {
+            mKeyguardSlice.setViewsTypeface(Typeface.create("ibmplex-mono", Typeface.NORMAL));
+        }
+        if (lockDateFont == 38) {
+            mKeyguardSlice.setViewsTypeface(Typeface.create("inkferno", Typeface.NORMAL));
+        }
+        if (lockDateFont == 39) {
+            mKeyguardSlice.setViewsTypeface(Typeface.create("instruction", Typeface.NORMAL));
+        }
+        if (lockDateFont == 40) {
+            mKeyguardSlice.setViewsTypeface(Typeface.create("jacklane", Typeface.NORMAL));
+        }
+        if (lockDateFont == 41) {
+            mKeyguardSlice.setViewsTypeface(Typeface.create("jura-reg", Typeface.NORMAL));
+        }
+        if (lockDateFont == 42) {
+            mKeyguardSlice.setViewsTypeface(Typeface.create("kellyslab", Typeface.NORMAL));
+        }
+        if (lockDateFont == 43) {
+            mKeyguardSlice.setViewsTypeface(Typeface.create("metropolis1920", Typeface.NORMAL));
+        }
+        if (lockDateFont == 44) {
+            mKeyguardSlice.setViewsTypeface(Typeface.create("monad", Typeface.NORMAL));
+        }
+        if (lockDateFont == 45) {
+            mKeyguardSlice.setViewsTypeface(Typeface.create("neonneon", Typeface.NORMAL));
+        }
+        if (lockDateFont == 46) {
+            mKeyguardSlice.setViewsTypeface(Typeface.create("noir", Typeface.NORMAL));
+        }
+        if (lockDateFont == 47) {
+            mKeyguardSlice.setViewsTypeface(Typeface.create("northfont", Typeface.NORMAL));
+        }
+        if (lockDateFont == 48) {
+            mKeyguardSlice.setViewsTypeface(Typeface.create("outrun-future", Typeface.NORMAL));
+        }
+        if (lockDateFont == 49) {
+            mKeyguardSlice.setViewsTypeface(Typeface.create("pompiere", Typeface.NORMAL));
+        }
+        if (lockDateFont == 50) {
+            mKeyguardSlice.setViewsTypeface(Typeface.create("qontra", Typeface.NORMAL));
+        }
+        if (lockDateFont == 51) {
+            mKeyguardSlice.setViewsTypeface(Typeface.create("raleway-light", Typeface.NORMAL));
+        }
+        if (lockDateFont == 52) {
+            mKeyguardSlice.setViewsTypeface(Typeface.create("reemkufi", Typeface.NORMAL));
+        }
+        if (lockDateFont == 53) {
+            mKeyguardSlice.setViewsTypeface(Typeface.create("riviera", Typeface.NORMAL));
+        }
+        if (lockDateFont == 54) {
+            mKeyguardSlice.setViewsTypeface(Typeface.create("roadrage-sys", Typeface.NORMAL));
+        }
+        if (lockDateFont == 55) {
+            mKeyguardSlice.setViewsTypeface(Typeface.create("satisfy", Typeface.NORMAL));
+        }
+        if (lockDateFont == 56) {
+            mKeyguardSlice.setViewsTypeface(Typeface.create("seaweedsc", Typeface.NORMAL));
+        }
+        if (lockDateFont == 57) {
+            mKeyguardSlice.setViewsTypeface(Typeface.create("sedgwick-ave", Typeface.NORMAL));
+        }
+        if (lockDateFont == 58) {
+            mKeyguardSlice.setViewsTypeface(Typeface.create("snowstorm-sys", Typeface.NORMAL));
+        }
+        if (lockDateFont == 59) {
+            mKeyguardSlice.setViewsTypeface(Typeface.create("themeable-clock", Typeface.NORMAL));
+        }
+        if (lockDateFont == 60) {
+            mKeyguardSlice.setViewsTypeface(Typeface.create("the-outbox", Typeface.NORMAL));
+        }
+        if (lockDateFont == 61) {
+            mKeyguardSlice.setViewsTypeface(Typeface.create("unionfont", Typeface.NORMAL));
+        }
+        if (lockDateFont == 62) {
+            mKeyguardSlice.setViewsTypeface(Typeface.create("vibur", Typeface.NORMAL));
+        }
+        if (lockDateFont == 63) {
+            mKeyguardSlice.setViewsTypeface(Typeface.create("voltaire", Typeface.NORMAL));
+        }
     }
 
     public float getClockTextSize() {
