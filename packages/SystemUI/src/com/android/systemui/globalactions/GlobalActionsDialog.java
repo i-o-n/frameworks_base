@@ -147,7 +147,6 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
     private static final String GLOBAL_ACTION_KEY_SCREENSHOT = "screenshot";
     private static final String GLOBAL_ACTION_KEY_ADVANCED = "advanced";
     private static final String GLOBAL_ACTION_KEY_TORCH = "torch";
-    private static final String GLOBAL_ACTION_KEY_SCREENRECORD = "screenrecord";
 
     private static final int SHOW_TOGGLES_BUTTON = 1;
     private static final int RESTART_HOT_BUTTON = 2;
@@ -486,11 +485,6 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
                 if (Settings.System.getInt(mContext.getContentResolver(),
                         Settings.System.POWERMENU_SCREENSHOT, 0) != 0) {
                     mItems.add(new ScreenshotAction());
-                }
-            } else if (GLOBAL_ACTION_KEY_SCREENRECORD.equals(actionKey)) {
-                if (Settings.System.getInt(mContext.getContentResolver(),
-                        Settings.System.POWERMENU_SCREENRECORD, 0) != 0) {
-                    mItems.add(new ScreenrecordAction());
                 }
             } else if (GLOBAL_ACTION_KEY_LOGOUT.equals(actionKey)) {
                 if (mDevicePolicyManager.isLogoutEnabled()
@@ -838,35 +832,6 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
                 return false;
             }
         };
-    }
-
-    private class ScreenrecordAction extends SinglePressAction implements LongPressAction {
-        public ScreenrecordAction() {
-            super(R.drawable.ic_lock_screenrecord,
-            com.android.systemui.R.string.global_action_screenrecord);
-        }
-
-        @Override
-        public void onPress() {
-            mScreenRecordHelper.launchRecordPrompt();
-        }
-
-        @Override
-        public boolean showDuringKeyguard() {
-            boolean showlocked = Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.POWERMENU_LS_SCREENRECORD, 0) == 1;
-            return showlocked;
-        }
-
-        @Override
-        public boolean showBeforeProvisioning() {
-            return false;
-        }
-
-        @Override
-        public boolean onLongPress() {
-            return false;
-        }
     }
 
     private class BugReportAction extends SinglePressAction implements LongPressAction {

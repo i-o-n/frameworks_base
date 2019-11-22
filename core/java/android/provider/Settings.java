@@ -4914,16 +4914,6 @@ public final class Settings {
         private static final Validator POWERMENU_SCREENSHOT_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /**
-         * Whether to display the screenrecord option on the power menu
-         *
-         * @hide
-         */
-        public static final String POWERMENU_SCREENRECORD = "powermenu_screenrecord";
-
-        /* @hide */
-        private static final Validator POWERMENU_SCREENRECORD_VALIDATOR = BOOLEAN_VALIDATOR;
-
-        /**
          * Whether to display airplane mode option in power menu
          *
          * @hide
@@ -4991,16 +4981,6 @@ public final class Settings {
 
         /* @hide */
         private static final Validator POWERMENU_LS_SCREENSHOT_VALIDATOR = BOOLEAN_VALIDATOR;
-
-        /**
-         * Whether to display the power menu screenrecord option on a secured lockscreen
-         *
-         * @hide
-         */
-        public static final String POWERMENU_LS_SCREENRECORD = "powermenu_ls_screenrecord";
-
-        /* @hide */
-        private static final Validator POWERMENU_LS_SCREENRECORD_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /**
          * Whether to display airplane mode in lockscreen power menu
@@ -5930,7 +5910,6 @@ public final class Settings {
             POWERMENU_ADVANCED_REBOOT,
             POWERMENU_LOCKDOWN,
             POWERMENU_SCREENSHOT,
-            POWERMENU_SCREENRECORD,
             POWERMENU_AIRPLANE,
             POWERMENU_TORCH,
             POWERMENU_EMERGENCY,
@@ -5938,7 +5917,6 @@ public final class Settings {
             POWERMENU_LS_REBOOT,
             POWERMENU_LS_ADVANCED_REBOOT,
             POWERMENU_LS_SCREENSHOT,
-            POWERMENU_LS_SCREENRECORD,
             POWERMENU_LS_AIRPLANE,
             QSFOOTER_SHOW_SETTINGS,
             QS_EDIT_TOGGLE,
@@ -6136,7 +6114,6 @@ public final class Settings {
             PRIVATE_SETTINGS.add(POWERMENU_ADVANCED_REBOOT);
             PRIVATE_SETTINGS.add(POWERMENU_LOCKDOWN);
             PRIVATE_SETTINGS.add(POWERMENU_SCREENSHOT);
-            PRIVATE_SETTINGS.add(POWERMENU_SCREENRECORD);
             PRIVATE_SETTINGS.add(POWERMENU_AIRPLANE);
             PRIVATE_SETTINGS.add(POWERMENU_TORCH);
             PRIVATE_SETTINGS.add(POWERMENU_EMERGENCY);
@@ -6144,7 +6121,6 @@ public final class Settings {
             PRIVATE_SETTINGS.add(POWERMENU_LS_REBOOT);
             PRIVATE_SETTINGS.add(POWERMENU_LS_ADVANCED_REBOOT);
             PRIVATE_SETTINGS.add(POWERMENU_LS_SCREENSHOT);
-            PRIVATE_SETTINGS.add(POWERMENU_LS_SCREENRECORD);
             PRIVATE_SETTINGS.add(POWERMENU_LS_AIRPLANE);
             PRIVATE_SETTINGS.add(QSFOOTER_SHOW_SETTINGS);
             PRIVATE_SETTINGS.add(QS_EDIT_TOGGLE);
@@ -6332,7 +6308,6 @@ public final class Settings {
             VALIDATORS.put(POWERMENU_ADVANCED_REBOOT, POWERMENU_ADVANCED_REBOOT_VALIDATOR);
             VALIDATORS.put(POWERMENU_LOCKDOWN, POWERMENU_LOCKDOWN_VALIDATOR);
             VALIDATORS.put(POWERMENU_SCREENSHOT, POWERMENU_SCREENSHOT_VALIDATOR);
-            VALIDATORS.put(POWERMENU_SCREENRECORD, POWERMENU_SCREENRECORD_VALIDATOR);
             VALIDATORS.put(POWERMENU_AIRPLANE, POWERMENU_AIRPLANE_VALIDATOR);
             VALIDATORS.put(POWERMENU_TORCH, POWERMENU_TORCH_VALIDATOR);
             VALIDATORS.put(POWERMENU_EMERGENCY, POWERMENU_EMERGENCY_VALIDATOR);
@@ -6340,7 +6315,6 @@ public final class Settings {
             VALIDATORS.put(POWERMENU_LS_REBOOT, POWERMENU_LS_REBOOT_VALIDATOR);
             VALIDATORS.put(POWERMENU_LS_ADVANCED_REBOOT, POWERMENU_LS_ADVANCED_REBOOT_VALIDATOR);
             VALIDATORS.put(POWERMENU_LS_SCREENSHOT, POWERMENU_LS_SCREENSHOT_VALIDATOR);
-            VALIDATORS.put(POWERMENU_LS_SCREENRECORD, POWERMENU_LS_SCREENRECORD_VALIDATOR);
             VALIDATORS.put(POWERMENU_LS_AIRPLANE, POWERMENU_LS_AIRPLANE_VALIDATOR);
             VALIDATORS.put(QSFOOTER_SHOW_SETTINGS, QSFOOTER_SHOW_SETTINGS_VALIDATOR);
             VALIDATORS.put(QS_EDIT_TOGGLE, QS_EDIT_TOGGLE_VALIDATOR);
