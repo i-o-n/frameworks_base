@@ -539,6 +539,8 @@ public class StatusBar extends SystemUI implements DemoMode,
 
     private VisualizerView mVisualizerView;
 
+    private boolean mChargingAnimation;
+
     private boolean mPocketJudgeAllowFP;
     private boolean mWallpaperSupportsAmbientMode;
     private final BroadcastReceiver mWallpaperChangedReceiver = new BroadcastReceiver() {
@@ -4123,6 +4125,9 @@ public class StatusBar extends SystemUI implements DemoMode,
             resolver.registerContentObserver(Settings.Secure.getUriFor(
                     Settings.Secure.FP_SWIPE_TO_DISMISS_NOTIFICATIONS),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.LOCKSCREEN_CHARGING_ANIMATION),
+                    false, this, UserHandle.USER_ALL);
         }
 
         @Override
@@ -4156,6 +4161,8 @@ public class StatusBar extends SystemUI implements DemoMode,
                 setPulseOnNewTracks();
             } else if (uri.equals(Settings.Secure.getUriFor(Settings.Secure.FP_SWIPE_TO_DISMISS_NOTIFICATIONS))) {
               setFpToDismissNotifications();
+            } else if (uri.equals(Settings.System.getUriFor(Settings.System.LOCKSCREEN_CHARGING_ANIMATION))) {
+                updateChargingAnimation();
             }
         }
 
@@ -4170,6 +4177,15 @@ public class StatusBar extends SystemUI implements DemoMode,
             updatePocketJudgeFP();
             setPulseOnNewTracks();
             setFpToDismissNotifications();
+            updateChargingAnimation();
+        }
+    }
+
+    private void updateChargingAnimation() {
+        mChargingAnimation = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.LOCKSCREEN_CHARGING_ANIMATION, 0, UserHandle.USER_CURRENT) == 1;
+        if (mKeyguardIndicationController != null) {
+            mKeyguardIndicationController.updateChargingIndication(mChargingAnimation);
         }
     }
 
