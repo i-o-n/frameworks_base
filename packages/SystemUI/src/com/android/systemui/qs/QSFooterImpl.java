@@ -178,9 +178,17 @@ public class QSFooterImpl extends FrameLayout implements Tunable, QSFooter,
         boolean isShow = Settings.System.getIntForUser(mContext.getContentResolver(),
                         Settings.System.ION_FOOTER_TEXT_SHOW, 1,
                         UserHandle.USER_CURRENT) == 1;
+        String text = Settings.System.getStringForUser(mContext.getContentResolver(),
+                        Settings.System.ION_FOOTER_TEXT_STRING,
+                        UserHandle.USER_CURRENT);
         if (isShow) {
-            v.setText("#ion");
-            v.setVisibility(View.VISIBLE);
+            if (text == null || text == "") {
+                v.setText("#ion");
+                v.setVisibility(View.VISIBLE);
+            } else {
+                v.setText(text);
+                v.setVisibility(View.VISIBLE);
+            }
         } else {
             v.setVisibility(View.GONE);
         }
@@ -276,6 +284,9 @@ public class QSFooterImpl extends FrameLayout implements Tunable, QSFooter,
         Dependency.get(TunerService.class).addTunable(this, QS_FOOTER_SHOW_SETTINGS);
         mContext.getContentResolver().registerContentObserver(
                 Settings.System.getUriFor(Settings.System.ION_FOOTER_TEXT_SHOW), false,
+                mSettingsObserver, UserHandle.USER_ALL);
+        mContext.getContentResolver().registerContentObserver(
+                Settings.System.getUriFor(Settings.System.ION_FOOTER_TEXT_STRING), false,
                 mSettingsObserver, UserHandle.USER_ALL);
     }
 

@@ -5130,6 +5130,12 @@ public final class Settings {
         private static final Validator ION_FOOTER_TEXT_SHOW_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /**
+         * QS footer text
+         * @hide
+         */
+        public static final String ION_FOOTER_TEXT_STRING = "ion_footer_text_string";
+
+        /**
          * media artwork wallpaper blur level on lockscreen
          * @hide
          */
@@ -15867,11 +15873,11 @@ public final class Settings {
          */
         public static final String ALLOW_SIGNATURE_FAKE = "allow_signature_fake";
 
-        /**  
+        /**
          * AOKP Custom System Animations
          * @hide
-         */  
-        public static final String[] ACTIVITY_ANIMATION_CONTROLS = new String[] {  
+         */
+        public static final String[] ACTIVITY_ANIMATION_CONTROLS = new String[] {
                 "activity_open",
                 "activity_close",
                 "task_open",
@@ -15883,7 +15889,7 @@ public final class Settings {
                 "wallpaper_intra_open",
                 "wallpaper_intra_close",
                 "task_open_behind",
-        };  
+        };
         public static final String ANIMATION_CONTROLS_DURATION = "animation_controls_duration";
 
         /**
