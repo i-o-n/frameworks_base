@@ -22,6 +22,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Resources;
 import android.database.ContentObserver;
+import android.graphics.drawable.Drawable;
 import android.net.NetworkCapabilities;
 import android.net.Uri;
 import android.os.Handler;
@@ -106,6 +107,7 @@ public class MobileSignalController extends SignalController<
     private ImsManager mImsManager;
     private ImsManager.Connector mImsManagerConnector;
     private boolean mVolteIcon;
+    private int mVolteStyle;
     private boolean mDataDisabledIcon;
 
     // Show lte/4g switch
@@ -193,6 +195,9 @@ public class MobileSignalController extends SignalController<
            resolver.registerContentObserver(Settings.System.getUriFor(
                   Settings.System.SHOW_LTE_FOURGEE),
                   false, this, UserHandle.USER_ALL);
+           resolver.registerContentObserver(
+                  Settings.System.getUriFor(Settings.System.VOLTE_ICON_STYLE),
+                  false, this, UserHandle.USER_ALL);
         }
 
         @Override
@@ -206,6 +211,15 @@ public class MobileSignalController extends SignalController<
                             0, UserHandle.USER_CURRENT) == 1;
                     mapIconSets();
                     updateTelephony();
+            } else if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.VOLTE_ICON_STYLE))) {
+                    mVolteStyle = Settings.System.getIntForUser(
+                            mContext.getContentResolver(),
+                            Settings.System.VOLTE_ICON_STYLE,
+                            0, UserHandle.USER_CURRENT);
+                    mapIconSets();
+                    updateTelephony();
+                    notifyListeners();
             }
         }
     }
@@ -452,8 +466,25 @@ public class MobileSignalController extends SignalController<
     private int getVolteResId() {
         int resId = 0;
 
-        if ( mCurrentState.imsRegistered ) {
-            resId = R.drawable.ic_volte;
+        if (mCurrentState.imsRegistered) {
+            switch(mVolteStyle) {
+                case 1:
+                    resId = R.drawable.ic_volte1;
+                    break;
+                case 2:
+                    resId = R.drawable.ic_volte2;
+                    break;
+                case 3:
+                    resId = R.drawable.ic_volte3;
+                    break;
+                case 4:
+                    resId = R.drawable.ic_volte4;
+                    break;
+                case 0:
+                default:
+                    resId = R.drawable.ic_volte;
+                    break;
+            }
         }
         return resId;
     }
