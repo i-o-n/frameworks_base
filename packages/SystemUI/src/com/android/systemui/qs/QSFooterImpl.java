@@ -36,6 +36,7 @@ import android.os.UserManager;
 import android.os.Vibrator;
 import android.provider.Settings;
 import android.provider.Settings;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -182,7 +183,7 @@ public class QSFooterImpl extends FrameLayout implements Tunable, QSFooter,
                         Settings.System.ION_FOOTER_TEXT_STRING,
                         UserHandle.USER_CURRENT);
         if (isShow) {
-            if (text == null || text == "") {
+            if (TextUtils.isEmpty(text) || text == null) {
                 v.setText("#ion");
                 v.setVisibility(View.VISIBLE);
             } else {
