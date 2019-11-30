@@ -206,7 +206,24 @@ public class CastTile extends QSTileImpl<BooleanState> {
         }
         state.icon = ResourceIcon.get(state.value ? R.drawable.ic_cast_connected
                 : R.drawable.ic_cast);
-        if (mWifiConnected || state.value) {
+
+        if (!mContext.getResources().getBoolean(com.android.internal.R.bool.config_enableWifiDisplay)) {
+            if (mWifiConnected || state.value) {
+                state.state = state.value ? Tile.STATE_ACTIVE : Tile.STATE_INACTIVE;
+                if (!state.value) {
+                    state.secondaryLabel = "";
+                }
+                state.contentDescription = state.contentDescription + ","
+                        + mContext.getString(R.string.accessibility_quick_settings_open_details);
+                state.expandedAccessibilityClassName = Button.class.getName();
+            } else {
+                state.state = Tile.STATE_UNAVAILABLE;
+                String noWifi = mContext.getString(R.string.quick_settings_cast_no_wifi);
+                state.secondaryLabel = noWifi;
+                state.contentDescription = state.contentDescription + ", " + mContext.getString(
+                        R.string.accessibility_quick_settings_not_available, noWifi);
+            }
+        } else {
             state.state = state.value ? Tile.STATE_ACTIVE : Tile.STATE_INACTIVE;
             if (!state.value) {
                 state.secondaryLabel = "";
@@ -214,12 +231,6 @@ public class CastTile extends QSTileImpl<BooleanState> {
             state.contentDescription = state.contentDescription + ","
                     + mContext.getString(R.string.accessibility_quick_settings_open_details);
             state.expandedAccessibilityClassName = Button.class.getName();
-        } else {
-            state.state = Tile.STATE_UNAVAILABLE;
-            String noWifi = mContext.getString(R.string.quick_settings_cast_no_wifi);
-            state.secondaryLabel = noWifi;
-            state.contentDescription = state.contentDescription + ", " + mContext.getString(
-                    R.string.accessibility_quick_settings_not_available, noWifi);
         }
         mDetailAdapter.updateItems(devices);
     }
