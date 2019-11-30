@@ -808,8 +808,8 @@ public class StatusBar extends SystemUI implements DemoMode,
 
         createAndAddWindows(result);
 
-        mNosSettingsObserver.observe();
-        mNosSettingsObserver.update();
+        mIonSettingsObserver.observe();
+        mIonSettingsObserver.update();
 
         mUserTracker = new CurrentUserTracker(mContext) {
             @Override
@@ -4117,9 +4117,9 @@ public class StatusBar extends SystemUI implements DemoMode,
         }
     };
 
-    private NosSettingsObserver mNosSettingsObserver = new NosSettingsObserver(mHandler);
-    private class NosSettingsObserver extends ContentObserver {
-        NosSettingsObserver(Handler handler) {
+    private IonSettingsObserver mIonSettingsObserver = new IonSettingsObserver(mHandler);
+    private class IonSettingsObserver extends ContentObserver {
+        IonSettingsObserver(Handler handler) {
             super(handler);
         }
         void observe() {
