@@ -173,6 +173,7 @@
   <java-symbol type="bool" name="config_hasVariableRefreshRate" />
 
   <!-- Smart charging battery percentage -->
+  <java-symbol type="bool" name="config_deviceSupportSmartCharging" />
   <java-symbol type="integer" name="config_smartChargingBatteryLevel" />
   <java-symbol type="integer" name="config_smartChargingBatteryResumeLevel" />
   <java-symbol type="string" name="config_SmartChargingSysfsNode" />
@@ -205,5 +206,5 @@
   <java-symbol type="drawable" name="perm_group_storage" />
   <java-symbol type="drawable" name="perm_group_visual" />
 
-    <java-symbol type="integer" name="config_screenBrightnessPulse" />
+  <java-symbol type="integer" name="config_screenBrightnessPulse" />
 </resources>
