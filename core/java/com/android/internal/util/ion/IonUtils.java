@@ -40,6 +40,7 @@ import android.view.KeyEvent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 
+import com.android.internal.R;
 import com.android.internal.statusbar.IStatusBarService;
 
 import static android.hardware.Sensor.TYPE_LIGHT;
