@@ -175,6 +175,10 @@ public class IonUtils {
         }
     }
 
+    public static void setPartialScreenshot(boolean active) {
+        FireActions.setPartialScreenshot(active);
+    }
+
     // Check if device has a notch
     public static boolean hasNotch(Context context) {
         String displayCutout = context.getResources().getString(R.string.config_mainBuiltInDisplayCutout);
@@ -214,6 +218,15 @@ public class IonUtils {
                 } catch (RemoteException e) {
                     // do nothing.
                 }
+            }
+        }
+
+        public static void setPartialScreenshot(boolean active) {
+            IStatusBarService service = getStatusBarService();
+            if (service != null) {
+                try {
+                    service.setPartialScreenshot(active);
+                } catch (RemoteException e) {}
             }
         }
     }

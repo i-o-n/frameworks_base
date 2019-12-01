@@ -80,6 +80,8 @@ public class NotificationInterruptionStateProvider {
     private boolean mGamingMode;
     private int mSkipHeadsUp;
 
+    private boolean mPartialScreenshot;
+
     @Inject
     public NotificationInterruptionStateProvider(Context context, NotificationFilter filter,
             StatusBarStateController stateController, BatteryController batteryController) {
@@ -247,7 +249,7 @@ public class NotificationInterruptionStateProvider {
             return false;
         }
 
-        if (entry.shouldSuppressPeek()) {
+        if (entry.shouldSuppressPeek() || mPartialScreenshot) {
             if (DEBUG_HEADS_UP) {
                 Log.d(TAG, "No heads up: suppressed by DND: " + sbn.getKey());
             }
@@ -367,6 +369,10 @@ public class NotificationInterruptionStateProvider {
     public void setGamingPeekMode(boolean gamingMode, int skipHeadsUp) {
         mGamingMode = gamingMode;
         mSkipHeadsUp = skipHeadsUp;
+    }
+
+    public void setPartialScreenshot(boolean active) {
+        mPartialScreenshot = active;
     }
 
     public boolean shouldSkipHeadsUp(StatusBarNotification sbn) {
