@@ -360,6 +360,7 @@ public class BatteryMeterView extends LinearLayout implements
         mTextChargingSymbol = Settings.System.getIntForUser(
                 mContext.getContentResolver(), Settings.System.
                 TEXT_CHARGING_SYMBOL, 0, mUser);
+        updatePercentView();
     }
 
     @Override
