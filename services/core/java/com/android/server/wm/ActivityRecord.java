@@ -235,8 +235,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 
-import android.os.AsyncTask;
-
 /**
  * An entry in the history stack, representing an activity.
  */
@@ -2225,8 +2223,12 @@ public final class ActivityRecord extends ConfigurationContainer {
 
         if (isActivityTypeHome()) {
             mStackSupervisor.updateHomeProcess(task.mActivities.get(0).app);
+            try {
+                mStackSupervisor.new PreferredAppsTask().execute();
+            } catch (Exception e) {
+                Slog.v (TAG, "Exception: " + e);
+            }
         }
-
         if (nowVisible) {
             mStackSupervisor.stopWaitingForActivityVisible(this);
         }
