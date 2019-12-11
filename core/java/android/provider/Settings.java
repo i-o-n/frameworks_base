@@ -10360,6 +10360,19 @@ public final class Settings {
                 BOOLEAN_VALIDATOR;
 
         /**
+         * Whether or not a user should re enroll their face.
+         *
+         * Face unlock re enroll.
+         *  0 = No re enrollment.
+         *  1 = Re enrollment is suggested.
+         *  2 = Re enrollment is required after a set time period.
+         *  3 = Re enrollment is required immediately.
+         *
+         * @hide
+         */
+        public static final String FACE_UNLOCK_RE_ENROLL = "face_unlock_re_enroll";
+
+        /**
          * Whether or not debugging is enabled.
          * @hide
          */
@@ -10709,10 +10722,16 @@ public final class Settings {
          * Whether the notification bubbles are globally enabled
          * The value is boolean (1 or 0).
          * @hide
+         * @deprecated use {@link Global#NOTIFICATION_BUBBLES} instead.
          */
         @TestApi
+        @Deprecated
         public static final String NOTIFICATION_BUBBLES = "notification_bubbles";
 
+        /**
+         * @deprecated use {@link Global#NOTIFICATION_BUBBLES_VALIDATOR} instead.
+         */
+        @Deprecated
         private static final Validator NOTIFICATION_BUBBLES_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /**
@@ -11138,7 +11157,6 @@ public final class Settings {
             ASSIST_GESTURE_WAKE_ENABLED,
             VR_DISPLAY_MODE,
             NOTIFICATION_BADGING,
-            NOTIFICATION_BUBBLES,
             NOTIFICATION_DISMISS_RTL,
             QS_AUTO_ADDED_TILES,
             SCREENSAVER_ENABLED,
@@ -11514,6 +11532,16 @@ public final class Settings {
          * The content:// style URL for global secure settings items.  Not public.
          */
         public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/global");
+
+        /**
+         * Whether the notification bubbles are globally enabled
+         * The value is boolean (1 or 0).
+         * @hide
+         */
+        @TestApi
+        public static final String NOTIFICATION_BUBBLES = "notification_bubbles";
+
+        private static final Validator NOTIFICATION_BUBBLES_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /**
          * Whether users are allowed to add more users or guest from lockscreen.
@@ -16051,6 +16079,7 @@ public final class Settings {
             ZEN_DURATION,
             CHARGING_VIBRATION_ENABLED,
             AWARE_ALLOWED,
+            NOTIFICATION_BUBBLES,
             SHOW_CPU_OVERLAY,
         };
 
@@ -16118,6 +16147,7 @@ public final class Settings {
             VALIDATORS.put(AWARE_ALLOWED, AWARE_ALLOWED_VALIDATOR);
             VALIDATORS.put(POWER_BUTTON_LONG_PRESS, POWER_BUTTON_LONG_PRESS_VALIDATOR);
             VALIDATORS.put(POWER_BUTTON_VERY_LONG_PRESS, POWER_BUTTON_VERY_LONG_PRESS_VALIDATOR);
+            VALIDATORS.put(NOTIFICATION_BUBBLES, NOTIFICATION_BUBBLES_VALIDATOR);
             VALIDATORS.put(SHOW_CPU_OVERLAY, SHOW_CPU_OVERLAY_VALIDATOR);
         }
 
