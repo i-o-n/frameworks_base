@@ -1454,6 +1454,7 @@ public class NotificationManagerService extends SystemService {
                 mSoundVibScreenOn = Settings.System.getIntForUser(resolver,
                         Settings.System.NOTIFICATION_SOUND_VIB_SCREEN_ON, 1,
                         UserHandle.USER_CURRENT) == 1;
+            }
         }
 
         private void syncBubbleSettings(ContentResolver resolver, Uri settingToFollow) {
