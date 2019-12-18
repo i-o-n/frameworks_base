@@ -120,6 +120,18 @@ public class IonUtils {
         (fingerprintManager != null && fingerprintManager.isHardwareDetected());
     }
 
+    // Method to detect navigation bar is in use
+    public static boolean hasNavigationBar(Context context) {
+        boolean hasNavbar = false;
+        IWindowManager wm = WindowManagerGlobal.getWindowManagerService();
+        try {
+            hasNavbar = wm.hasNavigationBar(context.getDisplayId());
+        } catch (RemoteException ex) {
+            ex.printStackTrace();
+        }
+        return hasNavbar;
+    }
+
     // Check if device has NFC
     public static boolean hasNFC(Context context) {
         return context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_NFC);
