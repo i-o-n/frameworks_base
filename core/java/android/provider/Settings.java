@@ -6149,6 +6149,12 @@ public final class Settings {
         private static final Validator PULSE_AMBIENT_LIGHT_RIGHT_DURATION_VALIDATOR = ANY_INTEGER_VALIDATOR;
 
         /**
+         * Whether to vibrate on notifications
+         * @hide
+         */
+        public static final String VIBRATE_ON_NOTIFICATIONS = "vibrate_on_notifications";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *

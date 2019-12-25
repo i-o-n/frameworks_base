@@ -409,6 +409,8 @@ public class NotificationManagerService extends SystemService {
     private boolean mGamingMode;
     private boolean mSoundVibGamingMode;
 
+    private boolean mVibrateOnNotifications;
+
     private Uri mInCallNotificationUri;
     private AudioAttributes mInCallNotificationAudioAttributes;
     private float mInCallNotificationVolume;
@@ -1404,6 +1406,8 @@ public class NotificationManagerService extends SystemService {
                 = Settings.System.getUriFor(Settings.System.GAMING_MODE_ACTIVE);
         private final Uri GAMING_MODE_NOTIFICATIONS_FEEDBACK
                 = Settings.System.getUriFor(Settings.System.GAMING_MODE_NOTIFICATIONS_FEEDBACK);
+        private final Uri VIBRATE_ON_NOTIFICATIONS
+                = Settings.System.getUriFor(Settings.System.VIBRATE_ON_NOTIFICATIONS);
 
         SettingsObserver(Handler handler) {
             super(handler);
@@ -1426,6 +1430,8 @@ public class NotificationManagerService extends SystemService {
             resolver.registerContentObserver(GAMING_MODE_ACTIVE,
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(GAMING_MODE_NOTIFICATIONS_FEEDBACK,
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(VIBRATE_ON_NOTIFICATIONS,
                     false, this, UserHandle.USER_ALL);
             update(null);
         }
@@ -1475,6 +1481,11 @@ public class NotificationManagerService extends SystemService {
             if (uri == null || GAMING_MODE_NOTIFICATIONS_FEEDBACK.equals(uri)) {
                 mSoundVibGamingMode = Settings.System.getIntForUser(resolver,
                         Settings.System.GAMING_MODE_NOTIFICATIONS_FEEDBACK, 1,
+                        UserHandle.USER_CURRENT) == 1;
+            }
+            if (uri == null || VIBRATE_ON_NOTIFICATIONS.equals(uri)) {
+                mVibrateOnNotifications = Settings.System.getIntForUser(resolver,
+                        Settings.System.VIBRATE_ON_NOTIFICATIONS, 1,
                         UserHandle.USER_CURRENT) == 1;
             }
         }
@@ -5936,7 +5947,10 @@ public class NotificationManagerService extends SystemService {
                         AudioAttributes.toLegacyStreamType(record.getAudioAttributes())) == 0) {
                     vibration = mFallbackVibrationPattern;
                 }
-                hasValidVibrate = vibration != null;
+                hasValidVibrate = vibration != null
+                        && (mVibrateOnNotifications
+                        || (mAudioManager.getRingerModeInternal()
+                        == AudioManager.RINGER_MODE_VIBRATE));
 
                 boolean hasAudibleAlert = hasValidSound || hasValidVibrate;
                 if (hasAudibleAlert && !shouldMuteNotificationLocked(record)
