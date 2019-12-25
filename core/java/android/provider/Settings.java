@@ -6164,6 +6164,15 @@ public final class Settings {
         private static final Validator QS_SERVICES_TOGGLE_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /**
+         * Whether to show or hide the edit icon
+         * @hide
+         */
+        public static final String QS_USER_TOGGLE = "qs_user_toggle";
+
+        /** @hide */
+        private static final Validator QS_USER_TOGGLE_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -6331,6 +6340,7 @@ public final class Settings {
             PULSE_AMBIENT_LIGHT_COLOR_RIGHT,
             PULSE_AMBIENT_LIGHT_RIGHT_DURATION,
             QS_SERVICES_TOGGLE,
+            QS_USER_TOGGLE,
         };
 
         /**
@@ -6572,6 +6582,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(PULSE_AMBIENT_LIGHT_COLOR_RIGHT);
             PRIVATE_SETTINGS.add(PULSE_AMBIENT_LIGHT_RIGHT_DURATION);
             PRIVATE_SETTINGS.add(QS_SERVICES_TOGGLE);
+            PRIVATE_SETTINGS.add(QS_USER_TOGGLE);
         }
 
         /**
@@ -6788,6 +6799,7 @@ public final class Settings {
             VALIDATORS.put(PULSE_AMBIENT_LIGHT_COLOR_RIGHT, PULSE_AMBIENT_LIGHT_COLOR_RIGHT_VALIDATOR);
             VALIDATORS.put(PULSE_AMBIENT_LIGHT_RIGHT_DURATION, PULSE_AMBIENT_LIGHT_RIGHT_DURATION_VALIDATOR);
             VALIDATORS.put(QS_SERVICES_TOGGLE, QS_SERVICES_TOGGLE_VALIDATOR);
+            VALIDATORS.put(QS_USER_TOGGLE, QS_USER_TOGGLE_VALIDATOR);
         }
 
         /**
