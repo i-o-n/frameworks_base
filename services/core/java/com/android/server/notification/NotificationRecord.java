@@ -170,9 +170,6 @@ public final class NotificationRecord {
     private ArrayList<Notification.Action> mSystemGeneratedSmartActions;
     private ArrayList<CharSequence> mSmartReplies;
 
-    // Omni start
-    private boolean mLightOnZen;
-
     private final List<Adjustment> mAdjustments;
     private String mAdjustmentIssuer;
     private final NotificationStats mStats;
@@ -213,7 +210,6 @@ public final class NotificationRecord {
         mAttributes = calculateAttributes();
         mImportance = calculateInitialImportance();
         mLight = calculateLights();
-        mLightOnZen = calculateLightOnZen();
         mAdjustments = new ArrayList<>();
         mStats = new NotificationStats();
         calculateUserSentiment();
@@ -288,10 +284,6 @@ public final class NotificationRecord {
             }
         }
         return light;
-    }
-
-    private boolean calculateLightOnZen() {
-        return getChannel().shouldLightOnZen();
     }
 
     private long[] calculateVibration() {
@@ -1007,10 +999,6 @@ public final class NotificationRecord {
 
     public Light getLight() {
         return mLight;
-    }
-
-    public boolean shouldLightOnZen() {
-        return mLightOnZen;
     }
 
     public Uri getSound() {
