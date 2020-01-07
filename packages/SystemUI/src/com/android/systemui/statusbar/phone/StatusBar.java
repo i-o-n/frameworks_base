@@ -81,6 +81,7 @@ import android.content.pm.ResolveInfo;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.database.ContentObserver;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.PointF;
@@ -134,6 +135,7 @@ import android.view.WindowManagerGlobal;
 import android.view.accessibility.AccessibilityManager;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.DateTimeView;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.internal.annotations.VisibleForTesting;
@@ -178,6 +180,7 @@ import com.android.systemui.doze.DozeLog;
 import com.android.systemui.doze.DozeReceiver;
 import com.android.systemui.fragments.ExtensionFragmentListener;
 import com.android.systemui.fragments.FragmentHostManager;
+import com.android.systemui.ion.ImageUtilities;
 import com.android.systemui.keyguard.KeyguardSliceProvider;
 import com.android.systemui.keyguard.KeyguardViewMediator;
 import com.android.systemui.keyguard.ScreenLifecycle;
@@ -502,6 +505,10 @@ public class StatusBar extends SystemUI implements DemoMode,
 
     private boolean mGamingModeActivated;
     private int mHeadsUpDisabled;
+
+    protected static NotificationPanelView mStaticNotificationPanel;
+    public ImageView mQSBlurView;
+    private boolean blurperformed = false;
 
     // XXX: gesture research
     private final GestureRecorder mGestureRec = DEBUG_GESTURES
@@ -982,8 +989,10 @@ public class StatusBar extends SystemUI implements DemoMode,
         // TODO: Deal with the ugliness that comes from having some of the statusbar broken out
         // into fragments, but the rest here, it leaves some awkward lifecycle and whatnot.
         mNotificationPanel = mStatusBarWindow.findViewById(R.id.notification_panel);
+        mStaticNotificationPanel = mNotificationPanel;
         mStackScroller = mStatusBarWindow.findViewById(R.id.notification_stack_scroller);
         mZenController.addCallback(this);
+        mQSBlurView = mStatusBarWindow.findViewById(R.id.qs_blur);
         NotificationListContainer notifListContainer = (NotificationListContainer) mStackScroller;
         mNotificationLogger.setUpWithContainer(notifListContainer);
 
@@ -1297,6 +1306,23 @@ public class StatusBar extends SystemUI implements DemoMode,
                 || action == MotionEvent.ACTION_CANCEL) {
             mHandler.removeCallbacks(mLongPressBrightnessChange);
         }
+    }
+
+    public void updateBlurVisibility() {
+
+        int QSBlurAlpha = Math.round(255.0f * mStaticNotificationPanel.getExpandedFraction());
+
+        if (QSBlurAlpha > 0 && !blurperformed && mState != StatusBarState.KEYGUARD) {
+            Bitmap bittemp = ImageUtilities.blurImage(mContext, ImageUtilities.screenshotSurface(mContext));
+            Drawable blurbackground = new BitmapDrawable(mContext.getResources(), bittemp);
+            blurperformed = true;
+            mQSBlurView.setBackgroundDrawable(blurbackground);
+        } else if (QSBlurAlpha == 0 || mState == StatusBarState.KEYGUARD) {
+            blurperformed = false;
+            mQSBlurView.setBackgroundColor(Color.TRANSPARENT);
+        }
+        mQSBlurView.setAlpha(QSBlurAlpha);
+        mQSBlurView.getBackground().setAlpha(QSBlurAlpha);
     }
 
     protected QS createDefaultQSFragment() {
