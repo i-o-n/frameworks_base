@@ -6922,6 +6922,15 @@ public final class Settings {
         private static final Validator QS_DATAUSAGE_VALIDATOR = ANY_INTEGER_VALIDATOR;
 
         /**
+         * QS blur
+         * @hide
+         */
+        public static final String QS_BLUR = "qs_blur";
+
+        /** @hide */
+        private static final Validator QS_BLUR_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -7150,6 +7159,7 @@ public final class Settings {
             FOD_ICON,
             FOD_RECOGNIZING_ANIMATION,
             FOD_ANIM,
+            QS_BLUR,
         };
 
         /**
@@ -7447,6 +7457,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(STOCK_STATUSBAR_IN_HIDE);
             PRIVATE_SETTINGS.add(LOCKSCREEN_TRANSLUCENT_NOTIFICATIONS_BG_ENABLED);
             PRIVATE_SETTINGS.add(QS_DATAUSAGE);
+            PRIVATE_SETTINGS.add(QS_BLUR);
         }
 
         /**
@@ -7725,6 +7736,7 @@ public final class Settings {
             VALIDATORS.put(FOD_ICON, FOD_ICON_VALIDATOR);
             VALIDATORS.put(FOD_RECOGNIZING_ANIMATION, FOD_RECOGNIZING_ANIMATION_VALIDATOR);
             VALIDATORS.put(FOD_ANIM, FOD_ANIM_VALIDATOR);
+            VALIDATORS.put(QS_BLUR, QS_BLUR_VALIDATOR);
         }
 
         /**
