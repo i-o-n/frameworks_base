@@ -113,7 +113,7 @@
     <string name="quick_settings_location_detail_mode_sensors_only_description">Use GPS to determine your location</string>
 
     <!-- Name of the status bar icon. -->
-    <string name="status_bar_data_disabled">Crosses when data is disabled</string>
+    <string name="status_bar_data_disabled">Cross when data is disabled</string>
 
     <!-- Screenshot Delete Toast -->
     <string name="delete_screenshot_toast">Screenshot deleted</string>

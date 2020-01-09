@@ -6191,6 +6191,15 @@ public final class Settings {
         public static final Validator VOLTE_ICON_STYLE_VALIDATOR = ANY_INTEGER_VALIDATOR;
 
         /**
+         * Whether to show cross when data is disabled
+         * @hide
+         */
+        public static final String DATA_DISABLED_ICON = "data_disabled_icon";
+
+        /** @hide */
+        private static final Validator DATA_DISABLED_ICON_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -6361,6 +6370,7 @@ public final class Settings {
             QS_USER_TOGGLE,
             VOLTE_ICON,
             VOLTE_ICON_STYLE,
+            DATA_DISABLED_ICON,
         };
 
         /**
@@ -6605,6 +6615,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(QS_USER_TOGGLE);
             PRIVATE_SETTINGS.add(VOLTE_ICON);
             PRIVATE_SETTINGS.add(VOLTE_ICON_STYLE);
+            PRIVATE_SETTINGS.add(DATA_DISABLED_ICON);
         }
 
         /**
@@ -6824,6 +6835,7 @@ public final class Settings {
             VALIDATORS.put(QS_USER_TOGGLE, QS_USER_TOGGLE_VALIDATOR);
             VALIDATORS.put(VOLTE_ICON, VOLTE_ICON_VALIDATOR);
             VALIDATORS.put(VOLTE_ICON_STYLE, VOLTE_ICON_STYLE_VALIDATOR);
+            VALIDATORS.put(DATA_DISABLED_ICON, DATA_DISABLED_ICON_VALIDATOR);
         }
 
         /**

@@ -35,9 +35,10 @@
         android:key="bluetooth"
         android:title="@string/quick_settings_bluetooth_label" />
 
-    <com.android.systemui.tuner.TunerSwitch
-        android:key="data_disabled"
-        android:title="@string/status_bar_data_disabled" />
+    <SwitchPreference
+        android:key="data_disabled_icon"
+        android:title="@string/status_bar_data_disabled"
+        android:defaultValue="true" />
 
     <com.android.systemui.tuner.StatusBarSwitch
         android:key="data_saver"
