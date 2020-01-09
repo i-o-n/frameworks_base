@@ -478,6 +478,18 @@ public class MobileSignalController extends SignalController<
                 case 6:
                     resId = R.drawable.ic_volte6;
                     break;
+                case 7:
+                    resId = R.drawable.ic_volte7;
+                    break;
+                case 8:
+                    resId = R.drawable.ic_volte8;
+                    break;
+                case 9:
+                    resId = R.drawable.ic_volte5;
+                    break;
+                case 10:
+                    resId = R.drawable.ic_volte0;
+                    break;
                 case 0:
                 default:
                     resId = R.drawable.ic_volte;
