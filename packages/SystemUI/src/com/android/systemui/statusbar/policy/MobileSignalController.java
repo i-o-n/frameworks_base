@@ -106,12 +106,7 @@ public class MobileSignalController extends SignalController<
 
     private ImsManager mImsManager;
     private ImsManager.Connector mImsManagerConnector;
-    private boolean mVolteIcon;
-    private int mVolteStyle;
     private boolean mDataDisabledIcon;
-
-    // Show lte/4g switch
-    private boolean mShowLteFourGee;
 
     // TODO: Reduce number of vars passed in, if we have the NetworkController, probably don't
     // need listener lists anymore.
@@ -167,7 +162,6 @@ public class MobileSignalController extends SignalController<
                 updateTelephony();
             }
         };
-        Dependency.get(TunerService.class).addTunable(this, "volte");
         Dependency.get(TunerService.class).addTunable(this, "data_disabled");
 
         Handler mHandler = new Handler();
@@ -191,47 +185,51 @@ public class MobileSignalController extends SignalController<
         }
 
         void observe() {
-           ContentResolver resolver = mContext.getContentResolver();
-           resolver.registerContentObserver(Settings.System.getUriFor(
-                  Settings.System.SHOW_LTE_FOURGEE),
-                  false, this, UserHandle.USER_ALL);
-           resolver.registerContentObserver(
-                  Settings.System.getUriFor(Settings.System.VOLTE_ICON_STYLE),
-                  false, this, UserHandle.USER_ALL);
+            ContentResolver resolver = mContext.getContentResolver();
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.SHOW_LTE_FOURGEE),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(
+                    Settings.System.getUriFor(Settings.System.VOLTE_ICON),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(
+                    Settings.System.getUriFor(Settings.System.VOLTE_ICON_STYLE),
+                    false, this, UserHandle.USER_ALL);
         }
 
         @Override
         public void onChange(boolean selfChange, Uri uri) {
             super.onChange(selfChange, uri);
-            if (uri.equals(Settings.System.getUriFor(
-                    Settings.System.SHOW_LTE_FOURGEE))) {
-                    mShowLteFourGee = Settings.System.getIntForUser(
-                            mContext.getContentResolver(),
-                            Settings.System.SHOW_LTE_FOURGEE,
-                            0, UserHandle.USER_CURRENT) == 1;
-                    mapIconSets();
-                    updateTelephony();
-            } else if (uri.equals(Settings.System.getUriFor(
-                    Settings.System.VOLTE_ICON_STYLE))) {
-                    mVolteStyle = Settings.System.getIntForUser(
-                            mContext.getContentResolver(),
-                            Settings.System.VOLTE_ICON_STYLE,
-                            0, UserHandle.USER_CURRENT);
-                    mapIconSets();
-                    updateTelephony();
-                    notifyListeners();
+            if (uri.equals(Settings.System.getUriFor(Settings.System.SHOW_LTE_FOURGEE))) {
+                updateSettings();
+            } else if (uri.equals(Settings.System.getUriFor(Settings.System.VOLTE_ICON))) {
+                updateSettings();
+            } else if (uri.equals(Settings.System.getUriFor(Settings.System.VOLTE_ICON_STYLE))) {
+                updateSettings();
             }
         }
+    }
+
+    private void updateSettings() {
+        mapIconSets();
+        notifyListeners();
+        notifyListenersIfNecessary();
+        updateTelephony();
+    }
+
+    private boolean volteEnabled() {
+        return Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.VOLTE_ICON, 1, UserHandle.USER_CURRENT) == 1;
+    }
+
+    private int volteStyle() {
+        return Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.VOLTE_ICON_STYLE, 0, UserHandle.USER_CURRENT);
     }
 
     @Override
     public void onTuningChanged(String key, String newValue) {
         switch (key) {
-            case "volte":
-                     mVolteIcon =
-                        TunerService.parseIntegerSwitch(newValue, true);
-                        notifyListenersIfNecessary();
-                break;
             case "data_disabled":
                      mDataDisabledIcon  =
                         TunerService.parseIntegerSwitch(newValue, true);
@@ -467,7 +465,7 @@ public class MobileSignalController extends SignalController<
         int resId = 0;
 
         if (mCurrentState.imsRegistered) {
-            switch(mVolteStyle) {
+            switch(volteStyle()) {
                 case 1:
                     resId = R.drawable.ic_volte1;
                     break;
@@ -532,7 +530,7 @@ public class MobileSignalController extends SignalController<
         showDataIcon &= mCurrentState.isDefault || dataDisabled;
 
         int typeIcon = (showDataIcon || mConfig.alwaysShowDataRatIcon) ? icons.mDataType : 0;
-        int volteIcon = mConfig.showVolteIcon && isVolteSwitchOn() && mVolteIcon
+        int volteIcon = mConfig.showVolteIcon && isVolteSwitchOn() && volteEnabled()
                 ? getVolteResId() : 0;
         callback.setMobileDataIndicators(statusIcon, qsIcon, typeIcon, qsTypeIcon,
                 activityIn, activityOut, volteIcon, dataContentDescription, dataContentDescriptionHtml,
