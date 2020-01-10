@@ -5638,12 +5638,6 @@ public final class Settings {
         public static final String LOCKCLOCK_FONT_SIZE = "lockclock_font_size";
 
         /**
-         * Whether to show Brightness Icon On Brightness Slider
-         * @hide
-         */
-        public static final String QS_SHOW_BRIGHTNESS_ICON = "qs_show_brightness_icon";
-
-        /**
          * Whether to show expanded settings layout
          * @hide
          */
