@@ -6219,6 +6219,24 @@ public final class Settings {
         private static final Validator GESTURE_PILL_TOGGLE_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /**
+         * Whether to show Brightness Icon On Brightness Slider
+         * @hide
+         */
+        public static final String QS_SHOW_BRIGHTNESS_ICON = "qs_show_brightness_icon";
+
+        /** @hide */
+        private static final Validator QS_SHOW_BRIGHTNESS_ICON_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
+         * Whether to show Min-Max button On Brightness Slider
+         * @hide
+         */
+        public static final String QS_SHOW_BRIGHTNESS_MINMAX = "qs_show_brightness_minmax";
+
+        /** @hide */
+        private static final Validator QS_SHOW_BRIGHTNESS_MINMAX_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -6392,6 +6410,8 @@ public final class Settings {
             DATA_DISABLED_ICON,
             FLASHLIGHT_ON_CALL,
             GESTURE_PILL_TOGGLE,
+            QS_SHOW_BRIGHTNESS_ICON,
+            QS_SHOW_BRIGHTNESS_MINMAX,
         };
 
         /**
@@ -6639,6 +6659,8 @@ public final class Settings {
             PRIVATE_SETTINGS.add(DATA_DISABLED_ICON);
             PRIVATE_SETTINGS.add(FLASHLIGHT_ON_CALL);
             PRIVATE_SETTINGS.add(GESTURE_PILL_TOGGLE);
+            PRIVATE_SETTINGS.add(QS_SHOW_BRIGHTNESS_ICON);
+            PRIVATE_SETTINGS.add(QS_SHOW_BRIGHTNESS_MINMAX);
         }
 
         /**
@@ -6861,6 +6883,8 @@ public final class Settings {
             VALIDATORS.put(DATA_DISABLED_ICON, DATA_DISABLED_ICON_VALIDATOR);
             VALIDATORS.put(FLASHLIGHT_ON_CALL, FLASHLIGHT_ON_CALL_VALIDATOR);
             VALIDATORS.put(GESTURE_PILL_TOGGLE, GESTURE_PILL_TOGGLE_VALIDATOR);
+            VALIDATORS.put(QS_SHOW_BRIGHTNESS_ICON, QS_SHOW_BRIGHTNESS_ICON_VALIDATOR);
+            VALIDATORS.put(QS_SHOW_BRIGHTNESS_MINMAX, QS_SHOW_BRIGHTNESS_MINMAX_VALIDATOR);
         }
 
         /**
