@@ -64,10 +64,10 @@
 
     <!-- Heads Up QS Tile -->
     <string name="quick_settings_heads_up_label">Всплывающие уведомления</string>
-    <string name="accessibility_quick_settings_heads_up_off">Всплывающие уведомления выкл.</string>
-    <string name="accessibility_quick_settings_heads_up_on">Всплывающие уведомления вкл.</string>
-    <string name="accessibility_quick_settings_heads_up_changed_off">Всплывающие уведомления выключены.</string>
-    <string name="accessibility_quick_settings_heads_up_changed_on">Всплывающие уведомления включены.</string>
+    <string name="accessibility_quick_settings_heads_up_off">Всплывающие уведомления выкл</string>
+    <string name="accessibility_quick_settings_heads_up_on">Всплывающие уведомления вкл</string>
+    <string name="accessibility_quick_settings_heads_up_changed_off">Всплывающие уведомления выключены</string>
+    <string name="accessibility_quick_settings_heads_up_changed_on">Всплывающие уведомления включены</string>
 
     <!-- USB Tethering tile -->
     <string name="accessibility_quick_settings_usb_tether_off">USB-модем выкл</string>
@@ -81,7 +81,7 @@
     <!-- Accessibility label for nfc icon (not shown on screen) [CHAR LIMIT=NONE] -->
     <string name="accessibility_status_bar_nfc">Nfc</string>
 
-    <string name="status_bar_data_saver">Хранитель данных</string>
+    <string name="status_bar_data_saver">Хранитель мобильных данных</string>
     <string name="status_bar_vpn">VPN</string>
     <string name="status_bar_roaming">Роуминг</string>
     <string name="status_bar_location">Местоположение</string>
@@ -94,9 +94,9 @@
     <string name="accessibility_quick_settings_sync_changed_on">Синхронизация включена</string>
 
      <!-- Advanced Location Tile -->
-    <string name="accessibility_quick_settings_location_battery_saving">Отчет о местоположении: режим экономии заряда батареи.</string>
-    <string name="accessibility_quick_settings_location_gps_only">Отчет о местоположении: режим только датчиков.</string>
-    <string name="accessibility_quick_settings_location_high_accuracy">Отчет о местоположении: режим высокой точности.</string>
+    <string name="accessibility_quick_settings_location_battery_saving">Отчет о местоположении: режим экономии заряда батареи</string>
+    <string name="accessibility_quick_settings_location_gps_only">Отчет о местоположении: режим только датчиков</string>
+    <string name="accessibility_quick_settings_location_high_accuracy">Отчет о местоположении: режим высокой точности</string>
     <string name="quick_settings_location_battery_saving_label">Высокая точность</string>
     <string name="quick_settings_location_battery_saving_label_twoline">Батареи\nэкономия</string>
     <string name="quick_settings_location_gps_only_label">Только GPS</string>
@@ -108,7 +108,7 @@
     <string name="quick_settings_location_detail_mode_high_accuracy_title">Высокая точность</string>
     <string name="quick_settings_location_detail_mode_battery_saving_title">Высокая точность</string>
     <string name="quick_settings_location_detail_mode_sensors_only_title">Только устройство</string>
-    <string name="quick_settings_location_detail_mode_high_accuracy_description">Использовать GPS, WiFi, Bluetooth или сотовые сети, чтобы определить местоположение </string>
+    <string name="quick_settings_location_detail_mode_high_accuracy_description">Использовать GPS, WiFi, Bluetooth или сотовые сети, чтобы определить местоположение</string>
     <string name="quick_settings_location_detail_mode_battery_saving_description">Использовать WiFi, Bluetooth или сотовые сети для определения местоположения</string>
     <string name="quick_settings_location_detail_mode_sensors_only_description">Использовать GPS, чтобы определить ваше местоположение</string>
 
@@ -194,18 +194,18 @@
 
     <!-- Kill button in notification guts -->
     <string name="force_stop_dlg_title">Принудительно остановить?</string>
-    <string name="force_stop_dlg_text">Если вы принудительно остановите приложение, это может сказаться на его поведении.</string>
+    <string name="force_stop_dlg_text">Если вы принудительно остановите приложение, это может сказаться на его поведении</string>
     <string name="dlg_ok">@android:string/ok</string>
     <string name="dlg_cancel">@android:string/cancel</string>
     <string name="guts_force_close_app">Закрыть приложение</string>
 
     <!-- Heads up snooze toast -->
-    <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - Всплывающие уведомления заморожены на 1 минуту.</string>
-    <string name="heads_up_snooze_message"><xliff:g id="string">%s</xliff:g> - Всплывающие уведомления заморожены на <xliff:g id="number">%d</xliff:g> минут.</string>
+    <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - Всплывающие уведомления заморожены на 1 минуту</string>
+    <string name="heads_up_snooze_message"><xliff:g id="string">%s</xliff:g> - Всплывающие уведомления заморожены на <xliff:g id="number">%d</xliff:g> минут</string>
 
     <!-- Sound Search tile -->
     <string name="quick_settings_sound_search">Звуковой поиск</string>
-    <string name="quick_settings_sound_search_no_app">Извините, но это не сработает, если у вас нет приложения для поиска звука.</string>
+    <string name="quick_settings_sound_search_no_app">Извините, но это не сработает, если у вас нет приложения для поиска звука</string>
 
     <!-- AOD QS tile -->
     <string name="quick_settings_aod_label">AOD</string>
@@ -252,18 +252,18 @@
 
     <!-- Reader mode QS tile -->
     <string name="quick_settings_reading_mode">Режим чтения</string>
-    <string name="accessibility_quick_settings_reading_mode_on">Режим чтения вкл.</string>
-    <string name="accessibility_quick_settings_reading_mode_off">Режим чтения выкл.</string>
-    <string name="accessibility_quick_settings_reading_mode_changed_on">Режим чтения включен.</string>
-    <string name="accessibility_quick_settings_reading_mode_changed_off">Режим чтения выключен.</string>
+    <string name="accessibility_quick_settings_reading_mode_on">Режим чтения вкл</string>
+    <string name="accessibility_quick_settings_reading_mode_off">Режим чтения выкл</string>
+    <string name="accessibility_quick_settings_reading_mode_changed_on">Режим чтения включен</string>
+    <string name="accessibility_quick_settings_reading_mode_changed_off">Режим чтения выключен</string>
 
     <!-- Gaming mode -->
     <string name="gaming_mode_not_enabled">Игровой режим отключен в настройках</string>
     <string name="quick_settings_gaming_mode_label">Игровой режим</string>
     <!-- Content description of the Gaming mode tile in quick settings when disabled (not shown on the screen). [CHAR LIMIT=NONE] -->
-    <string name="accessibility_quick_settings_gaming_mode_disabled">Игровой режим выключен.</string>
+    <string name="accessibility_quick_settings_gaming_mode_disabled">Игровой режим выключен</string>
     <!-- Content description of the Gaming mode tile in quick settings when enabled (not shown on the screen). [CHAR LIMIT=NONE] -->
-    <string name="accessibility_quick_settings_gaming_mode_enabled">Игровой режим включен.</string>
+    <string name="accessibility_quick_settings_gaming_mode_enabled">Игровой режим включен</string>
 
     <!-- DataSwitch Tile -->
     <string name="qs_data_switch_label">Переключить SIM карту данных</string>
@@ -276,9 +276,9 @@
     <string name="preview">Предварительный просмотр</string>
     <string name="keycode">Коды клавиш</string>
     <string name="no_home_title">Кнопка «Домой» не найдена</string>
-    <string name="no_home_message">Кнопка «Домой» необходима для навигации по этому устройству. Пожалуйста, добавьте кнопку «Домой» перед сохранением.</string>
-    <string name="clipboard_description">Буфер обмена позволяет перетаскивать элементы прямо в буфер обмена. Объекты также можно перетаскивать прямо из буфера обмена при их наличии.</string>
-    <string name="keycode_description">Кнопки кодов клавиш позволяют добавлять клавиши клавиатуры на панель навигации. При нажатии они эмулируют выбранную клавиатуру. Сначала необходимо выбрать код для кнопки, а затем изображение, отображаемое на кнопке.</string>
+    <string name="no_home_message">Кнопка «Домой» необходима для навигации по этому устройству. Пожалуйста, добавьте кнопку «Домой» перед сохранением</string>
+    <string name="clipboard_description">Буфер обмена позволяет перетаскивать элементы прямо в буфер обмена. Объекты также можно перетаскивать прямо из буфера обмена при их наличии</string>
+    <string name="keycode_description">Кнопки кодов клавиш позволяют добавлять клавиши клавиатуры на панель навигации. При нажатии они эмулируют выбранную клавиатуру. Сначала необходимо выбрать код для кнопки, а затем изображение, отображаемое на кнопке</string>
     <string name="start">Старт</string>
     <string name="center">Центр</string>
     <string name="end">Конец</string>
@@ -299,5 +299,5 @@
     <string name="quick_settings_network_adb_toast">Отладка по USB не включена</string>
 
     <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
-    <string name="accessibility_quick_settings_running_services">Открыть Экран запущенных служб.</string>
+    <string name="accessibility_quick_settings_running_services">Открыть Экран запущенных служб</string>
 </resources>
