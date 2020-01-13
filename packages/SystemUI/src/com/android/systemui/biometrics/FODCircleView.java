@@ -28,7 +28,6 @@ import android.graphics.Point;
 import android.os.Handler;
 import android.os.UserHandle;
 import android.os.Looper;
-import android.os.PowerManager;
 import android.os.RemoteException;
 import android.provider.Settings;
 import android.view.Display;
@@ -72,9 +71,6 @@ public class FODCircleView extends ImageView {
     private boolean mIsCircleShowing;
 
     private Handler mHandler;
-
-    private PowerManager mPowerManager;
-    private PowerManager.WakeLock mWakeLock;
 
     private Timer mBurnInProtectionTimer;
 
@@ -344,9 +340,6 @@ public class FODCircleView extends ImageView {
 
     private void updateAlpha() {
         if (mIsCircleShowing) {
-            if (mIsDreaming) {
-                mWakeLock.acquire(300);
-            }
             setAlpha(1.0f);
         } else {
             setAlpha(mIsDreaming ? (mIsPulsing ? 1.0f : 0.8f) : 1.0f);
