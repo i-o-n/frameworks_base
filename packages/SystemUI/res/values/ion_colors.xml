@@ -21,6 +21,7 @@
 
     <!-- Color of the FOD view -->
     <color name="config_fodColor">#00ff00</color>
+    <color name="config_fodColorBackground">#20000000</color>
 
     <!-- Quicksettings main QS background-->
     <color name="quick_settings_status_bar_background_color">#ff000000</color>
