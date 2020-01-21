@@ -6574,6 +6574,12 @@ public final class Settings {
 
         public static final String STABILIZATION_VELOCITY_AMPLITUDE = "stabilization_velocity_amplitude";
 
+        /** @hide */
+        public static final String BACK_GESTURE_BLOCK_IME = "back_gesture_block_ime";
+
+        /** @hide */
+        private static final Validator BACK_GESTURE_BLOCK_IME_VALIDATOR = BOOLEAN_VALIDATOR;
+
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
@@ -6781,6 +6787,7 @@ public final class Settings {
             FORCE_FULLSCREEN_CUTOUT_APPS,
             TEXT_CLOCK_ALIGNMENT,
             TEXT_CLOCK_PADDING,
+            BACK_GESTURE_BLOCK_IME,
         };
 
         /**
@@ -7058,6 +7065,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(FORCE_FULLSCREEN_CUTOUT_APPS);
             PRIVATE_SETTINGS.add(TEXT_CLOCK_ALIGNMENT);
             PRIVATE_SETTINGS.add(TEXT_CLOCK_PADDING);
+            PRIVATE_SETTINGS.add(BACK_GESTURE_BLOCK_IME);
         }
 
         /**
@@ -7313,6 +7321,7 @@ public final class Settings {
             VALIDATORS.put(FORCE_FULLSCREEN_CUTOUT_APPS, FORCE_FULLSCREEN_CUTOUT_APPS_VALIDATOR);
             VALIDATORS.put(TEXT_CLOCK_ALIGNMENT, TEXT_CLOCK_ALIGNMENT_VALIDATOR);
             VALIDATORS.put(TEXT_CLOCK_PADDING, TEXT_CLOCK_PADDING_VALIDATOR);
+            VALIDATORS.put(BACK_GESTURE_BLOCK_IME, BACK_GESTURE_BLOCK_IME_VALIDATOR);
         }
 
         /**
