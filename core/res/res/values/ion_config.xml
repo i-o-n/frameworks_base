@@ -187,6 +187,7 @@
     <string name="config_regularFontFamily" translatable="false">sans-serif-regular</string>
 
     <!-- System info -->
+    <bool name="config_deviceSupportSysInfo">false</bool>
     <string name="config_sysCPUTemp"></string>
     <string name="config_sysBatteryTemp"></string>
     <string name="config_sysGPUFreq"></string>

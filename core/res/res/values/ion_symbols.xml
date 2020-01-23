@@ -220,6 +220,7 @@
   <java-symbol type="string" name="config_regularFontFamily" />
 
   <!-- System info -->
+  <java-symbol type="bool" name="config_deviceSupportSysInfo" />
   <java-symbol type="string" name="config_sysCPUTemp" />
   <java-symbol type="string" name="config_sysBatteryTemp" />
   <java-symbol type="string" name="config_sysGPUFreq" />
