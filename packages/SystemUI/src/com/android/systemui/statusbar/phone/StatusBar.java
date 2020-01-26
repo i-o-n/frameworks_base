@@ -1314,12 +1314,17 @@ public class StatusBar extends SystemUI implements DemoMode,
                 * (float)((float) QSUserAlpha / 100.0));
         if (QSBlurAlpha > 255) QSBlurAlpha = 255;
 
-        if (QSBlurAlpha > 0 && !blurperformed && !mIsKeyguard && isQSBlurEnabled()) {
-            Bitmap bittemp = ImageUtilities.blurImage(mContext, ImageUtilities.screenshotSurface(mContext));
+        int QSBlurIntensity = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.QS_BLUR_INTENSITY, 40);
+        boolean enoughBlurData = (QSBlurAlpha > 0 && QSBlurIntensity > 0);
+
+        if (enoughBlurData && !blurperformed && !mIsKeyguard && isQSBlurEnabled()) {
+            Bitmap bittemp = ImageUtilities.blurImage(mContext,
+                    ImageUtilities.screenshotSurface(mContext), QSBlurIntensity);
             Drawable blurbackground = new BitmapDrawable(mContext.getResources(), bittemp);
             blurperformed = true;
             mQSBlurView.setBackgroundDrawable(blurbackground);
-        } else if (QSBlurAlpha == 0 || mState == StatusBarState.KEYGUARD) {
+        } else if (!enoughBlurData || mState == StatusBarState.KEYGUARD) {
             blurperformed = false;
             mQSBlurView.setBackgroundColor(Color.TRANSPARENT);
         }
