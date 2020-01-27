@@ -6695,6 +6695,12 @@ public final class Settings {
         private static final Validator BATTERY_BAR_LOW_COLOR_VALIDATOR = ANY_INTEGER_VALIDATOR;
 
         /**
+         * FOD recognizing animation
+         * @hide
+         */
+        public static final String FOD_RECOGNIZING_ANIMATION = "fod_recognizing_animation";
+
+        /**
          * Whether to use a gradient for battery bar color
          * @hide
          */
