@@ -702,22 +702,26 @@ public class KeyguardClockSwitch extends RelativeLayout {
             mClockViewBold.setTypeface(Typeface.create("snowstorm-sys", Typeface.NORMAL));
         }
         if (lockClockFont == 59) {
+            mClockView.setTypeface(Typeface.create("source-sans-pro", Typeface.NORMAL));
+            mClockViewBold.setTypeface(Typeface.create("source-sans-pro", Typeface.NORMAL));
+        }
+        if (lockClockFont == 60) {
             mClockView.setTypeface(Typeface.create("themeable-clock", Typeface.NORMAL));
             mClockViewBold.setTypeface(Typeface.create("themeable-clock", Typeface.NORMAL));
         }
-        if (lockClockFont == 60) {
+        if (lockClockFont == 61) {
             mClockView.setTypeface(Typeface.create("the-outbox", Typeface.NORMAL));
             mClockViewBold.setTypeface(Typeface.create("the-outbox", Typeface.NORMAL));
         }
-        if (lockClockFont == 61) {
+        if (lockClockFont == 62) {
             mClockView.setTypeface(Typeface.create("unionfont", Typeface.NORMAL));
             mClockViewBold.setTypeface(Typeface.create("unionfont", Typeface.NORMAL));
         }
-        if (lockClockFont == 62) {
+        if (lockClockFont == 63) {
             mClockView.setTypeface(Typeface.create("vibur", Typeface.NORMAL));
             mClockViewBold.setTypeface(Typeface.create("vibur", Typeface.NORMAL));
         }
-        if (lockClockFont == 63) {
+        if (lockClockFont == 64) {
             mClockView.setTypeface(Typeface.create("voltaire", Typeface.NORMAL));
             mClockViewBold.setTypeface(Typeface.create("voltaire", Typeface.NORMAL));
         }

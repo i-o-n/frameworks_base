@@ -337,18 +337,21 @@ public class TypographicClock extends TextView {
             setTypeface(Typeface.create("snowstorm-sys", Typeface.NORMAL));
         }
         if (lockClockFont == 59) {
-            setTypeface(Typeface.create("themeable-clock", Typeface.NORMAL));
+            setTypeface(Typeface.create("source-sans-pro", Typeface.NORMAL));
         }
         if (lockClockFont == 60) {
-            setTypeface(Typeface.create("the-outbox", Typeface.NORMAL));
+            setTypeface(Typeface.create("themeable-clock", Typeface.NORMAL));
         }
         if (lockClockFont == 61) {
-            setTypeface(Typeface.create("unionfont", Typeface.NORMAL));
+            setTypeface(Typeface.create("the-outbox", Typeface.NORMAL));
         }
         if (lockClockFont == 62) {
-            setTypeface(Typeface.create("vibur", Typeface.NORMAL));
+            setTypeface(Typeface.create("unionfont", Typeface.NORMAL));
         }
         if (lockClockFont == 63) {
+            setTypeface(Typeface.create("vibur", Typeface.NORMAL));
+        }
+        if (lockClockFont == 64) {
             setTypeface(Typeface.create("voltaire", Typeface.NORMAL));
         }
     }

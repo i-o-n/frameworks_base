@@ -983,18 +983,21 @@ public class Clock extends TextView implements DemoMode, CommandQueue.Callbacks,
                 setTypeface(Typeface.create("snowstorm-sys", Typeface.NORMAL));
                 break;
             case 59:
-                setTypeface(Typeface.create("themeable-clock", Typeface.NORMAL));
+                setTypeface(Typeface.create("source-sans-pro", Typeface.NORMAL));
                 break;
             case 60:
-                setTypeface(Typeface.create("the-outbox", Typeface.NORMAL));
+                setTypeface(Typeface.create("themeable-clock", Typeface.NORMAL));
                 break;
             case 61:
-                setTypeface(Typeface.create("unionfont", Typeface.NORMAL));
+                setTypeface(Typeface.create("the-outbox", Typeface.NORMAL));
                 break;
             case 62:
-                setTypeface(Typeface.create("vibur", Typeface.NORMAL));
+                setTypeface(Typeface.create("unionfont", Typeface.NORMAL));
                 break;
             case 63:
+                setTypeface(Typeface.create("vibur", Typeface.NORMAL));
+                break;
+            case 64:
                 setTypeface(Typeface.create("voltaire", Typeface.NORMAL));
                 break;
         }

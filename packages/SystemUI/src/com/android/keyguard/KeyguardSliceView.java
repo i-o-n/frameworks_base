@@ -749,18 +749,21 @@ public class KeyguardSliceView extends LinearLayout implements View.OnClickListe
             button.setTypeface(Typeface.create("snowstorm-sys", Typeface.NORMAL));
         }
         if (lockDateFont == 59) {
-            button.setTypeface(Typeface.create("themeable-clock", Typeface.NORMAL));
+            button.setTypeface(Typeface.create("source-sans-pro", Typeface.NORMAL));
         }
         if (lockDateFont == 60) {
-            button.setTypeface(Typeface.create("the-outbox", Typeface.NORMAL));
+            button.setTypeface(Typeface.create("themeable-clock", Typeface.NORMAL));
         }
         if (lockDateFont == 61) {
-            button.setTypeface(Typeface.create("unionfont", Typeface.NORMAL));
+            button.setTypeface(Typeface.create("the-outbox", Typeface.NORMAL));
         }
         if (lockDateFont == 62) {
-            button.setTypeface(Typeface.create("vibur", Typeface.NORMAL));
+            button.setTypeface(Typeface.create("unionfont", Typeface.NORMAL));
         }
         if (lockDateFont == 63) {
+            button.setTypeface(Typeface.create("vibur", Typeface.NORMAL));
+        }
+        if (lockDateFont == 64) {
             button.setTypeface(Typeface.create("voltaire", Typeface.NORMAL));
         }
     }

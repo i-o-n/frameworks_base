@@ -609,18 +609,21 @@ public class KeyguardStatusView extends GridLayout implements
             mKeyguardSlice.setViewsTypeface(Typeface.create("snowstorm-sys", Typeface.NORMAL));
         }
         if (lockDateFont == 59) {
-            mKeyguardSlice.setViewsTypeface(Typeface.create("themeable-clock", Typeface.NORMAL));
+            mKeyguardSlice.setViewsTypeface(Typeface.create("source-sans-pro", Typeface.NORMAL));
         }
         if (lockDateFont == 60) {
-            mKeyguardSlice.setViewsTypeface(Typeface.create("the-outbox", Typeface.NORMAL));
+            mKeyguardSlice.setViewsTypeface(Typeface.create("themeable-clock", Typeface.NORMAL));
         }
         if (lockDateFont == 61) {
-            mKeyguardSlice.setViewsTypeface(Typeface.create("unionfont", Typeface.NORMAL));
+            mKeyguardSlice.setViewsTypeface(Typeface.create("the-outbox", Typeface.NORMAL));
         }
         if (lockDateFont == 62) {
-            mKeyguardSlice.setViewsTypeface(Typeface.create("vibur", Typeface.NORMAL));
+            mKeyguardSlice.setViewsTypeface(Typeface.create("unionfont", Typeface.NORMAL));
         }
         if (lockDateFont == 63) {
+            mKeyguardSlice.setViewsTypeface(Typeface.create("vibur", Typeface.NORMAL));
+        }
+        if (lockDateFont == 64) {
             mKeyguardSlice.setViewsTypeface(Typeface.create("voltaire", Typeface.NORMAL));
         }
     }
@@ -941,18 +944,21 @@ public class KeyguardStatusView extends GridLayout implements
             mOwnerInfo.setTypeface(Typeface.create("snowstorm-sys", Typeface.NORMAL));
         }
         if (ownerinfoFont == 59) {
-            mOwnerInfo.setTypeface(Typeface.create("themeable-clock", Typeface.NORMAL));
+            mOwnerInfo.setTypeface(Typeface.create("source-sans-pro", Typeface.NORMAL));
         }
         if (ownerinfoFont == 60) {
-            mOwnerInfo.setTypeface(Typeface.create("the-outbox", Typeface.NORMAL));
+            mOwnerInfo.setTypeface(Typeface.create("themeable-clock", Typeface.NORMAL));
         }
         if (ownerinfoFont == 61) {
-            mOwnerInfo.setTypeface(Typeface.create("unionfont", Typeface.NORMAL));
+            mOwnerInfo.setTypeface(Typeface.create("the-outbox", Typeface.NORMAL));
         }
         if (ownerinfoFont == 62) {
-            mOwnerInfo.setTypeface(Typeface.create("vibur", Typeface.NORMAL));
+            mOwnerInfo.setTypeface(Typeface.create("unionfont", Typeface.NORMAL));
         }
         if (ownerinfoFont == 63) {
+            mOwnerInfo.setTypeface(Typeface.create("vibur", Typeface.NORMAL));
+        }
+        if (ownerinfoFont == 64) {
             mOwnerInfo.setTypeface(Typeface.create("voltaire", Typeface.NORMAL));
         }
     }
