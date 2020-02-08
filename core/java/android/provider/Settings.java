@@ -6432,6 +6432,12 @@ public final class Settings {
         public static final String FOD_ICON = "fod_icon";
 
         /**
+         * FOD recognizing animation picker
+         * @hide
+         */
+        public static final String FOD_ANIM = "fod_anim";
+
+        /**
          * Whether to change the color of the qs panel
          * @hide
          */
@@ -6693,12 +6699,6 @@ public final class Settings {
 
         /** @hide */
         private static final Validator BATTERY_BAR_LOW_COLOR_VALIDATOR = ANY_INTEGER_VALIDATOR;
-
-        /**
-         * FOD recognizing animation
-         * @hide
-         */
-        public static final String FOD_RECOGNIZING_ANIMATION = "fod_recognizing_animation";
 
         /**
          * Whether to use a gradient for battery bar color
