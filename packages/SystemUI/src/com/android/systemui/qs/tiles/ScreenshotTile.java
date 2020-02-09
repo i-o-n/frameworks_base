@@ -70,7 +70,7 @@ public class ScreenshotTile extends QSTileImpl<BooleanState> {
 
     @Override
     protected void handleUpdateState(BooleanState state, Object arg) {
-        state.icon = ResourceIcon.get(R.drawable.ic_qs_screenshot);
+        state.icon = ResourceIcon.get(com.android.internal.R.drawable.ic_screenshot);
         state.label = mContext.getString(R.string.quick_settings_screenshot_label);
     }
 
