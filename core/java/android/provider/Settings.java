@@ -6431,12 +6431,18 @@ public final class Settings {
          */
         public static final String FOD_ICON = "fod_icon";
 
+        /** @hide */
+        private static final Validator FOD_ICON_VALIDATOR = ANY_STRING_VALIDATOR;
+
         /**
          * FOD recognizing animation picker
          * @hide
          */
         public static final String FOD_ANIM = "fod_anim";
 
+        /** @hide */
+        private static final Validator FOD_ANIM_VALIDATOR =
+                new SettingsValidators.InclusiveIntegerRangeValidator(0, 15);
         /**
          * Whether to change the color of the qs panel
          * @hide
@@ -6699,6 +6705,16 @@ public final class Settings {
 
         /** @hide */
         private static final Validator BATTERY_BAR_LOW_COLOR_VALIDATOR = ANY_INTEGER_VALIDATOR;
+
+        /**
+         * FOD recognizing animation
+         * @hide
+         */
+        public static final String FOD_RECOGNIZING_ANIMATION = "fod_recognizing_animation";
+
+        /** @hide */
+        private static final Validator FOD_RECOGNIZING_ANIMATION_VALIDATOR =
+                BOOLEAN_VALIDATOR;
 
         /**
          * Whether to use a gradient for battery bar color
@@ -7130,6 +7146,9 @@ public final class Settings {
             DISPLAY_CUTOUT_MODE,
             STOCK_STATUSBAR_IN_HIDE,
             QS_DATAUSAGE,
+            FOD_ICON,
+            FOD_RECOGNIZING_ANIMATION,
+            FOD_ANIM,
         };
 
         /**
@@ -7702,6 +7721,9 @@ public final class Settings {
             VALIDATORS.put(STOCK_STATUSBAR_IN_HIDE, STOCK_STATUSBAR_IN_HIDE_VALIDATOR);
             VALIDATORS.put(LOCKSCREEN_TRANSLUCENT_NOTIFICATIONS_BG_ENABLED, LOCKSCREEN_TRANSLUCENT_NOTIFICATIONS_BG_ENABLED_VALIDATOR);
             VALIDATORS.put(QS_DATAUSAGE, QS_DATAUSAGE_VALIDATOR);
+            VALIDATORS.put(FOD_ICON, FOD_ICON_VALIDATOR);
+            VALIDATORS.put(FOD_RECOGNIZING_ANIMATION, FOD_RECOGNIZING_ANIMATION_VALIDATOR);
+            VALIDATORS.put(FOD_ANIM, FOD_ANIM_VALIDATOR);
         }
 
         /**
