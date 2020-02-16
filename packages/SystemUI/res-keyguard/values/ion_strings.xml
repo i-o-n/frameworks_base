@@ -23,7 +23,7 @@
 
     <!-- Minutes displayed in words on the typographic clock face. [CHAR LIMIT=20] -->
     <string-array name="type_clock_minutes_alt">
-        <item>O\u2019Clock</item>
+        <item>O\u2019Ноль</item>
         <item>O\u2019Один</item>
         <item>O\u2019Два</item>
         <item>O\u2019Три</item>
