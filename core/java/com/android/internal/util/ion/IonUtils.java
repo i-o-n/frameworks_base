@@ -17,6 +17,7 @@
 package com.android.internal.util.ion;
 
 import android.Manifest;
+import android.app.ActivityManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -27,6 +28,7 @@ import android.content.res.Resources;
 import android.hardware.fingerprint.FingerprintManager;
 import android.hardware.input.InputManager;
 import android.hardware.SensorManager;
+import android.media.AudioManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Handler;
@@ -74,6 +76,18 @@ public class IonUtils {
      * @hide
      */
     public static final String DISMISS_KEYGUARD_EXTRA_INTENT = "launch";
+
+    // Clear notifications
+    public static void clearAllNotifications() {
+        IStatusBarService service = getStatusBarService();
+        if (service != null) {
+            try {
+                service.onClearAllNotifications(ActivityManager.getCurrentUser());
+            } catch (RemoteException e) {
+                // do nothing.
+            }
+        }
+    }
 
     // Check if device has flashlight
     public static boolean deviceHasFlashlight(Context ctx) {
@@ -256,6 +270,7 @@ public class IonUtils {
         pm.setComponentEnabledSetting(componentName, state, PackageManager.DONT_KILL_APP);
     }
 
+    // Partial screenshot
     public static void setPartialScreenshot(boolean active) {
         FireActions.setPartialScreenshot(active);
     }
@@ -288,6 +303,12 @@ public class IonUtils {
 
     public static void toggleCameraFlashOff() {
         FireActions.toggleCameraFlashOff();
+    }
+
+    // Volume panel
+    public static void toggleVolumePanel(Context context) {
+        AudioManager am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+        am.adjustVolume(AudioManager.ADJUST_SAME, AudioManager.FLAG_SHOW_UI);
     }
 
     private static final class FireActions {
