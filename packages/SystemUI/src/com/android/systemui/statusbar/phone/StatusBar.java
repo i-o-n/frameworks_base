@@ -4352,6 +4352,9 @@ public class StatusBar extends SystemUI implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.LOCKSCREEN_MEDIA_BLUR),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.BACK_GESTURE_HAPTIC),
+                    false, this, UserHandle.USER_ALL);
         }
 
         @Override
@@ -4407,6 +4410,8 @@ public class StatusBar extends SystemUI implements DemoMode,
                 mQSPanel.getHost().reloadAllTiles();
             } else if (uri.equals(Settings.System.getUriFor(Settings.System.LOCKSCREEN_MEDIA_BLUR))) {
                 setLockScreenMediaBlurLevel();
+            } else if (uri.equals(Settings.System.getUriFor(Settings.System.BACK_GESTURE_HAPTIC))) {
+                setHapticFeedbackForBackGesture();
             }
         }
 
@@ -4428,6 +4433,13 @@ public class StatusBar extends SystemUI implements DemoMode,
             setAmbientVis();
             updateQSPanel();
             setLockScreenMediaBlurLevel();
+            setHapticFeedbackForBackGesture();
+        }
+    }
+
+    private void setHapticFeedbackForBackGesture() {
+        if (getNavigationBarView() != null) {
+            getNavigationBarView().updateBackGestureHaptic();
         }
     }
 
