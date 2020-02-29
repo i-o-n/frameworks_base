@@ -7437,6 +7437,9 @@ message MetricsEvent {
     // CustomSettings constant
     CUSTOM_SETTINGS = 1999;
 
+    // Panel for Mobile Data
+    PANEL_MOBILE_DATA = 2002;
+
     // IonIonizer constant
     ION_IONIZER = 2222;
 
