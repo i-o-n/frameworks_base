@@ -126,6 +126,7 @@ interface IStatusBarService
     void cancelPreloadRecentApps();
     void startAssist(in Bundle args);
     void setPartialScreenshot(boolean active);
+    void killForegroundApp();
 
     // Used to disable keyboard rotation
     void setAutoRotate(boolean enabled);

@@ -292,6 +292,17 @@ public class IonUtils {
         return (cm.isNetworkSupported(ConnectivityManager.TYPE_MOBILE) == false);
     }
 
+    public static void killForegroundApp() {
+        IStatusBarService service = getStatusBarService();
+        if (service != null) {
+            try {
+                service.killForegroundApp();
+            } catch (RemoteException e) {
+                // do nothing.
+            }
+        }
+    }
+
     // Launch camera
     public static void launchCamera(Context context) {
         Intent intent = new Intent(MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA_SECURE);
