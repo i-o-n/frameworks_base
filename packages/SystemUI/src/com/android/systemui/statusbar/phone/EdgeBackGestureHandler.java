@@ -663,6 +663,9 @@ public class EdgeBackGestureHandler implements DisplayListener {
             case 12: // Ringer modes
                 IonUtils.toggleRingerModes(mContext);
                 break;
+            case 13: // Kill app
+                IonUtils.killForegroundApp();
+                break;
         }
     }
 
