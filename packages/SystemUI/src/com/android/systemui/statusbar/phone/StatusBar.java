@@ -506,7 +506,6 @@ public class StatusBar extends SystemUI implements DemoMode,
     private boolean mGamingModeActivated;
     private int mHeadsUpDisabled;
 
-    protected static NotificationPanelView mStaticNotificationPanel;
     public ImageView mQSBlurView;
     private boolean blurperformed = false;
 
@@ -989,7 +988,6 @@ public class StatusBar extends SystemUI implements DemoMode,
         // TODO: Deal with the ugliness that comes from having some of the statusbar broken out
         // into fragments, but the rest here, it leaves some awkward lifecycle and whatnot.
         mNotificationPanel = mStatusBarWindow.findViewById(R.id.notification_panel);
-        mStaticNotificationPanel = mNotificationPanel;
         mStackScroller = mStatusBarWindow.findViewById(R.id.notification_stack_scroller);
         mZenController.addCallback(this);
         mQSBlurView = mStatusBarWindow.findViewById(R.id.qs_blur);
@@ -1310,7 +1308,8 @@ public class StatusBar extends SystemUI implements DemoMode,
 
     public void updateBlurVisibility() {
 
-        int QSBlurAlpha = Math.round(255.0f * mStaticNotificationPanel.getExpandedFraction());
+        int QSBlurAlpha = Math.round(255.0f * (mNotificationPanel.getExpandedHeight() / (getDisplayHeight() * 0.4f)));
+        if (QSBlurAlpha > 255) QSBlurAlpha = 255;
 
         if (QSBlurAlpha > 0 && !blurperformed && !mIsKeyguard && isQSBlurEnabled()) {
             Bitmap bittemp = ImageUtilities.blurImage(mContext, ImageUtilities.screenshotSurface(mContext));
@@ -3256,6 +3255,14 @@ public class StatusBar extends SystemUI implements DemoMode,
         mViewHierarchyManager.updateRowStates();
         mScreenPinningRequest.onConfigurationChanged();
         handleCutout(newConfig);
+
+        if(mQSBlurView != null) {
+            int orientation = mContext.getResources().getConfiguration().orientation;
+            if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                Drawable emptyDrawable = new ColorDrawable(Color.TRANSPARENT);
+                mQSBlurView.setBackgroundDrawable(emptyDrawable);
+            }
+        }
     }
 
     @Override
