@@ -6333,12 +6333,6 @@ public final class Settings {
          */
         public static final String FLASHLIGHT_ON_CALL_WAITING = "flashlight_on_call_waiting";
 
-        /** @hide */
-        public static final String GESTURE_PILL_TOGGLE = "gesture_pill_toggle";
-
-        /** @hide */
-        private static final Validator GESTURE_PILL_TOGGLE_VALIDATOR = BOOLEAN_VALIDATOR;
-
         /**
          * Whether to show Brightness Icon On Brightness Slider
          * @hide
@@ -6974,7 +6968,6 @@ public final class Settings {
             VOLTE_ICON_STYLE,
             DATA_DISABLED_ICON,
             FLASHLIGHT_ON_CALL,
-            GESTURE_PILL_TOGGLE,
             QS_SHOW_BRIGHTNESS_ICON,
             QS_SHOW_BRIGHTNESS_MINMAX,
             STATUS_BAR_CUSTOM_HEADER,
@@ -7268,7 +7261,6 @@ public final class Settings {
             PRIVATE_SETTINGS.add(VOLTE_ICON_STYLE);
             PRIVATE_SETTINGS.add(DATA_DISABLED_ICON);
             PRIVATE_SETTINGS.add(FLASHLIGHT_ON_CALL);
-            PRIVATE_SETTINGS.add(GESTURE_PILL_TOGGLE);
             PRIVATE_SETTINGS.add(QS_SHOW_BRIGHTNESS_ICON);
             PRIVATE_SETTINGS.add(QS_SHOW_BRIGHTNESS_MINMAX);
             PRIVATE_SETTINGS.add(STATUS_BAR_CUSTOM_HEADER);
@@ -7540,7 +7532,6 @@ public final class Settings {
             VALIDATORS.put(VOLTE_ICON_STYLE, VOLTE_ICON_STYLE_VALIDATOR);
             VALIDATORS.put(DATA_DISABLED_ICON, DATA_DISABLED_ICON_VALIDATOR);
             VALIDATORS.put(FLASHLIGHT_ON_CALL, FLASHLIGHT_ON_CALL_VALIDATOR);
-            VALIDATORS.put(GESTURE_PILL_TOGGLE, GESTURE_PILL_TOGGLE_VALIDATOR);
             VALIDATORS.put(QS_SHOW_BRIGHTNESS_ICON, QS_SHOW_BRIGHTNESS_ICON_VALIDATOR);
             VALIDATORS.put(QS_SHOW_BRIGHTNESS_MINMAX, QS_SHOW_BRIGHTNESS_MINMAX_VALIDATOR);
             VALIDATORS.put(STATUS_BAR_CUSTOM_HEADER, STATUS_BAR_CUSTOM_HEADER_VALIDATOR);
