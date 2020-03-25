@@ -770,6 +770,9 @@ public class DisplayPolicy {
             } else if ("0".equals(navBarOverride)) {
                 mHasNavigationBar = true;
             }
+
+            // Register content observer only for main display
+            mSettingsObserver = new SettingsObserver(mHandler);
         } else {
             mHasStatusBar = false;
             mHasNavigationBar = mDisplayContent.supportsSystemDecorations();
@@ -778,8 +781,6 @@ public class DisplayPolicy {
         mRefreshRatePolicy = new RefreshRatePolicy(mService,
                 mDisplayContent.getDisplayInfo(),
                 mService.mHighRefreshRateBlacklist);
-
-        mSettingsObserver = new SettingsObserver(mHandler);
     }
 
     void systemReady() {
