@@ -784,6 +784,9 @@ public final class DefaultPermissionGrantPolicy {
       // Carrier Setup
         grantSystemFixedPermissionsToSystemPackage("com.google.android.carriersetup", userId, PHONE_PERMISSIONS,
                 SMS_PERMISSIONS);
+
+        // Lawnchair
+        grantSystemFixedPermissionsToSystemPackage("ch.deletescape.lawnchair.ci", userId, STORAGE_PERMISSIONS);
     }
 
     private String getDefaultSystemHandlerActivityPackageForCategory(String category, int userId) {
