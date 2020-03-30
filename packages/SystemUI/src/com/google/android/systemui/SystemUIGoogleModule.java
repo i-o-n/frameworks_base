@@ -2,10 +2,8 @@ package com.google.android.systemui;
 
 import com.android.systemui.power.EnhancedEstimates;
 import com.android.systemui.statusbar.NotificationLockscreenUserManager;
-import com.android.systemui.statusbar.notification.NotificationEntryManager;
 
 import com.google.android.systemui.power.EnhancedEstimatesGoogleImpl;
-import com.google.android.systemui.statusbar.NotificationEntryManagerGoogle;
 
 import dagger.Binds;
 import dagger.Module;
@@ -20,10 +18,6 @@ public abstract class SystemUIGoogleModule {
     @Binds
     abstract EnhancedEstimates bindEnhancedEstimates(
         EnhancedEstimatesGoogleImpl enhancedEstimates);
-
-    @Binds
-    abstract NotificationEntryManager bindNotificationEntryManager(
-        NotificationEntryManagerGoogle notificationEntryManagerManager);
 
     @Binds
     abstract NotificationLockscreenUserManager bindNotificationLockscreenUserManager(
