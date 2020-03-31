@@ -137,6 +137,7 @@ public class ScreenStabilizationTile extends QSTileImpl<BooleanState> {
         state.value = (Settings.System.getInt(mContext.getContentResolver(), Settings.System.STABILIZATION_ENABLE, 0) == 1);
         state.label = mContext.getString(R.string.quick_settings_stabilization_label);
         state.icon = ResourceIcon.get(R.drawable.ic_screen_stabilization);
+        state.dualTarget = true;
         if (state.value) {
             state.state = Tile.STATE_ACTIVE;
         } else {
