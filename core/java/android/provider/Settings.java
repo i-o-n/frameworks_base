@@ -6572,8 +6572,16 @@ public final class Settings {
         public static final String INCALL_FEEDBACK_VIBRATE = "incall_feeedback_vibrate";
 
         /** @hide */
-        public static final Validator INCALL_FEEDBACK_VIBRATE_VALIDATOR =
-                BOOLEAN_VALIDATOR;
+        private static final Validator INCALL_FEEDBACK_VIBRATE_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
+         * Controls whether to show R style notification headers
+         * @hide
+         */
+        public static final String NOTIFICATION_HEADERS = "notification_headers";
+
+        /** @hide */
+        private static final Validator NOTIFICATION_HEADERS_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
@@ -6781,6 +6789,7 @@ public final class Settings {
             TEXT_CLOCK_PADDING,
             BACK_GESTURE_BLOCK_IME,
             BACK_GESTURE_HAPTIC,
+            NOTIFICATION_HEADERS,
         };
 
         /**
@@ -7058,6 +7067,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(BACK_GESTURE_BLOCK_IME);
             PRIVATE_SETTINGS.add(BACK_GESTURE_HAPTIC);
             PRIVATE_SETTINGS.add(INCALL_FEEDBACK_VIBRATE);
+            PRIVATE_SETTINGS.add(NOTIFICATION_HEADERS);
         }
 
         /**
@@ -7313,6 +7323,7 @@ public final class Settings {
             VALIDATORS.put(BACK_GESTURE_BLOCK_IME, BACK_GESTURE_BLOCK_IME_VALIDATOR);
             VALIDATORS.put(BACK_GESTURE_HAPTIC, BACK_GESTURE_HAPTIC_VALIDATOR);
             VALIDATORS.put(INCALL_FEEDBACK_VIBRATE, INCALL_FEEDBACK_VIBRATE_VALIDATOR);
+            VALIDATORS.put(NOTIFICATION_HEADERS, NOTIFICATION_HEADERS_VALIDATOR);
         }
 
         /**
