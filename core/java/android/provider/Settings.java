@@ -6566,15 +6566,6 @@ public final class Settings {
         public static final String RINGTONE_VIBRATION_PATTERN = "ringtone_vibration_pattern";
 
         /**
-         * Whether to vibrate on call state change
-         * @hide
-         */
-        public static final String INCALL_FEEDBACK_VIBRATE = "incall_feeedback_vibrate";
-
-        /** @hide */
-        private static final Validator INCALL_FEEDBACK_VIBRATE_VALIDATOR = BOOLEAN_VALIDATOR;
-
-        /**
          * Controls whether to show R style notification headers
          * @hide
          */
@@ -7176,7 +7167,6 @@ public final class Settings {
             PRIVATE_SETTINGS.add(TEXT_CLOCK_PADDING);
             PRIVATE_SETTINGS.add(BACK_GESTURE_BLOCK_IME);
             PRIVATE_SETTINGS.add(BACK_GESTURE_HAPTIC);
-            PRIVATE_SETTINGS.add(INCALL_FEEDBACK_VIBRATE);
             PRIVATE_SETTINGS.add(NOTIFICATION_HEADERS);
             PRIVATE_SETTINGS.add(BATTERY_BAR_SWITCH);
             PRIVATE_SETTINGS.add(BATTERY_BAR_LOCATION);
@@ -7443,7 +7433,6 @@ public final class Settings {
             VALIDATORS.put(TEXT_CLOCK_PADDING, TEXT_CLOCK_PADDING_VALIDATOR);
             VALIDATORS.put(BACK_GESTURE_BLOCK_IME, BACK_GESTURE_BLOCK_IME_VALIDATOR);
             VALIDATORS.put(BACK_GESTURE_HAPTIC, BACK_GESTURE_HAPTIC_VALIDATOR);
-            VALIDATORS.put(INCALL_FEEDBACK_VIBRATE, INCALL_FEEDBACK_VIBRATE_VALIDATOR);
             VALIDATORS.put(NOTIFICATION_HEADERS, NOTIFICATION_HEADERS_VALIDATOR);
             VALIDATORS.put(BATTERY_BAR_SWITCH, BATTERY_BAR_SWITCH_VALIDATOR);
             VALIDATORS.put(BATTERY_BAR_LOCATION, BATTERY_BAR_LOCATION_VALIDATOR);
