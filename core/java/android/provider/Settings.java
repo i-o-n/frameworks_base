@@ -3604,7 +3604,7 @@ public final class Settings {
          * @hide
          */
         public static final String STATUS_BAR_IME_SWITCHER = "status_bar_ime_switcher";
-       
+
         /**
          * Control whether the process CPU usage meter should be shown.
          *
@@ -6584,15 +6584,25 @@ public final class Settings {
         private static final Validator NOTIFICATION_HEADERS_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /**
-         * Whether to show the battery bar
+         * Whether to show battery bar
+         * @hide
+         */
+        public static final String BATTERY_BAR_SWITCH = "battery_bar_switch";
+
+        /** @hide */
+        private static final Validator BATTERY_BAR_SWITCH_VALIDATOR = ANY_INTEGER_VALIDATOR;
+
+        /**
+         * Battery bar location
          * @hide
          */
         public static final String BATTERY_BAR_LOCATION = "battery_bar_location";
 
         /** @hide */
-        private static final Validator BATTERY_BAR_LOCATION_VALIDATOR = new SettingsValidators.InclusiveIntegerRangeValidator(0, 3);
+        private static final Validator BATTERY_BAR_LOCATION_VALIDATOR = ANY_INTEGER_VALIDATOR;
 
         /**
+         * Battery bar color
          * @hide
          */
         public static final String BATTERY_BAR_COLOR = "battery_bar_color";
@@ -6601,6 +6611,7 @@ public final class Settings {
         private static final Validator BATTERY_BAR_COLOR_VALIDATOR = ANY_INTEGER_VALIDATOR;
 
         /**
+         * Battery bar thickness
          * @hide
          */
         public static final String BATTERY_BAR_THICKNESS = "battery_bar_thickness";
@@ -6609,6 +6620,7 @@ public final class Settings {
         private static final Validator BATTERY_BAR_THICKNESS_VALIDATOR = new SettingsValidators.InclusiveIntegerRangeValidator(1, 4);
 
         /**
+         * Battery bar style
          * @hide
          */
         public static final String BATTERY_BAR_STYLE = "battery_bar_style";
@@ -6877,6 +6889,7 @@ public final class Settings {
             BACK_GESTURE_BLOCK_IME,
             BACK_GESTURE_HAPTIC,
             NOTIFICATION_HEADERS,
+            BATTERY_BAR_SWITCH,
             BATTERY_BAR_LOCATION,
             BATTERY_BAR_COLOR,
             BATTERY_BAR_THICKNESS,
@@ -7165,6 +7178,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(BACK_GESTURE_HAPTIC);
             PRIVATE_SETTINGS.add(INCALL_FEEDBACK_VIBRATE);
             PRIVATE_SETTINGS.add(NOTIFICATION_HEADERS);
+            PRIVATE_SETTINGS.add(BATTERY_BAR_SWITCH);
             PRIVATE_SETTINGS.add(BATTERY_BAR_LOCATION);
             PRIVATE_SETTINGS.add(BATTERY_BAR_COLOR);
             PRIVATE_SETTINGS.add(BATTERY_BAR_THICKNESS);
@@ -7431,6 +7445,7 @@ public final class Settings {
             VALIDATORS.put(BACK_GESTURE_HAPTIC, BACK_GESTURE_HAPTIC_VALIDATOR);
             VALIDATORS.put(INCALL_FEEDBACK_VIBRATE, INCALL_FEEDBACK_VIBRATE_VALIDATOR);
             VALIDATORS.put(NOTIFICATION_HEADERS, NOTIFICATION_HEADERS_VALIDATOR);
+            VALIDATORS.put(BATTERY_BAR_SWITCH, BATTERY_BAR_SWITCH_VALIDATOR);
             VALIDATORS.put(BATTERY_BAR_LOCATION, BATTERY_BAR_LOCATION_VALIDATOR);
             VALIDATORS.put(BATTERY_BAR_COLOR, BATTERY_BAR_COLOR_VALIDATOR);
             VALIDATORS.put(BATTERY_BAR_THICKNESS, BATTERY_BAR_THICKNESS_VALIDATOR);

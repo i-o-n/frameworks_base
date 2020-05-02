@@ -44,7 +44,7 @@
     <com.android.systemui.statusbar.policy.BatteryBarController
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        systemui:viewLocation="5"/>
+        systemui:viewLocation="2"/>
 
     <com.android.systemui.qs.QuickQSPanel
         android:id="@+id/quick_qs_panel"
