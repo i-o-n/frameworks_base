@@ -6656,6 +6656,15 @@ public final class Settings {
         private static final Validator BATTERY_BAR_ANIMATE_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /**
+         * Battery bar charging animation color
+         * @hide
+         */
+        public static final String BATTERY_BAR_ANIMATE_COLOR = "battery_bar_animate_color";
+
+        /** @hide */
+        private static final Validator BATTERY_BAR_ANIMATE_COLOR_VALIDATOR = ANY_INTEGER_VALIDATOR;
+
+        /**
          * Color of the battery bar while charging
          * @hide
          */
@@ -6916,6 +6925,7 @@ public final class Settings {
             BATTERY_BAR_THICKNESS,
             BATTERY_BAR_STYLE,
             BATTERY_BAR_ANIMATE,
+            BATTERY_BAR_ANIMATE_COLOR,
             BATTERY_BAR_CHARGING_COLOR,
             BATTERY_BAR_BATTERY_LOW_COLOR_WARNING,
             BATTERY_BAR_HIGH_COLOR,
@@ -7207,6 +7217,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(BATTERY_BAR_THICKNESS);
             PRIVATE_SETTINGS.add(BATTERY_BAR_STYLE);
             PRIVATE_SETTINGS.add(BATTERY_BAR_ANIMATE);
+            PRIVATE_SETTINGS.add(BATTERY_BAR_ANIMATE_COLOR);
             PRIVATE_SETTINGS.add(BATTERY_BAR_CHARGING_COLOR);
             PRIVATE_SETTINGS.add(BATTERY_BAR_BATTERY_LOW_COLOR_WARNING);
             PRIVATE_SETTINGS.add(BATTERY_BAR_HIGH_COLOR);
@@ -7476,6 +7487,7 @@ public final class Settings {
             VALIDATORS.put(BATTERY_BAR_THICKNESS, BATTERY_BAR_THICKNESS_VALIDATOR);
             VALIDATORS.put(BATTERY_BAR_STYLE, BATTERY_BAR_STYLE_VALIDATOR);
             VALIDATORS.put(BATTERY_BAR_ANIMATE, BATTERY_BAR_ANIMATE_VALIDATOR);
+            VALIDATORS.put(BATTERY_BAR_ANIMATE_COLOR, BATTERY_BAR_ANIMATE_COLOR_VALIDATOR);
             VALIDATORS.put(BATTERY_BAR_CHARGING_COLOR, BATTERY_BAR_CHARGING_COLOR_VALIDATOR);
             VALIDATORS.put(BATTERY_BAR_BATTERY_LOW_COLOR_WARNING, BATTERY_BAR_BATTERY_LOW_COLOR_WARNING_VALIDATOR);
             VALIDATORS.put(BATTERY_BAR_HIGH_COLOR, BATTERY_BAR_HIGH_COLOR_VALIDATOR);
