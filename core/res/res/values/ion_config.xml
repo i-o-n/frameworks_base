@@ -209,4 +209,7 @@
 
     <!-- SBC Dual Channel (SBC HD Audio) -->
     <bool name="config_enableSBCDualChannelAudio">true</bool>
+
+    <!-- Whether device has a notch -->
+    <bool name="config_haveNotch">false</bool>
 </resources>
