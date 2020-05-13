@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 The ion-OS Project
+ * Copyright (C) 2020 The ion-OS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,32 +16,36 @@
 
 package com.android.internal.util.ion;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Resources;
+import android.hardware.fingerprint.FingerprintManager;
 import android.hardware.input.InputManager;
 import android.hardware.SensorManager;
+import android.net.ConnectivityManager;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.PowerManager;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.os.SystemClock;
+import android.os.SystemProperties;
 import android.os.UserHandle;
 import android.text.TextUtils;
-import android.util.DisplayMetrics;
 import android.view.IWindowManager;
-import android.view.WindowManagerGlobal;
 import android.view.InputDevice;
 import android.view.KeyCharacterMap;
 import android.view.KeyEvent;
-
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager.NameNotFoundException;
+import android.view.WindowManagerGlobal;
 
 import com.android.internal.R;
 import com.android.internal.statusbar.IStatusBarService;
+
+import java.util.Locale;
 
 import static android.hardware.Sensor.TYPE_LIGHT;
 import static android.hardware.Sensor.TYPE_PROXIMITY;
@@ -69,12 +73,98 @@ public class IonUtils {
      */
     public static final String DISMISS_KEYGUARD_EXTRA_INTENT = "launch";
 
+    // Check if device has flashlight
+    public static boolean deviceHasFlashlight(Context ctx) {
+        return ctx.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
+    }
 
-    public static void switchScreenOff(Context ctx) {
-        PowerManager pm = (PowerManager) ctx.getSystemService(Context.POWER_SERVICE);
-        if (pm!= null) {
-            pm.goToSleep(SystemClock.uptimeMillis());
+    // Check if device has lightsensor
+    public static boolean deviceHasLightSensor(Context context) {
+        SensorManager sm = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
+        return sm.getDefaultSensor(TYPE_LIGHT) != null;
+    }
+
+    // Check if device has proximity sensor
+    public static boolean deviceHasProximitySensor(Context context) {
+        SensorManager sm = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
+        return sm.getDefaultSensor(TYPE_PROXIMITY) != null;
+    }
+
+    // Check if device has an alterative ambient display package
+    public static boolean hasAltAmbientDisplay(Context context) {
+        return context.getResources().getBoolean(com.android.internal.R.bool.config_alt_ambient_display);
+    }
+
+    // Check if device has Bluetooth
+    public static boolean hasBluetooth(Context context) {
+        return context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH);
+    }
+
+    // Check if device has camera
+    public static boolean hasCamera(Context context) {
+        return context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA);
+    }
+
+    // Check if device has fingerprint sensor and is enrolled
+    public static boolean hasFingerprintEnrolled(Context context) {
+        FingerprintManager fingerprintManager = (FingerprintManager) context.getSystemService(Context.FINGERPRINT_SERVICE);
+        return context.getApplicationContext().checkSelfPermission(Manifest.permission.USE_FINGERPRINT) == PackageManager.PERMISSION_GRANTED &&
+        (fingerprintManager != null && fingerprintManager.isHardwareDetected() && fingerprintManager.hasEnrolledFingerprints());
+    }
+
+    // Check if device has fingerprint sensor
+    public static boolean hasFingerprintSensor(Context context) {
+        FingerprintManager fingerprintManager = (FingerprintManager) context.getSystemService(Context.FINGERPRINT_SERVICE);
+        return context.getApplicationContext().checkSelfPermission(Manifest.permission.USE_FINGERPRINT) == PackageManager.PERMISSION_GRANTED &&
+        (fingerprintManager != null && fingerprintManager.isHardwareDetected());
+    }
+
+    // Check if device has NFC
+    public static boolean hasNFC(Context context) {
+        return context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_NFC);
+    }
+
+    // Check if device has notch
+    public static boolean hasNotch(Context context) {
+        String displayCutout = context.getResources().getString(R.string.config_mainBuiltInDisplayCutout);
+        boolean maskDisplayCutout = context.getResources().getBoolean(R.bool.config_maskMainBuiltInDisplayCutout);
+        boolean displayCutoutExists = (!TextUtils.isEmpty(displayCutout) && !maskDisplayCutout);
+        return displayCutoutExists;
+    }
+
+    // Check if device supports Wifi
+    public static boolean hasWiFi(Context context) {
+        return context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_WIFI);
+    }
+
+    // Check if device supports A/B (seamless) system updates
+    public static boolean isABdevice(Context context) {
+        return SystemProperties.getBoolean("ro.build.ab_update", false);
+    }
+
+    // Check if package is available
+    public static boolean isAvailableApp(String packageName, Context context) {
+        Context mContext = context;
+        final PackageManager pm = mContext.getPackageManager();
+        try {
+            pm.getPackageInfo(packageName, PackageManager.GET_ACTIVITIES);
+            int enabled = pm.getApplicationEnabledSetting(packageName);
+            return enabled != PackageManager.COMPONENT_ENABLED_STATE_DISABLED &&
+            enabled != PackageManager.COMPONENT_ENABLED_STATE_DISABLED_USER;
+        } catch (NameNotFoundException e) {
+            return false;
         }
+    }
+
+    // Check for Chinese language
+    public static boolean isChineseLanguage() {
+        return Resources.getSystem().getConfiguration().locale.getLanguage().startsWith(
+            Locale.CHINESE.getLanguage());
+    }
+
+    // Check if package is installed
+    public static boolean isPackageInstalled(Context context, String pkg) {
+        return isPackageInstalled(context, pkg, true);
     }
 
     public static boolean isPackageInstalled(Context context, String pkg, boolean ignoreState) {
@@ -88,47 +178,14 @@ public class IonUtils {
                 return false;
             }
         }
-
         return true;
     }
 
-    public static boolean isAvailableApp(String packageName, Context context) {
-       Context mContext = context;
-       final PackageManager pm = mContext.getPackageManager();
-       try {
-           pm.getPackageInfo(packageName, PackageManager.GET_ACTIVITIES);
-           int enabled = pm.getApplicationEnabledSetting(packageName);
-           return enabled != PackageManager.COMPONENT_ENABLED_STATE_DISABLED &&
-               enabled != PackageManager.COMPONENT_ENABLED_STATE_DISABLED_USER;
-       } catch (NameNotFoundException e) {
-           return false;
-       }
-    }
-
-    public static boolean isPackageInstalled(Context context, String pkg) {
-        return isPackageInstalled(context, pkg, true);
-    }
-
-    public static boolean deviceSupportsProximitySensor(Context context) {
-        SensorManager sm = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
-        return sm.getDefaultSensor(TYPE_PROXIMITY) != null;
-    }
-
-    public static boolean deviceSupportsLightSensor(Context context) {
-        SensorManager sm = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
-        return sm.getDefaultSensor(TYPE_LIGHT) != null;
-    }
-
-    public static boolean deviceHasFlashlight(Context ctx) {
-        return ctx.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
-    }
-
-    public static void toggleCameraFlash() {
-        FireActions.toggleCameraFlash();
-    }
-
-    public static void toggleCameraFlashOff() {
-        FireActions.toggleCameraFlashOff();
+    // Check if device is WiFi only
+    public static boolean isWifiOnly(Context context) {
+    ConnectivityManager cm = (ConnectivityManager)context.getSystemService(
+        Context.CONNECTIVITY_SERVICE);
+        return (cm.isNetworkSupported(ConnectivityManager.TYPE_MOBILE) == false);
     }
 
     /**
@@ -166,6 +223,17 @@ public class IonUtils {
         }, 20);
     }
 
+    public static void setPartialScreenshot(boolean active) {
+        FireActions.setPartialScreenshot(active);
+    }
+
+    public static void switchScreenOff(Context ctx) {
+        PowerManager pm = (PowerManager) ctx.getSystemService(Context.POWER_SERVICE);
+        if (pm!= null) {
+            pm.goToSleep(SystemClock.uptimeMillis());
+        }
+    }
+
     public static void takeScreenshot(boolean full) {
         IWindowManager wm = WindowManagerGlobal.getWindowManagerService();
         try {
@@ -175,16 +243,12 @@ public class IonUtils {
         }
     }
 
-    public static void setPartialScreenshot(boolean active) {
-        FireActions.setPartialScreenshot(active);
+    public static void toggleCameraFlash() {
+        FireActions.toggleCameraFlash();
     }
 
-    // Check if device has a notch
-    public static boolean hasNotch(Context context) {
-        String displayCutout = context.getResources().getString(R.string.config_mainBuiltInDisplayCutout);
-        boolean maskDisplayCutout = context.getResources().getBoolean(R.bool.config_maskMainBuiltInDisplayCutout);
-        boolean displayCutoutExists = (!TextUtils.isEmpty(displayCutout) && !maskDisplayCutout);
-        return displayCutoutExists;
+    public static void toggleCameraFlashOff() {
+        FireActions.toggleCameraFlashOff();
     }
 
     private static final class FireActions {
