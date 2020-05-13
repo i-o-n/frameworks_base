@@ -35,7 +35,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.android.internal.util.ion.Utils;
+import com.android.internal.util.ion.IonUtils;
 import com.android.internal.telephony.TelephonyIntents;
 
 import com.android.systemui.Dependency;
@@ -166,7 +166,7 @@ public class CarrierLabel extends TextView implements DarkReceiver {
                         intent.getStringExtra(TelephonyIntents.EXTRA_SPN),
                         intent.getBooleanExtra(TelephonyIntents.EXTRA_SHOW_PLMN, false),
                         intent.getStringExtra(TelephonyIntents.EXTRA_PLMN));
-                isCN = Utils.isChineseLanguage();
+                isCN = IonUtils.isChineseLanguage();
             }
         }
     };
