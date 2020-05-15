@@ -85,6 +85,17 @@ public class IonUtils {
      */
     public static final String DISMISS_KEYGUARD_EXTRA_INTENT = "launch";
 
+    private static IStatusBarService mStatusBarService = null;
+    private static IStatusBarService getStatusBarService() {
+        synchronized (IonUtils.class) {
+            if (mStatusBarService == null) {
+                mStatusBarService = IStatusBarService.Stub.asInterface(
+                        ServiceManager.getService("statusbar"));
+            }
+            return mStatusBarService;
+        }
+    }
+
     // Method to detect battery temperature
     public static String batteryTemperature(Context context, Boolean ForC) {
         Intent intent = context.registerReceiver(null, new IntentFilter(
