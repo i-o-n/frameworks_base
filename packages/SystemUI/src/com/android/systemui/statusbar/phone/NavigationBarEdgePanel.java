@@ -135,7 +135,7 @@ public class NavigationBarEdgePanel extends View {
     private final float mArrowThickness;
     private float mLongSwipeThreshold;
     private boolean mAlmostLongSwipe;
-    private int mBackSwipeType;
+    private boolean mBackSwipeType;
     private Context mContext;
 
     /**
@@ -638,7 +638,7 @@ public class NavigationBarEdgePanel extends View {
         float x = event.getX();
         float y = event.getY();
         float touchTranslation = MathUtils.abs(x - mStartX);
-        mAlmostLongSwipe = (mBackSwipeType == 1) && (touchTranslation > mLongSwipeThreshold);
+        mAlmostLongSwipe = mBackSwipeType && (touchTranslation > mLongSwipeThreshold);
         float yOffset = y - mStartY;
         float delta = touchTranslation - mPreviousTouchTranslation;
         if (Math.abs(delta) > 0) {
@@ -800,7 +800,6 @@ public class NavigationBarEdgePanel extends View {
 
     public void setExtendedSwipe() {
         mBackSwipeType = Settings.System.getIntForUser(mContext.getContentResolver(),
-            Settings.System.BACK_SWIPE_TYPE, 0,
-            UserHandle.USER_CURRENT);
+                Settings.System.BACK_SWIPE_TYPE, 0, UserHandle.USER_CURRENT) != 0;
     }
 }

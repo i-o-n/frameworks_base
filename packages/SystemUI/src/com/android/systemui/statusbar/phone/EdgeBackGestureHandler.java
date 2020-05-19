@@ -193,11 +193,14 @@ public class EdgeBackGestureHandler implements DisplayListener {
     private Handler mHandler;
     private AssistManager mAssistManager;
     private int mTimeout = 3000; //ms
-    private int mBackSwipeType;
     private int mLeftLongSwipeAction;
     private int mRightLongSwipeAction;
+    private int mHoldLeftSwipeAction;
+    private int mHoldRightSwipeAction;
     private boolean mBlockNextEvent;
     private boolean mBackHapticEnabled;
+
+    private boolean isHoldAction = false;
 
     private final Vibrator mVibrator;
 
@@ -334,21 +337,36 @@ public class EdgeBackGestureHandler implements DisplayListener {
                 String rightPackageName = Settings.System.getStringForUser(context.getContentResolver(),
                         Settings.System.RIGHT_LONG_BACK_SWIPE_APP_ACTION,
                         UserHandle.USER_CURRENT);
+                String leftPackageName_ = Settings.System.getStringForUser(context.getContentResolver(),
+                        Settings.System.LEFT_HOLD_BACK_SWIPE_APP_ACTION,
+                        UserHandle.USER_CURRENT);
+                String rightPackageName_ = Settings.System.getStringForUser(context.getContentResolver(),
+                        Settings.System.RIGHT_HOLD_BACK_SWIPE_APP_ACTION,
+                        UserHandle.USER_CURRENT);
+
                 // if the package name equals to some set value
                 if(packageName.equals(leftPackageName)) {
                     // The short application action has to be reset
-                    resetApplicationAction(/* isLeftAction */ true);
+                    resetApplicationAction(/* isActionInvalid */ 0);
                 }
                 if (packageName.equals(rightPackageName)) {
                     // The long application action has to be reset
-                    resetApplicationAction(/* isLeftAction */ false);
+                    resetApplicationAction(/* isActionInvalid */ 1);
+                }
+                if(packageName.equals(leftPackageName_)) {
+                    // The short application action has to be reset
+                    resetApplicationAction(/* isActionInvalid */ 2);
+                }
+                if (packageName.equals(rightPackageName_)) {
+                    // The long application action has to be reset
+                    resetApplicationAction(/* isActionInvalid */ 3);
                 }
             }
         }
     };
 
-    private void resetApplicationAction(boolean isLeftAction) {
-        if (isLeftAction) {
+    private void resetApplicationAction(int isActionInvalid) {
+        if (isActionInvalid == 0) {
             // Remove stored values
             Settings.System.putIntForUser(mContext.getContentResolver(),
                     Settings.System.LEFT_LONG_BACK_SWIPE_ACTION, /* no action */ 0,
@@ -356,13 +374,29 @@ public class EdgeBackGestureHandler implements DisplayListener {
             Settings.System.putStringForUser(mContext.getContentResolver(),
                     Settings.System.LEFT_LONG_BACK_SWIPE_APP_FR_ACTION, /* none */ "",
                     UserHandle.USER_CURRENT);
-        } else {
+        } else if (isActionInvalid == 1) {
             // Remove stored values
             Settings.System.putIntForUser(mContext.getContentResolver(),
                     Settings.System.RIGHT_LONG_BACK_SWIPE_ACTION, /* no action */ 0,
                     UserHandle.USER_CURRENT);
             Settings.System.putStringForUser(mContext.getContentResolver(),
                     Settings.System.RIGHT_LONG_BACK_SWIPE_APP_FR_ACTION, /* none */ "",
+                    UserHandle.USER_CURRENT);
+        } else if (isActionInvalid == 2) {
+            // Remove stored values
+            Settings.System.putIntForUser(mContext.getContentResolver(),
+                    Settings.System.LEFT_HOLD_BACK_SWIPE_ACTION, /* no action */ 0,
+                    UserHandle.USER_CURRENT);
+            Settings.System.putStringForUser(mContext.getContentResolver(),
+                    Settings.System.LEFT_HOLD_BACK_SWIPE_APP_FR_ACTION, /* none */ "",
+                    UserHandle.USER_CURRENT);
+        } else if (isActionInvalid == 3) {
+            // Remove stored values
+            Settings.System.putIntForUser(mContext.getContentResolver(),
+                    Settings.System.RIGHT_HOLD_BACK_SWIPE_ACTION, /* no action */ 0,
+                    UserHandle.USER_CURRENT);
+            Settings.System.putStringForUser(mContext.getContentResolver(),
+                    Settings.System.RIGHT_HOLD_BACK_SWIPE_APP_FR_ACTION, /* none */ "",
                     UserHandle.USER_CURRENT);
         }
         // statusbar settings observer will trigger mEdgePanel.setLongSwipeOptions()
@@ -473,8 +507,10 @@ public class EdgeBackGestureHandler implements DisplayListener {
         /* if Launcher is showing and want to block back gesture, let's still trigger our custom
         swipe actions at the very bottom of the screen, because we are cool */
         boolean isInExcludedRegion = false;
-        if (mBackSwipeType == 1
-                || (mLeftLongSwipeAction != 0 && mIsOnLeftEdge)  || (mRightLongSwipeAction != 0 && !mIsOnLeftEdge)) {
+        if ((mLeftLongSwipeAction != 0 && mIsOnLeftEdge)
+                || (mRightLongSwipeAction != 0 && !mIsOnLeftEdge)
+                || (mHoldLeftSwipeAction != 0 && mIsOnLeftEdge)
+                || (mHoldRightSwipeAction != 0 && !mIsOnLeftEdge)) {
             isInExcludedRegion= mExcludeRegion.contains(x, y)
                 && y < ((mDisplaySize.y / 4) * 3);
         } else {
@@ -505,9 +541,6 @@ public class EdgeBackGestureHandler implements DisplayListener {
     }
 
     public void setLongSwipeOptions() {
-        mBackSwipeType = Settings.System.getIntForUser(mContext.getContentResolver(),
-            Settings.System.BACK_SWIPE_TYPE, 0,
-            UserHandle.USER_CURRENT);
         if (mEdgePanel != null) {
             mEdgePanel.setExtendedSwipe();
         }
@@ -519,6 +552,12 @@ public class EdgeBackGestureHandler implements DisplayListener {
             UserHandle.USER_CURRENT);
         mRightLongSwipeAction = Settings.System.getIntForUser(mContext.getContentResolver(),
             Settings.System.RIGHT_LONG_BACK_SWIPE_ACTION, 0,
+            UserHandle.USER_CURRENT);
+        mHoldLeftSwipeAction = Settings.System.getIntForUser(mContext.getContentResolver(),
+            Settings.System.LEFT_HOLD_BACK_SWIPE_ACTION, 0,
+            UserHandle.USER_CURRENT);
+        mHoldRightSwipeAction = Settings.System.getIntForUser(mContext.getContentResolver(),
+            Settings.System.RIGHT_HOLD_BACK_SWIPE_ACTION, 0,
             UserHandle.USER_CURRENT);
         mBackHapticEnabled = Settings.System.getIntForUser(mContext.getContentResolver(),
             Settings.System.BACK_GESTURE_HAPTIC, 1,
@@ -570,15 +609,15 @@ public class EdgeBackGestureHandler implements DisplayListener {
 
                     } else if (dx > dy && dx > mTouchSlop) {
                         mThresholdCrossed = true;
-                        if (mBackSwipeType == 0 && ((mLeftLongSwipeAction != 0 && mIsOnLeftEdge)
-                                || (mRightLongSwipeAction != 0 && !mIsOnLeftEdge))) {
+                        if ((mHoldLeftSwipeAction != 0 && mIsOnLeftEdge)
+                                || (mHoldRightSwipeAction != 0 && !mIsOnLeftEdge)) {
+                            isHoldAction = true;
                             mHandler.postDelayed(mLongSwipeAction, (mTimeout - elapsedTime));
                         }
                         // Capture inputs
                         mInputMonitor.pilferPointers();
                     }
                 }
-
             }
 
             // forward touch
@@ -588,9 +627,11 @@ public class EdgeBackGestureHandler implements DisplayListener {
             boolean isCancel = action == MotionEvent.ACTION_CANCEL;
             boolean isMove = action == MotionEvent.ACTION_MOVE;
 
-            if (isMove && mBackSwipeType == 1) {
+            if (isMove && ((mLeftLongSwipeAction != 0 && mIsOnLeftEdge)
+                    || (mRightLongSwipeAction != 0 && !mIsOnLeftEdge))) {
                 float deltaX = Math.abs(ev.getX() - mDownPoint.x);
                 if (deltaX  > ((mDisplaySize.x / 4) * 3)) {
+                    isHoldAction = false;
                     mLongSwipeAction.run();
                 }
             }
@@ -642,7 +683,9 @@ public class EdgeBackGestureHandler implements DisplayListener {
     }
 
     public void triggerAction(boolean isLeftPanel) {
-        int action = isLeftPanel ? mLeftLongSwipeAction : mRightLongSwipeAction;
+        int action = (isLeftPanel ?
+                (isHoldAction ? mHoldLeftSwipeAction : mLeftLongSwipeAction)
+                : (isHoldAction ? mHoldRightSwipeAction : mRightLongSwipeAction));
         switch (action) {
             case 0: // No action
             default:
@@ -660,7 +703,7 @@ public class EdgeBackGestureHandler implements DisplayListener {
                 IonUtils.toggleCameraFlash();
                 break;
             case 5: // Application
-                launchApp(mContext, isLeftPanel);
+                launchApp(mContext, isLeftPanel, isHoldAction);
                 break;
             case 6: // Volume panel
                 IonUtils.toggleVolumePanel(mContext);
@@ -695,15 +738,19 @@ public class EdgeBackGestureHandler implements DisplayListener {
         }
     }
 
-    private void launchApp(Context context, boolean isLeftPanel) {
+    private void launchApp(Context context, boolean isLeftPanel, boolean isHoldAction) {
         Intent intent = null;
         String packageName = Settings.System.getStringForUser(context.getContentResolver(),
-                isLeftPanel ? Settings.System.LEFT_LONG_BACK_SWIPE_APP_ACTION
-                : Settings.System.RIGHT_LONG_BACK_SWIPE_APP_ACTION,
+                isLeftPanel ? (isHoldAction ? Settings.System.LEFT_HOLD_BACK_SWIPE_APP_ACTION
+                        : Settings.System.LEFT_LONG_BACK_SWIPE_APP_ACTION)
+                : (isHoldAction ? Settings.System.RIGHT_HOLD_BACK_SWIPE_APP_ACTION
+                        : Settings.System.RIGHT_LONG_BACK_SWIPE_APP_ACTION),
                 UserHandle.USER_CURRENT);
         String activity = Settings.System.getStringForUser(context.getContentResolver(),
-                isLeftPanel ? Settings.System.LEFT_LONG_BACK_SWIPE_APP_ACTIVITY_ACTION
-                : Settings.System.RIGHT_LONG_BACK_SWIPE_APP_ACTIVITY_ACTION,
+                isLeftPanel ? (isHoldAction ? Settings.System.LEFT_HOLD_BACK_SWIPE_APP_ACTIVITY_ACTION
+                        : Settings.System.LEFT_LONG_BACK_SWIPE_APP_ACTIVITY_ACTION)
+                : (isHoldAction ? Settings.System.RIGHT_HOLD_BACK_SWIPE_APP_ACTIVITY_ACTION
+                        : Settings.System.RIGHT_LONG_BACK_SWIPE_APP_ACTIVITY_ACTION),
                 UserHandle.USER_CURRENT);
         boolean launchActivity = activity != null && !TextUtils.equals("NONE", activity);
         try {

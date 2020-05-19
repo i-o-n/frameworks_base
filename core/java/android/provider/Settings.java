@@ -6712,6 +6712,32 @@ public final class Settings {
         private static final Validator NAVIGATION_BAR_ARROW_KEYS_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /**
+         * Gestures nav: left hold back swipe action
+         * @hide
+         */
+        public static final String LEFT_HOLD_BACK_SWIPE_ACTION = "left_hold_back_swipe_action";
+
+        /**
+         * Gestures nav: left hold back swipe app action
+         * @hide
+         */
+        public static final String LEFT_HOLD_BACK_SWIPE_APP_ACTION = "left_hold_back_swipe_app_action";
+
+        /**
+         * Display friendly name of custom application launched when
+         * using the hold left back swipe app action
+         * @hide
+         */
+        public static final String LEFT_HOLD_BACK_SWIPE_APP_FR_ACTION = "left_hold_back_swipe_app_fr_action";
+
+        /**
+         * Launch custom activity when using the hold left back swipe app action
+         *
+         * @hide
+         */
+        public static final String LEFT_HOLD_BACK_SWIPE_APP_ACTIVITY_ACTION = "left_hold_back_swipe_app_activity_action";
+
+        /**
          * Gestures nav: left long back swipe action
          * @hide
          */
@@ -6736,6 +6762,32 @@ public final class Settings {
          * @hide
          */
         public static final String LEFT_LONG_BACK_SWIPE_APP_ACTIVITY_ACTION = "left_long_back_swipe_app_activity_action";
+
+        /**
+         * Gestures nav: right hold back swipe action
+         * @hide
+         */
+        public static final String RIGHT_HOLD_BACK_SWIPE_ACTION = "right_hold_back_swipe_action";
+
+        /**
+         * Gestures nav: right hold back swipe app action
+         * @hide
+         */
+        public static final String RIGHT_HOLD_BACK_SWIPE_APP_ACTION = "right_hold_back_swipe_app_action";
+
+        /**
+         * Display friendly name of custom application launched when
+         * using the hold right back swipe app action
+         * @hide
+         */
+        public static final String RIGHT_HOLD_BACK_SWIPE_APP_FR_ACTION = "right_hold_back_swipe_app_fr_action";
+
+        /**
+         * Launch custom activity when using the hold right back swipe app action
+         *
+         * @hide
+         */
+        public static final String RIGHT_HOLD_BACK_SWIPE_APP_ACTIVITY_ACTION = "right_hold_back_swipe_app_activity_action";
 
         /**
          * Gestures nav: right long back swipe action

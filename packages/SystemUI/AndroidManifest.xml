@@ -792,6 +792,15 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.android.systemui.statusbar.phone.HoldLeftBackSwipeCustomApp"
+            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog.MinWidth"
+            android:label="@string/app_picker_dialog_title" >
+            <intent-filter>
+                <action android:name="com.android.systemui.statusbar.phone.HoldLeftBackSwipeCustomApp" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
 
         <activity
             android:name="com.android.systemui.statusbar.phone.RightBackSwipeCustomApp"
@@ -799,6 +808,15 @@
             android:label="@string/app_picker_dialog_title" >
             <intent-filter>
                 <action android:name="com.android.systemui.statusbar.phone.RightBackSwipeCustomApp" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.android.systemui.statusbar.phone.HoldRightBackSwipeCustomApp"
+            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog.MinWidth"
+            android:label="@string/app_picker_dialog_title" >
+            <intent-filter>
+                <action android:name="com.android.systemui.statusbar.phone.HoldRightBackSwipeCustomApp" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
