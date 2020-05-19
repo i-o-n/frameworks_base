@@ -552,16 +552,18 @@ public class VolumeDialogControllerImpl implements VolumeDialogController, Dumpa
             if (adaptivePlaybackEnabled) {
                 int adaptivePlaybackTimeout = Settings.System.getIntForUser(
                         mContext.getContentResolver(), Settings.System.ADAPTIVE_PLAYBACK_TIMEOUT,
-                        30000, UserHandle.USER_CURRENT);
+                        30, UserHandle.USER_CURRENT);
                 mAudio.dispatchMediaKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN,
                         KeyEvent.KEYCODE_MEDIA_PAUSE));
                 mAudio.dispatchMediaKeyEvent(new KeyEvent(KeyEvent.ACTION_UP,
                         KeyEvent.KEYCODE_MEDIA_PAUSE));
                 isResumable = true;
                 mMediaStateHandler.removeCallbacksAndMessages(null);
-                mMediaStateHandler.postDelayed(() -> {
-                    isResumable = false;
-                }, adaptivePlaybackTimeout);
+                if (adaptivePlaybackTimeout != 0) {
+                    mMediaStateHandler.postDelayed(() -> {
+                        isResumable = false;
+                    }, (adaptivePlaybackTimeout * 1000));
+                }
             }
         }
         if (stream == AudioSystem.STREAM_MUSIC && level > 0 && isResumable) {
