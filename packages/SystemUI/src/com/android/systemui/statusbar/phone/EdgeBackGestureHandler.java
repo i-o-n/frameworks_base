@@ -677,7 +677,7 @@ public class EdgeBackGestureHandler implements DisplayListener {
             mEdgePanel.resetOnDown();
             triggerAction(mIsOnLeftEdge);
             if (mBackHapticEnabled) {
-                mVibrator.vibrate(VibrationEffect.createOneShot(50, VibrationEffect.DEFAULT_AMPLITUDE));
+                mVibrator.vibrate(VibrationEffect.createOneShot(30, VibrationEffect.DEFAULT_AMPLITUDE));
             }
         }
     }
