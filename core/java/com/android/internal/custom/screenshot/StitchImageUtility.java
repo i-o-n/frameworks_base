@@ -20,9 +20,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.media.AudioManager;
 import android.media.MediaActionSound;
 import android.net.Uri;
 import android.os.UserHandle;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.provider.Settings;
 import android.util.Log;
 
@@ -39,6 +42,8 @@ public class StitchImageUtility {
     private final Context mContext;
     private MediaActionSound mCameraSound;
     private PackageManager mPackageManager;
+    private AudioManager mAudioManager;
+    private Vibrator mVibrator;
 
     public StitchImageUtility(Context context) {
         mContext = context;
@@ -63,12 +68,29 @@ public class StitchImageUtility {
     }
 
     private void playScreenshotSound(){
-        if (mCameraSound == null){
-            mCameraSound = new MediaActionSound();
-            mCameraSound.load(MediaActionSound.SHUTTER_CLICK);
-        }
-        if (Settings.System.getIntForUser(mContext.getContentResolver(), Settings.System.SCREENSHOT_SHUTTER_SOUND, 1, UserHandle.USER_CURRENT) == 1) {
-            mCameraSound.play(MediaActionSound.SHUTTER_CLICK);
+        mAudioManager = (AudioManager) mContext.getSystemService(Context.AUDIO_SERVICE);
+        mVibrator = (Vibrator) mContext.getSystemService(Context.VIBRATOR_SERVICE);
+
+        switch (mAudioManager.getRingerMode()) {
+            case AudioManager.RINGER_MODE_SILENT:
+                // do nothing
+                break;
+            case AudioManager.RINGER_MODE_VIBRATE:
+                if (mVibrator != null && mVibrator.hasVibrator()) {
+                    mVibrator.vibrate(VibrationEffect.createOneShot(30, VibrationEffect.DEFAULT_AMPLITUDE));
+                }
+                break;
+            case AudioManager.RINGER_MODE_NORMAL:
+                // Play the shutter sound to notify that we've taken a screenshot
+                if (Settings.System.getIntForUser(mContext.getContentResolver(),
+                        Settings.System.SCREENSHOT_SHUTTER_SOUND, 1, UserHandle.USER_CURRENT) == 1) {
+                    if (mCameraSound == null){
+                        mCameraSound = new MediaActionSound();
+                        mCameraSound.load(MediaActionSound.SHUTTER_CLICK);
+                    }
+                    mCameraSound.play(MediaActionSound.SHUTTER_CLICK);
+                }
+                break;
         }
     }
 
