@@ -212,7 +212,6 @@ import android.view.autofill.AutofillManagerInternal;
 
 import com.android.internal.R;
 import com.android.internal.accessibility.AccessibilityShortcutController;
-import com.android.internal.custom.longshot.ILongScreenshotManager;
 import com.android.internal.logging.MetricsLogger;
 import com.android.internal.logging.nano.MetricsProto;
 import com.android.internal.os.DeviceKeyHandler;
@@ -680,7 +679,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     private int mPowerButtonSuppressionDelayMillis = POWER_BUTTON_SUPPRESSION_DELAY_DEFAULT_MILLIS;
 
     private int mTorchActionMode;
-    private int sshotType;
 
     private static final float PROXIMITY_DISTANCE_THRESHOLD = 5.0f;
     private int mProximityTimeOut;
@@ -1043,9 +1041,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.DOZE_TRIGGER_DOUBLETAP), false, this,
-                    UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.SCREENSHOT_TYPE), false, this,
                     UserHandle.USER_ALL);
             updateSettings();
         }
@@ -1690,7 +1685,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                             + SCREENSHOT_CHORD_DEBOUNCE_DELAY_MILLIS) {
                 mScreenshotChordVolumeDownKeyConsumed = true;
                 cancelPendingPowerKeyAction();
-                if (sshotType == 1) {
+                if (Settings.System.getIntForUser(mContext.getContentResolver(),
+                    Settings.System.SCREENSHOT_TYPE, 0, UserHandle.USER_CURRENT) == 1) {
                     mScreenshotRunnable.setScreenshotType(TAKE_SCREENSHOT_SELECTED_REGION);
                 } else {
                     mScreenshotRunnable.setScreenshotType(TAKE_SCREENSHOT_FULLSCREEN);
@@ -1785,12 +1781,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         @Override
         public void run() {
             if (!mPocketLockShowing) {
-                if (sshotType == 2) {
-                    boolean dockMinimized = mWindowManagerInternal.isMinimizedDock();
-                    mDefaultDisplayPolicy.takeScreenshot(mScreenshotType, dockMinimized);
-                } else {
-                    mDefaultDisplayPolicy.takeScreenshot(mScreenshotType);
-                }
+                mDefaultDisplayPolicy.takeScreenshot(mScreenshotType);
             }
         }
     }
@@ -1804,7 +1795,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     }
 
     void showGlobalActionsInternal() {
-        stopLongshot();
         if (mGlobalActions == null) {
             mGlobalActions = new GlobalActions(mContext, mWindowManagerFuncs);
         }
@@ -1813,30 +1803,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         // since it took two seconds of long press to bring this up,
         // poke the wake lock so they have some time to see the dialog.
         mPowerManager.userActivity(SystemClock.uptimeMillis(), false);
-    }
-
-    private void stopLongshot() {
-        ILongScreenshotManager shot = ILongScreenshotManager.Stub.asInterface(ServiceManager.getService(Context.LONGSCREENSHOT_SERVICE));
-        if (shot != null) {
-            try {
-                if (shot.isLongshotMode()) {
-                    shot.stopLongshot();
-                }
-            } catch (RemoteException e) {
-                Slog.d(TAG, e.toString());
-            }
-        }
-    }
-
-    @Override
-    public void stopLongshotConnection() {
-        mDefaultDisplayPolicy.stopLongshotConnection();
-    }
-
-    @Override
-    public void mokeeTakeScreenshot(int type) {
-        mScreenshotRunnable.setScreenshotType(type);
-        mHandler.post(mScreenshotRunnable);
     }
 
     boolean isDeviceProvisioned() {
@@ -2577,9 +2543,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         if (updateRotation) {
             updateRotation(true);
         }
-
-        sshotType = Settings.System.getIntForUser(mContext.getContentResolver(),
-                Settings.System.SCREENSHOT_TYPE, 0, UserHandle.USER_CURRENT);
     }
 
     private void updateWakeGestureListenerLp() {
