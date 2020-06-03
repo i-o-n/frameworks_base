@@ -1307,29 +1307,34 @@ public class StatusBar extends SystemUI implements DemoMode,
     }
 
     public void updateBlurVisibility() {
+        if (isQSBlurEnabled()) {
+            int QSUserAlpha = Settings.System.getInt(mContext.getContentResolver(),
+                    Settings.System.QS_BLUR_ALPHA, 100);
+            int QSBlurAlpha = Math.round(255.0f
+                    * (mNotificationPanel.getExpandedHeight() / (getDisplayHeight() * 0.4f))
+                    * (float)((float) QSUserAlpha / 100.0));
+            if (QSBlurAlpha > 255) QSBlurAlpha = 255;
 
-        int QSUserAlpha = Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.QS_BLUR_ALPHA, 100);
-        int QSBlurAlpha = Math.round(255.0f * (mNotificationPanel.getExpandedHeight() / (getDisplayHeight() * 0.4f))
-                * (float)((float) QSUserAlpha / 100.0));
-        if (QSBlurAlpha > 255) QSBlurAlpha = 255;
+            int QSBlurIntensity = Settings.System.getInt(mContext.getContentResolver(),
+                    Settings.System.QS_BLUR_INTENSITY, 40);
+            boolean enoughBlurData = (QSBlurAlpha > 0 && QSBlurIntensity > 0);
 
-        int QSBlurIntensity = Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.QS_BLUR_INTENSITY, 40);
-        boolean enoughBlurData = (QSBlurAlpha > 0 && QSBlurIntensity > 0);
-
-        if (enoughBlurData && !blurperformed && !mIsKeyguard && isQSBlurEnabled()) {
-            Bitmap bittemp = ImageUtilities.blurImage(mContext,
-                    ImageUtilities.screenshotSurface(mContext), QSBlurIntensity);
-            Drawable blurbackground = new BitmapDrawable(mContext.getResources(), bittemp);
-            blurperformed = true;
-            mQSBlurView.setBackgroundDrawable(blurbackground);
-        } else if (!enoughBlurData || mState == StatusBarState.KEYGUARD) {
-            blurperformed = false;
-            mQSBlurView.setBackgroundColor(Color.TRANSPARENT);
+            if (enoughBlurData && !blurperformed && !mIsKeyguard) {
+                Bitmap bittemp = ImageUtilities.blurImage(mContext,
+                        ImageUtilities.screenshotSurface(mContext), QSBlurIntensity);
+                Drawable blurbackground = new BitmapDrawable(mContext.getResources(), bittemp);
+                blurperformed = true;
+                mQSBlurView.setBackgroundDrawable(blurbackground);
+            } else if (!enoughBlurData || mState == StatusBarState.KEYGUARD) {
+                blurperformed = false;
+                mQSBlurView.setBackgroundColor(Color.TRANSPARENT);
+            }
+            mQSBlurView.setVisibility(View.VISIBLE);
+            mQSBlurView.setAlpha(QSBlurAlpha);
+            mQSBlurView.getBackground().setAlpha(QSBlurAlpha);
+        } else {
+            mQSBlurView.setVisibility(View.GONE);
         }
-        mQSBlurView.setAlpha(QSBlurAlpha);
-        mQSBlurView.getBackground().setAlpha(QSBlurAlpha);
     }
 
     private boolean isQSBlurEnabled() {
