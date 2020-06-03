@@ -1333,8 +1333,8 @@ public class StatusBar extends SystemUI implements DemoMode,
     }
 
     private boolean isQSBlurEnabled() {
-        return Settings.System.getInt(mStaticContext.getContentResolver(),
-                Settings.System.QS_BLUR, 1) != 0;
+        return Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.QS_BLUR, 0) != 0;
     }
 
     protected QS createDefaultQSFragment() {
