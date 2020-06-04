@@ -138,12 +138,6 @@
     <!-- Whether device supports variable refresh rate -->
     <bool name="config_hasVariableRefreshRate">false</bool>
 
-	<!-- Default refresh rate value for the device
-         0: Auto
-         1: 60Hz
-         2: 90Hz -->
-    <integer name="config_defaultRefreshRate">0</integer>
-
     <!-- Smart charging battery percentage -->
     <bool name="config_deviceSupportSmartCharging">false</bool>
     <integer name="config_smartChargingBatteryLevel">80</integer>
