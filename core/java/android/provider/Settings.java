@@ -5854,9 +5854,13 @@ public final class Settings {
         public static final String DOZE_TRIGGER_DOUBLETAP = "doze_trigger_doubletap";
 
         /**
+         * Refresh rate
          * @hide
          */
         public static final String REFRESH_RATE_SETTING = "refresh_rate_setting";
+
+        /** @hide */
+        private static final Validator REFRESH_RATE_SETTING_VALIDATOR = ANY_INTEGER_VALIDATOR;
 
         /**
          * Wheter to play notification sound and vibration if screen is ON
@@ -7190,6 +7194,7 @@ public final class Settings {
             QS_BLUR_ALPHA,
             QS_BLUR_INTENSITY,
             QS_PANEL_BG_USE_NEW_TINT,
+            REFRESH_RATE_SETTING,
         };
 
         /**
@@ -7489,6 +7494,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(QS_DATAUSAGE);
             PRIVATE_SETTINGS.add(QS_BLUR);
             PRIVATE_SETTINGS.add(QS_PANEL_BG_USE_NEW_TINT);
+            PRIVATE_SETTINGS.add(REFRESH_RATE_SETTING);
         }
 
         /**
@@ -7771,6 +7777,7 @@ public final class Settings {
             VALIDATORS.put(QS_BLUR_ALPHA, QS_BLUR_ALPHA_VALIDATOR);
             VALIDATORS.put(QS_BLUR_INTENSITY, QS_BLUR_INTENSITY_VALIDATOR);
             VALIDATORS.put(QS_PANEL_BG_USE_NEW_TINT, QS_PANEL_BG_USE_NEW_TINT_VALIDATOR);
+            VALIDATORS.put(REFRESH_RATE_SETTING, REFRESH_RATE_SETTING_VALIDATOR);
         }
 
         /**
