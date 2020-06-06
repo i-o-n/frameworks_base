@@ -18,6 +18,7 @@ package com.android.server.wm;
 
 import static android.view.WindowManager.LayoutParams.TYPE_BASE_APPLICATION;
 
+import static com.android.dx.mockito.inline.extended.ExtendedMockito.any;
 import static com.android.dx.mockito.inline.extended.ExtendedMockito.anyInt;
 import static com.android.dx.mockito.inline.extended.ExtendedMockito.doReturn;
 import static com.android.dx.mockito.inline.extended.ExtendedMockito.mock;
@@ -56,6 +57,10 @@ public class TaskPositioningControllerTests extends WindowTestsBase {
     public void setUp() throws Exception {
         assertNotNull(mWm.mTaskPositioningController);
         mTarget = mWm.mTaskPositioningController;
+
+        when(mWm.mInputManager.transferTouchFocus(
+                any(InputChannel.class),
+                any(InputChannel.class))).thenReturn(true);
 
         mWindow = createWindow(null, TYPE_BASE_APPLICATION, "window");
         mWindow.mInputChannel = new InputChannel();
@@ -118,7 +123,13 @@ public class TaskPositioningControllerTests extends WindowTestsBase {
             assertNull(mTarget.getDragWindowHandleLocked());
         }
 
-        triggerHandleTapOutsideTask();
+        final DisplayContent content = mock(DisplayContent.class);
+        when(content.findTaskForResizePoint(anyInt(), anyInt())).thenReturn(mWindow.getTask());
+        assertNotNull(mWindow.getTask().getTopVisibleAppMainWindow());
+
+        mTarget.handleTapOutsideTask(content, 0, 0);
+        // Wait until the looper processes finishTaskPositioning.
+        assertTrue(mWm.mH.runWithScissors(() -> { }, TIMEOUT_MS));
 
         synchronized (mWm.mGlobalLock) {
             assertTrue(mTarget.isPositioningLocked());
@@ -131,33 +142,5 @@ public class TaskPositioningControllerTests extends WindowTestsBase {
 
         assertFalse(mTarget.isPositioningLocked());
         assertNull(mTarget.getDragWindowHandleLocked());
-    }
-
-    @Test
-    public void testHandleTapOutsideTaskWithTransferTouchFocusFailed() {
-        when(mWm.mInputManager.transferTouchFocus(
-                any(InputChannel.class),
-                any(InputChannel.class))).thenReturn(false);
-        synchronized (mWm.mGlobalLock) {
-            assertFalse(mTarget.isPositioningLocked());
-            assertNull(mTarget.getDragWindowHandleLocked());
-        }
-
-        triggerHandleTapOutsideTask();
-
-        synchronized (mWm.mGlobalLock) {
-            assertFalse(mTarget.isPositioningLocked());
-            assertNull(mTarget.getDragWindowHandleLocked());
-        }
-    }
-
-    private void triggerHandleTapOutsideTask() {
-        final DisplayContent content = mock(DisplayContent.class);
-        when(content.findTaskForResizePoint(anyInt(), anyInt())).thenReturn(mWindow.getTask());
-        assertNotNull(mWindow.getTask().getTopVisibleAppMainWindow());
-
-        mTarget.handleTapOutsideTask(content, 0, 0);
-        // Wait until the looper processes finishTaskPositioning.
-        assertTrue(mWm.mH.runWithScissors(() -> { }, TIMEOUT_MS));
     }
 }
