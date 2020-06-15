@@ -2339,6 +2339,7 @@ public class NotificationPanelView extends PanelView implements
             alpha *= mClockPositionResult.clockAlpha;
         }
         mNotificationStackScroller.setAlpha(alpha);
+        mStatusBar.updateQSDataUsageInfo();
         mStatusBar.updateBlurVisibility();
     }
 
