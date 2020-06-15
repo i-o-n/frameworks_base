@@ -6855,6 +6855,15 @@ public final class Settings {
         public static final String BACK_SWIPE_TYPE = "back_swipe_type";
 
         /**
+         * Height of the navigation handle.
+         * @hide
+         */
+        public static final String NAVIGATION_HANDLE_HEIGHT = "navigation_handle_height";
+
+        /** @hide */
+        private static final Validator NAVIGATION_HANDLE_HEIGHT_VALIDATOR = ANY_INTEGER_VALIDATOR;
+
+        /**
          * Width of the navigation handle.
          * @hide
          */
@@ -7412,6 +7421,7 @@ public final class Settings {
             BATTERY_BAR_LOW_COLOR,
             BATTERY_BAR_USE_GRADIENT_COLOR,
             NAVIGATION_BAR_ARROW_KEYS,
+            NAVIGATION_HANDLE_HEIGHT,
             NAVIGATION_HANDLE_WIDTH,
             DISPLAY_CUTOUT_MODE,
             STOCK_STATUSBAR_IN_HIDE,
@@ -7739,6 +7749,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(BATTERY_BAR_LOW_COLOR);
             PRIVATE_SETTINGS.add(BATTERY_BAR_USE_GRADIENT_COLOR);
             PRIVATE_SETTINGS.add(NAVIGATION_BAR_ARROW_KEYS);
+            PRIVATE_SETTINGS.add(NAVIGATION_HANDLE_HEIGHT);
             PRIVATE_SETTINGS.add(NAVIGATION_HANDLE_WIDTH);
             PRIVATE_SETTINGS.add(DISPLAY_CUTOUT_MODE);
             PRIVATE_SETTINGS.add(STOCK_STATUSBAR_IN_HIDE);
@@ -8040,6 +8051,7 @@ public final class Settings {
             VALIDATORS.put(BATTERY_BAR_LOW_COLOR, BATTERY_BAR_LOW_COLOR_VALIDATOR);
             VALIDATORS.put(BATTERY_BAR_USE_GRADIENT_COLOR, BATTERY_BAR_USE_GRADIENT_COLOR_VALIDATOR);
             VALIDATORS.put(NAVIGATION_BAR_ARROW_KEYS, NAVIGATION_BAR_ARROW_KEYS_VALIDATOR);
+            VALIDATORS.put(NAVIGATION_HANDLE_HEIGHT, NAVIGATION_HANDLE_HEIGHT_VALIDATOR);
             VALIDATORS.put(NAVIGATION_HANDLE_WIDTH, NAVIGATION_HANDLE_WIDTH_VALIDATOR);
             VALIDATORS.put(DISPLAY_CUTOUT_MODE, DISPLAY_CUTOUT_MODE_VALIDATOR);
             VALIDATORS.put(STOCK_STATUSBAR_IN_HIDE, STOCK_STATUSBAR_IN_HIDE_VALIDATOR);
