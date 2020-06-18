@@ -1311,8 +1311,7 @@ public class StatusBar extends SystemUI implements DemoMode,
         if (isQSBlurEnabled()) {
             int QSUserAlpha = Settings.System.getInt(mContext.getContentResolver(),
                     Settings.System.QS_BLUR_ALPHA, 100);
-            int QSBlurAlpha = Math.round(255.0f
-                    * (mNotificationPanel.getExpandedHeight() / (getDisplayHeight() * 0.4f))
+            int QSBlurAlpha = Math.round(255.0f * mNotificationPanel.getExpandedFraction()
                     * (float)((float) QSUserAlpha / 100.0));
             if (QSBlurAlpha > 255) QSBlurAlpha = 255;
 
