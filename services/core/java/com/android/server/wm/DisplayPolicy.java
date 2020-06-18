@@ -2871,9 +2871,11 @@ public class DisplayPolicy {
                 || IonUtils.isThemeEnabled("com.android.internal.systemui.navbar.threebutton");
         final boolean showIMESpace = Settings.System.getIntForUser(mContext.getContentResolver(),
                 Settings.System.NAVIGATION_BAR_IME_SPACE, 1, UserHandle.USER_CURRENT) != 0;
-        final int navbarHeight = showNavbar ?
+        final boolean showOnlyNavbarHandle = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.SHOW_ONLY_NAVBAR_HANDLE, 0, UserHandle.USER_CURRENT) != 0;
+        final int navbarHeight = showNavbar && !showOnlyNavbarHandle ?
                 res.getDimensionPixelSize(R.dimen.navigation_bar_height) : 0;
-        final int navbarHeightLandscape = showNavbar ?
+        final int navbarHeightLandscape = showNavbar && !showOnlyNavbarHandle ?
                 res.getDimensionPixelSize(R.dimen.navigation_bar_height_landscape) : 0;
         final int navbarFrameHeight = showIMESpace || isButtonMode ?
                 res.getDimensionPixelSize(R.dimen.navigation_bar_frame_height) : showNavbar ?

@@ -7200,6 +7200,15 @@ public final class Settings {
         public static final String SENSOR_BLOCK = "sensor_block";
 
         /**
+         * Whether to show only navbar handle
+         * @hide
+         */
+        public static final String SHOW_ONLY_NAVBAR_HANDLE = "show_only_navbar_handle";
+
+        /** @hide */
+        private static final Validator SHOW_ONLY_NAVBAR_HANDLE_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -7457,6 +7466,7 @@ public final class Settings {
             SLIM_RECENTS_CORNER_RADIUS,
             SLIM_RECENTS_BLACKLIST_VALUES,
             SLIM_RECENT_ENTER_EXIT_ANIMATION,
+            SHOW_ONLY_NAVBAR_HANDLE,
         };
 
         /**
@@ -7781,6 +7791,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(SLIM_RECENTS_CORNER_RADIUS);
             PRIVATE_SETTINGS.add(SLIM_RECENTS_BLACKLIST_VALUES);
             PRIVATE_SETTINGS.add(SLIM_RECENT_ENTER_EXIT_ANIMATION);
+            PRIVATE_SETTINGS.add(SHOW_ONLY_NAVBAR_HANDLE);
         }
 
         /**
@@ -8088,6 +8099,7 @@ public final class Settings {
             VALIDATORS.put(SLIM_RECENTS_CORNER_RADIUS, SLIM_RECENTS_CORNER_RADIUS_VALIDATOR);
             VALIDATORS.put(SLIM_RECENTS_BLACKLIST_VALUES, SLIM_RECENTS_BLACKLIST_VALUES_VALIDATOR);
             VALIDATORS.put(SLIM_RECENT_ENTER_EXIT_ANIMATION, SLIM_RECENT_ENTER_EXIT_ANIMATION_VALIDATOR);
+            VALIDATORS.put(SHOW_ONLY_NAVBAR_HANDLE, SHOW_ONLY_NAVBAR_HANDLE_VALIDATOR);
         }
 
         /**

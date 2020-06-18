@@ -1069,7 +1069,7 @@ public class NavigationBarView extends FrameLayout implements
                             com.android.internal.R.dimen.navigation_bar_height_landscape)
                     : getResources().getDimensionPixelSize(
                             com.android.internal.R.dimen.navigation_bar_height);
-            int finalHeight = mShowGestureNavbar ? height : 0;
+            int finalHeight = mShowGestureNavbar && !showOnlyNavbarHandle() ? height : 0;
             int frameHeight = showIMESpace() || isButtonMode ? getResources().getDimensionPixelSize(
                     com.android.internal.R.dimen.navigation_bar_frame_height) : mShowGestureNavbar ?
                             getResources().getDimensionPixelSize(
@@ -1291,5 +1291,10 @@ public class NavigationBarView extends FrameLayout implements
     private boolean showIMESpace() {
         return Settings.System.getIntForUser(getContext().getContentResolver(),
                 Settings.System.NAVIGATION_BAR_IME_SPACE, 1, UserHandle.USER_CURRENT) != 0;
+    }
+
+    private boolean showOnlyNavbarHandle() {
+        return Settings.System.getIntForUser(getContext().getContentResolver(),
+                Settings.System.SHOW_ONLY_NAVBAR_HANDLE, 0, UserHandle.USER_CURRENT) != 0;
     }
 }
