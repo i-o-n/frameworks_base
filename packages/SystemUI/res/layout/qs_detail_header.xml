@@ -29,6 +29,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingTop="@dimen/qs_detail_items_padding_top"
+        android:paddingEnd="@dimen/qs_panel_padding"
         android:orientation="horizontal">
 
         <TextView
