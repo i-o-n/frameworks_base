@@ -7216,6 +7216,12 @@ public final class Settings {
         private static final Validator SHOW_ONLY_NAVBAR_HANDLE_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /**
+         * A2DP codec priority
+         * @hide
+         */
+        public static final String A2DP_SOURCE_CODEC_PRIORITY = "a2dp_source_codec_priority";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
