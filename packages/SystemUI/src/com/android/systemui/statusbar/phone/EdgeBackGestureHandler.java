@@ -729,6 +729,12 @@ public class EdgeBackGestureHandler implements DisplayListener {
             case 13: // Kill app
                 IonUtils.killForegroundApp();
                 break;
+            case 14: // Next song
+                sendEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_MEDIA_NEXT);
+                break;
+            case 15: // Previous song
+                sendEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_MEDIA_PREVIOUS);
+                break;
         }
     }
 
