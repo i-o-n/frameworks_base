@@ -391,17 +391,6 @@ public class IonUtils {
         }, 20);
     }
 
-    public static void sendSystemKeyToStatusBar(int keyCode) {
-        IStatusBarService service = getStatusBarService();
-        if (service != null) {
-            try {
-                service.handleSystemKey(keyCode);
-            } catch (RemoteException e) {
-                // do nothing.
-            }
-        }
-    }
-
     public static void setComponentState(Context context, String packageName,
             String componentClassName, boolean enabled) {
         PackageManager pm  = context.getApplicationContext().getPackageManager();
