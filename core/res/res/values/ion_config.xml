@@ -232,9 +232,6 @@
     <!-- Setting to false will disable CM's IME switcher implementation for tablets -->
     <bool name="config_show_cmIMESwitcher">true</bool>
 
-    <!-- SBC Dual Channel (SBC HD Audio) -->
-    <bool name="config_enableSBCDualChannelAudio">true</bool>
-
     <!-- Whether device has a notch -->
     <bool name="config_haveNotch">false</bool>
 

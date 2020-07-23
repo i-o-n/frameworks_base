@@ -235,9 +235,6 @@
   <!-- IMESwitcher -->
   <java-symbol type="bool" name="config_show_cmIMESwitcher"/>
 
-  <!-- SBC Dual Channel (SBC HD Audio) -->
-  <java-symbol type="bool" name="config_enableSBCDualChannelAudio"/>
-
   <!-- Whether device has a notch -->
   <java-symbol type="bool" name="config_haveNotch" />
 
